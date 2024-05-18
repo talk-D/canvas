@@ -64,7 +64,11 @@ const Theme = () => {
     };
 
     return (
+
+
+        
         <div className='container' onClick={handleContainerClick}>
+
             {/* showColorPickerBox가 true이면 ColorPickerBox(상단바)를 보여줍니다. */}
             {showColorPickerBox &&
             <div className='color-picker-box'>
