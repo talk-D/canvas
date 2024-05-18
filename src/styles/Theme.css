@@ -3,7 +3,7 @@
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #F5F5F5;
+    background-color: #FFF5DC;
 }
 
 .frame {
@@ -24,7 +24,7 @@
     width: 100%;
     padding-top: 8px;
     background-color: white;
-    border-bottom: 1px solid #828282;
+    border-bottom: 1px solid #FFBB6D;
 }
 
 .color-picker-icon {
@@ -42,12 +42,12 @@
     height: 100%;
     width: 86px;
     background-color: white;
-    border-right: 1px solid #828282;
+    border-right: 1px solid #FFBB6D;
     z-index: 1;
 }
 
 .menu-icon {
-    padding-top: 14px;
+    padding-top: 3px;
 }
 
 .left-drawer {
@@ -58,7 +58,7 @@
     height: 100%;
     width: 240px;
     background-color: white;
-    border-right: 1px solid #828282;
+    border-right: 1px solid #FFBB6D;
     padding-top: 38px;
 }
 

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import '../styles/Theme.css';
 import { ChromePicker } from 'react-color';
-import { FigureIcon, BasicIcon, StorageIcon, TextIcon } from '../icons/MenuIcon';
+import { FigureIcon, BasicIcon, ImageIcon, TextIcon } from '../icons/MenuIcon';
 
 const Theme = () => {
     const [frameColor, setFrameColor] = useState('#ffffff');
@@ -86,10 +86,10 @@ const Theme = () => {
                     <BasicIcon />
                 </div>
                 <div className='menu-icon'>
-                    <TextIcon />
+                    <ImageIcon />
                 </div>
                 <div className='menu-icon'>
-                    <StorageIcon />
+                    <TextIcon />
                 </div>
             </div>
             {/* 도형 아이콘 클릭 시 노출되는 Drawer, 추후 열고 닫는 기능 구현 필요 */}
