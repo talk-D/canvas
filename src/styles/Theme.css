@@ -1,3 +1,8 @@
+.fontTest {
+    text-align: center;
+    font-family: 'NotoSans';
+  }
+
 .container {
     display: flex;
     height: 100vh;

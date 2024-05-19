@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'NotoSancs'; /* 사용할 폰트의 이름을 정의 */
+  src: url('./fonts/NotoSansKR-Medium.ttf'); /* 폰트 파일의 위치 */
+}
+
+body {
+  font-family: "NotoSancs";
+}

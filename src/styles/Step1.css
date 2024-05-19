@@ -1,0 +1,22 @@
+.menu{
+    
+}
+
+
+.first-row {
+    display: flex;
+    justify-content: center;
+
+}
+
+.step1{
+    background-image: url("data:image/svg+xml,%3Csvg width='226' height='59' viewBox='0 0 226 59' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='226' height='59' rx='29.5' fill='%23FFBB6D'/%3E%3C/svg%3E");
+    background-size: cover; /* 이미지가 div 전체를 채우도록 합니다. */
+    background-position: center; /* 이미지를 가운데 정렬합니다. */
+}
+
+
+.second-row{
+    display: flex;
+    justify-content: center;
+}
