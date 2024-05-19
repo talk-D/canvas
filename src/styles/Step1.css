@@ -1,22 +1,93 @@
+
 .menu{
+    display: flex;
+}
+
+.menu{
+    margin: 10px 17vw 10px 17vw;
+}
+
+.step1{
+    flex-grow: 1;
+    text-align: center;
+    width: 10%;
+    height: 80%;
+    color: #ffffff;
+    background-color: #FFBB6D;
+    border-radius: 45vh; 
+
+    font-size: 2.5vh;
+    padding: 13px 0px 13px 0px;
+    margin: 0px 20px 0px 0px;
+
     
+}
+
+.step2{
+    flex-grow: 3;
+    text-align: left;
+   
+}
+.first-row{
+    text-align: center;
+    width: 30%;
+    
+    color: #ffffff;
+    background-color: #FFBB6D;
+    border-radius: 45vh; 
+
+    
+    font-size: 2.5vh;
+    padding: 13px 0px 13px 0px;
+    margin: 0px 0px 10px 0px;
+
+
+}
+
+.step3{
+    flex-grow: 1;
+    text-align: center;
+    width: 10%;
+    height: 80%;
+    color: #ffffff;
+    background-color: #FFBB6D;
+    border-radius: 45vh; 
+
+    
+    
+    font-size: 2.5vh;
+    padding: 13px 0px 13px 0px;
+    margin: 0px 0px 0px 20px;
 }
 
 
 .first-row {
-    display: flex;
-    justify-content: center;
+  
 
 }
 
-.step1{
-    background-image: url("data:image/svg+xml,%3Csvg width='226' height='59' viewBox='0 0 226 59' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='226' height='59' rx='29.5' fill='%23FFBB6D'/%3E%3C/svg%3E");
-    background-size: cover; /* 이미지가 div 전체를 채우도록 합니다. */
-    background-position: center; /* 이미지를 가운데 정렬합니다. */
-}
+
 
 
 .second-row{
     display: flex;
-    justify-content: center;
+    
+}
+
+
+
+.second-row > div{
+    text-align: center;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 80%;
+    color: #828282;
+    background-color: #FFECB4;
+    border-radius: 45vh; /* Adjust this value to change the roundness */
+
+    
+    font-size: 2.5vh;
+    padding: 10px 3px 10px 3px;
+    margin: 0px 5px 0px 5px;
 }
