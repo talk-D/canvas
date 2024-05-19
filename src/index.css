@@ -12,6 +12,7 @@ code {
     monospace;
 }
 
+/*전체 css 파일에 적용시키기 위해 index.css에 폰트패밀리 삽입*/
 @font-face {
   font-family: 'NotoSancs'; /* 사용할 폰트의 이름을 정의 */
   src: url('./fonts/NotoSansKR-Medium.ttf'); /* 폰트 파일의 위치 */
