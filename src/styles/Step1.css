@@ -1,12 +1,15 @@
-.wrap{
-
+.info-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-.background{
 
+.background{
     background-color: #FFF5DC;
     height: 80vh;
     width: 92vw;
     margin: 0 auto;
+    justify-content: center;
     flex-direction: column;
 }
 
@@ -16,42 +19,49 @@
     justify-content: center;
 
     text-align: center;
-    width: 600px;
-    height: 28px;
+    width: 800px;
+    height: 25px;
+    font-weight: 600;
     color: #FDBD74;
     background-color: #FFFFFF;
     border-radius: 45vh;
     font-size: 20px;
-    padding: 13px 0px 13px 0px;
+    padding: 10px 0px 10px 0px;
     margin: 20px 0px 20px 0px;
 
 }
-
+.step1-input{
+    text-align: right;
+    justify-content: right;
+}
 .text-input{
+    font-size: 24px;
     align-items: center;
     text-align: center;
-    top: 0;
-    left: 0;
-    width: 50vh;
-    height:10vh;
-    color: #828282;
-    background-color: #FFECB4;
+    width: 320px;
+    height:45px;
+    background-color: #FFFFFF;
+    border: 1px solid #FDBD74;
     border-radius: 45vh;
+    margin : 10px 5px 10px 5px;
 }
 
 .theme-version{
+
     align-items: center;
     display: flex;
     justify-content: center;
 }
 
 .theme-name-Korean{
+
     align-items: center;
     display: flex;
     justify-content: center;
 }
 
 .theme-name-English{
+
     align-items: center;
     display: flex;
     justify-content: center;

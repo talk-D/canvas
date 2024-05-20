@@ -10,7 +10,8 @@ function Step1() {
         <div className='wrap'>
             <Themeguide />
           <div className = 'background'>
-              <div className='guide'> <Megaphone /> 테마정보를 입력해주세요!</div>
+              <div className='info-wrap'>
+              <div className='guide'> <Megaphone /> &nbsp;&nbsp;테마정보를 입력해주세요!</div>
               <div className='step1-input'>
                   <div className='theme-version'>
                     테마버전
@@ -25,6 +26,7 @@ function Step1() {
                     <div className='text-input'> <input type="text"></input></div>
                   </div>
               </div>
+          </div>
           </div>
         </div>
     );
