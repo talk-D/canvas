@@ -74,4 +74,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 http://localhost:3000/theme
 
 # 메뉴 헤더화 + 캔버스 임포트
-http://local:3000/basic/step1
+http://local:3000/step1
