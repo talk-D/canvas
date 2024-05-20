@@ -27,6 +27,9 @@ function Step1() {
                   </div>
               </div>
           </div>
+              <div className='footer'>
+                  <div className='step1-button'>다음</div>
+              </div>
           </div>
         </div>
     );

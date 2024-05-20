@@ -40,7 +40,7 @@
     margin: 0 auto;
 }
 .text-input{
-    font-size: 25px;
+    font-size: 26px;
     align-items: center;
     text-align: center;
     width: 380px;
@@ -72,4 +72,19 @@
     display: flex;
     justify-content: right;
     margin: 12px 0px 12px 0px;
+}
+
+.footer{
+    width: 92vw;
+    align-items: center;
+}
+.step1-button{
+    width: 6vw;
+    height: 5vh;
+    align-items: center;
+    background-color: #FFBB6D;
+    color: #FFFFFF;
+    border-radius: 45vh;
+    padding: 10px 0 2px 0;
+    margin : 0 25vw 0 75vw;
 }
