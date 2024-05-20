@@ -4,21 +4,25 @@ import {Logo} from '../header/Logo.jsx';
 import {Megaphone} from '../icons/MainPageIcon';
 
 function Main() {
-    
+
+    const handleBasicTheme = () => {window.location.href = "/step1";  }
+    const handleCharacterTheme = () => {window.location.href = "/step1";  }
 
     return (
         <div className='div-wrapper'>
             <Logo />
             <div className='info'>
                 <Megaphone />
-                <div className='info-text'> 제작할 테마 종류를 클릭해주세요!</div>
+                <div className='info-text'>&nbsp;&nbsp;제작할 테마 종류를 클릭해주세요!</div>
             </div>
             <div className='theme-type'>
                 <div className='basic-theme'>
-                    <img src='BasicTheme.png' alt="기본 말풍선 테마"></img>
+                    <div className='basic-theme-label'>기본 말풍선 테마</div>
+                    <div className='basic-theme-img'><img src='BasicTheme.png' alt="기본 말풍선 테마" onClick={handleBasicTheme}></img></div>
                 </div>
                 <div className='character-theme'>
-                    <img src='CharacterTheme.png' alt="캐릭터 말풍선 테마"></img>
+                    <div className='character-theme-label'>캐릭터 말풍선 테마</div>
+                    <div className='character-theme-img'> <img src='CharacterTheme.png' alt="캐릭터 말풍선 테마" onClick={handleCharacterTheme}></img></div>
                 </div>
             </div>
 
