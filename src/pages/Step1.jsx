@@ -17,7 +17,6 @@ function Step1() {
         localStorage.setItem("themeNameKorean", themeNameKorean);
         localStorage.setItem("themeNameEnglish", themeNameEnglish);
 
-
         window.location.href = "/step2/thumbnail";
     };
 

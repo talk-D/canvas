@@ -1,12 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../styles/Main.css';
 import {Logo} from '../header/Logo.jsx';
 import {Megaphone} from '../icons/MainPageIcon';
 
+
 function Main() {
 
-    const handleBasicTheme = () => {window.location.href = "/step1";  }
-    const handleCharacterTheme = () => {window.location.href = "/step1";  }
+    const handleBasicTheme = () => {
+        localStorage.setItem("themeType", 1);
+        window.location.href = "/step1";  }
+    const handleCharacterTheme = () => {
+        localStorage.setItem("themeType", 2);
+        window.location.href = "/step1";  }
 
     return (
         <div className='div-wrapper'>

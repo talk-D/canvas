@@ -8,6 +8,7 @@ import Password from './pages/Password';
 import Friendlist from './pages/Friendlist';
 import Tabbar from './pages/Tabbar';
 import Chatroom from './pages/Chatroom';
+import CharacterChatroom from "./pages/CharacterChatroom";
 import Notification from './pages/Notification';
 import Thememaking from './pages/Thememaking';
 
@@ -23,6 +24,7 @@ function App() {
            <Route path='/step2/friendlist' element={<Friendlist />} />
            <Route path='/step2/tabbar' element={<Tabbar />} />
            <Route path='step2/chatroom' element={<Chatroom />} />
+            <Route path='step2/characterchatroom' element={<CharacterChatroom />} />
            <Route path='/step2/notification' element={<Notification />} />
            <Route path='/step3/thememaking' element={<Thememaking />} />
           <Route path='/theme' element={<Theme />} />
