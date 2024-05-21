@@ -1,7 +1,7 @@
 import React from 'react';
 import { Themeguide } from '../header/Themeguide.jsx';
-import Theme from './Theme.jsx';
-
+import '../styles/Password.css';
+import {Backgroundup,Backgrounddown} from "../icons/PasswordIcon";
 
 function Password() {
 
@@ -12,7 +12,19 @@ function Password() {
     return (
         <div className='wrap'>
             <Themeguide />
-            <Theme />
+            <div className = 'background'>
+                <div className='info-wrap'>
+                    <div className='password-style'>
+                        <div className='password-background-up'>
+                            <Backgroundup />
+                            <Backgrounddown />
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
             <div className='footer'>
                 <div className='step1-button' onClick={handlePasswordButton}>다음</div>
             </div>
