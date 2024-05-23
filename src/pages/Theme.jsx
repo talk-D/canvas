@@ -72,7 +72,7 @@ const Theme = () => {
             {/* showColorPickerBox가 true이면 ColorPickerBox(상단바)를 보여줍니다. */}
             {showColorPickerBox &&
             <div className='color-picker-box'>
-                <img onClick={handleColorPickerIconClick} alt='색상 선택' src='color-picker.png' className="color-picker-icon" />
+                <img onClick={handleColorPickerIconClick} alt='색상 선택' src='/color-picker.png' className="color-picker-icon" />
                 {/* showColorPicker가 true이면 ColorPicker(색상선택기)를 보여줍니다. */}
                 {showColorPicker &&
                 <ChromePicker
