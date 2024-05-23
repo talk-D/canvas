@@ -3,14 +3,14 @@ import { Themeguide } from '../header/Themeguide.jsx';
 import '../styles/Password.css';
 import { SketchPicker } from 'react-color';
 import {
-    Password_bg_color_comp,
+    Password_bg_color_comp, password_font_color_cmp,
     Password_keypad_color_comp,
     Password_second_title_color_comp,
-    Password_title_color_comp
+    Password_title_color_comp,
+    Password_font_color_cmp
 } from "../icons/PasswordIcon";
 
 function Password() {
-
     function hexToRgb(hex) {
         let bigint = parseInt(hex.substring(1), 16);
         let r = (bigint >> 16) & 255;
@@ -34,9 +34,6 @@ function Password() {
         return rgbToHex(r, g, b);
     }
 
-    const keypadColor = "#828282";
-    const titleColor = "#654141";
-    const secondTitleColor = addColor(titleColor, "#191301");
 
     const handlePasswordButton = () => {
         window.location.href = "/step2/Friendlist";
@@ -44,7 +41,12 @@ function Password() {
 
     const [isOpen, setIsOpen] = useState(false);
     const [activeButton, setActiveButton] = useState(null);
-    const [bgColor, setBgColor] = useState("#ffffff");
+    const [passwordBgColor, setPasswordBgColor] = useState("#ffffff");
+    const [passwordKeypadColor, setPasswordKeypadColor] = useState("#FFECB4");
+    const [passwordKeypadFontColor, setPasswordKeypadFontColor] = useState("#828282");
+    const [passwordTitleColor, setPasswordTitleColor] = useState("#4A4A4A");
+    const [passwordSecondTitleColor, setPasswordSecondTitleColor] = useState("#ffffff");
+
 
     const toggleMenu = (event, buttonId) => {
         setIsOpen(!isOpen);
@@ -67,9 +69,20 @@ function Password() {
         };
     }, []);
 
-    const handleColorChange = (color) => {
-        setBgColor(color.hex);
-        console.log("선택된 배경 색상: ", color.hex);
+
+    const handleChangePasswordBgColor = (color) => {
+        setPasswordBgColor(color.hex);
+    };
+    const handleChangePasswordKeypadColor = (color) => {
+        setPasswordKeypadColor(color.hex);
+    };
+    const handleChangePasswordKeypadFontColor = (color) => {
+        setPasswordKeypadFontColor(color.hex);
+
+    };
+    const handleChangePasswordTitleColor = (color) => {
+        setPasswordTitleColor(color.hex);
+        setPasswordSecondTitleColor(addColor(color.hex, "#191301"));
     };
 
     return (
@@ -81,15 +94,28 @@ function Password() {
 
                     {isOpen && (
                         <div className="drawer">
-
-                            /*--색상 변경이 필요한 아이콘을 눌렀을 때--*/
-                            {activeButton === 'password_bg_color_set' && (
-                                //npm install react-color
-                                <SketchPicker color={bgColor} onChangeComplete={handleColorChange} />
+                            {/* 색상 변경이 필요한 아이콘을 눌렀을 때 */}
+                            {activeButton === 'password_bg_color_set'&& (
+                                <SketchPicker color={passwordBgColor} onChangeComplete={handleChangePasswordBgColor} />
                             )}
 
-                            /*--이미지 변경이 필요한 아이콘을 눌렀을 때--*/
-                            {(activeButton === 'new1'||activeButton==='new2')&&(
+                            {activeButton === 'password_title_color_set' && (
+                                <SketchPicker color={passwordTitleColor} onChangeComplete={handleChangePasswordTitleColor} />
+                            )}
+
+                            {activeButton === 'password_keypad_bg_color_set' && (
+                                <SketchPicker color={passwordKeypadColor} onChangeComplete={handleChangePasswordKeypadColor} />
+                            )}
+
+                            {activeButton === 'password_font_color_set' && (
+
+                                <SketchPicker color={passwordKeypadFontColor} onChangeComplete={handleChangePasswordKeypadFontColor} />
+                            )}
+
+
+
+                            {/* 이미지 변경이 필요한 아이콘을 눌렀을 때 */}
+                            {(activeButton === 'lock_icon_set' || activeButton === 'unlock_icon_set') && (
                                 <div className="image-box">
                                     {/* 3x3 이미지 박스 */}
                                     <div className="image-grid">
@@ -106,36 +132,43 @@ function Password() {
 
                     <div className='password-style'>
                         <div className='password_bg_color'>
-                            <Password_bg_color_comp bgColor={bgColor} />
+                            <Password_bg_color_comp bgColor={passwordBgColor} />
                         </div>
                         <div className='password_keypad_color'>
-                            <Password_keypad_color_comp color={keypadColor} />
+                            <Password_keypad_color_comp keypadColor={passwordKeypadColor} />
                         </div>
                         <div className='password_title_color'>
-                            <Password_title_color_comp color={titleColor} />
+                            <Password_title_color_comp color={passwordTitleColor} />
                         </div>
                         <div className='password_second_title_color'>
-                            <Password_second_title_color_comp color={secondTitleColor} />
+                            <Password_second_title_color_comp color={passwordSecondTitleColor} />
                         </div>
+                        <div className='password_keypad_font_color'>
+                            <Password_font_color_cmp color={passwordKeypadFontColor} />
+
+                        </div>
+
+                        {/* 알림 아이콘(색만 변경) */}
                         <div className='password_bg_color_set'>
                             <img onClick={(event) => toggleMenu(event, 'password_bg_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'password_bg_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
                         </div>
-
-                        <div className='new1'>
-                            <img onClick={(event) => toggleMenu(event, 'new1')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'new1' ? "/setIcon.png" : "/notSetIcon.png"} />
+                        <div className='password_title_color_set'>
+                            <img onClick={(event) => toggleMenu(event, 'password_title_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'password_title_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
                         </div>
-                        <div className='new2'>
-                            <img onClick={(event) => toggleMenu(event, 'new2')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'new2' ? "/setIcon.png" : "/notSetIcon.png"} />
+                        <div className='password_keypad_bg_color_set'>
+                            <img onClick={(event) => toggleMenu(event, 'password_keypad_bg_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'password_keypad_bg_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
                         </div>
-                        <div className='new3'>
-                            <img onClick={(event) => toggleMenu(event, 'new3')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'new3' ? "/setIcon.png" : "/notSetIcon.png"} />
+                        <div className='password_font_color_set'>
+                            <img onClick={(event) => toggleMenu(event, 'password_font_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'password_font_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
                         </div>
 
-
-
-
-
-
+                        {/* 알림 아이콘(아이콘&색 변경) */}
+                        <div className='unlock_icon_set'>
+                            <img onClick={(event) => toggleMenu(event, 'unlock_icon_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'unlock_icon_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+                        </div>
+                        <div className='lock_icon_set'>
+                            <img onClick={(event) => toggleMenu(event, 'lock_icon_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'lock_icon_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+                        </div>
                     </div>
                 </div>
             </div>
