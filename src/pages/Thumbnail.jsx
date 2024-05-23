@@ -1,6 +1,7 @@
 import React from 'react';
 import { Themeguide } from '../header/Themeguide.jsx';
 import Theme from './Theme.jsx';
+import CanvasComponent from './CanvasComponent.jsx';
 
 
 function Thumbnail() {
@@ -13,7 +14,8 @@ function Thumbnail() {
     return (
         <div className='wrap'>
             <Themeguide />
-            <Theme />
+            {/*<Theme />*/}
+            <CanvasComponent />
             <div className='footer'>
                 <div className='step1-button' onClick={handleThumbnailButton}>다음</div>
             </div>

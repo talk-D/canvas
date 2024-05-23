@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../styles/Theme.css';
 import { ChromePicker } from 'react-color';
 import { FigureIcon, BasicIcon, ImageIcon, TextIcon } from '../icons/MenuIcon';
@@ -9,7 +9,6 @@ const Theme = () => {
     const [showColorPicker, setShowColorPicker] = useState(false);
     // 색상 선택기 박스(상단바) 표시 여부
     const [showColorPickerBox, setShowColorPickerBox] = useState(false);
-
     // 여러 사각형의 id, 색상, 위치, 크기 정보를 가지는 배열
     const [rectangles, setRectangles] = useState([]);
     // 사용자가 선택한 도형의 id
@@ -20,7 +19,7 @@ const Theme = () => {
     // 색상 선택기의 참조
     const ChromePickerRef = useRef(null);
 
-    // 도형 아이콘을 클릭하면 실행하는 함수
+    // Rectactgle 버튼을 클릭하면 실행하는 함수
     const handleRectangleIconClick = () => {
         const newRectangle = {
             id: rectangles.length,
@@ -30,7 +29,6 @@ const Theme = () => {
             width: 150,
             height: 150,
         };
-      
         setRectangles([...rectangles, newRectangle]);
     };
 
@@ -65,8 +63,6 @@ const Theme = () => {
 
     return (
 
-
-        
         <div className='container' onClick={handleContainerClick}>
 
             {/* showColorPickerBox가 true이면 ColorPickerBox(상단바)를 보여줍니다. */}
@@ -101,7 +97,7 @@ const Theme = () => {
                 <div onClick={handleRectangleIconClick} className='drawer-icon'>
                     Rectangle
                 </div>
-                <div className='drawer-icon'>
+                <div onClick={ ()=>{} } className='drawer-icon'>
                     Ellipse
                 </div>
                 <div className='drawer-icon'>
@@ -131,6 +127,9 @@ const Theme = () => {
                 />
             ))}
             </div>
+            
+
+            
         </div>
     );
 }
