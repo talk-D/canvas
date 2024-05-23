@@ -7,7 +7,7 @@ import {
     Password_keypad_color_comp,
     Password_second_title_color_comp,
     Password_title_color_comp,
-    Password_font_color_cmp
+    Password_font_color_cmp, Unlock_icon_cmp1, Unlock_icon_cmp2, Lock_icon_cmp1, Lock_icon_cmp2
 } from "../icons/PasswordIcon";
 
 function Password() {
@@ -45,7 +45,10 @@ function Password() {
     const [passwordKeypadColor, setPasswordKeypadColor] = useState("#FFECB4");
     const [passwordKeypadFontColor, setPasswordKeypadFontColor] = useState("#828282");
     const [passwordTitleColor, setPasswordTitleColor] = useState("#4A4A4A");
-    const [passwordSecondTitleColor, setPasswordSecondTitleColor] = useState("#ffffff");
+    const [passwordSecondTitleColor, setPasswordSecondTitleColor] = useState("#B9B9B9");
+    const[passwordLockIconColor, setPasswordLockIconColor] = useState("#FFE27A");
+    const [passwordUnlockIconColor, setPasswordUnlockIconColor] = useState("#FFE27A");
+
 
 
     const toggleMenu = (event, buttonId) => {
@@ -137,37 +140,55 @@ function Password() {
                         <div className='password_keypad_color'>
                             <Password_keypad_color_comp keypadColor={passwordKeypadColor} />
                         </div>
-                        <div className='password_title_color'>
-                            <Password_title_color_comp color={passwordTitleColor} />
-                        </div>
-                        <div className='password_second_title_color'>
-                            <Password_second_title_color_comp color={passwordSecondTitleColor} />
+                        <div className='password_text'>
+                            <div className='password_title_color'>
+                                <Password_title_color_comp color={passwordTitleColor} />
+                            </div>
+
+                            <div className='password_second_title_color'>
+                                <Password_second_title_color_comp color={passwordSecondTitleColor} />
+                            </div>
                         </div>
                         <div className='password_keypad_font_color'>
                             <Password_font_color_cmp color={passwordKeypadFontColor} />
-
                         </div>
 
-                        {/* 알림 아이콘(색만 변경) */}
-                        <div className='password_bg_color_set'>
-                            <img onClick={(event) => toggleMenu(event, 'password_bg_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'password_bg_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
-                        </div>
-                        <div className='password_title_color_set'>
-                            <img onClick={(event) => toggleMenu(event, 'password_title_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'password_title_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
-                        </div>
-                        <div className='password_keypad_bg_color_set'>
-                            <img onClick={(event) => toggleMenu(event, 'password_keypad_bg_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'password_keypad_bg_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
-                        </div>
-                        <div className='password_font_color_set'>
-                            <img onClick={(event) => toggleMenu(event, 'password_font_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'password_font_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+<div className='lock_icon_zone'>
+                        <div className='unlock_icon'>
+                            <Unlock_icon_cmp1 color={passwordUnlockIconColor} />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <Unlock_icon_cmp2 color={passwordUnlockIconColor} />
                         </div>
 
-                        {/* 알림 아이콘(아이콘&색 변경) */}
-                        <div className='unlock_icon_set'>
-                            <img onClick={(event) => toggleMenu(event, 'unlock_icon_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'unlock_icon_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+                        <div className='lock_icon'>
+                            <Lock_icon_cmp1 color={passwordLockIconColor} />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <Lock_icon_cmp2 color={passwordLockIconColor} />
                         </div>
-                        <div className='lock_icon_set'>
-                            <img onClick={(event) => toggleMenu(event, 'lock_icon_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'lock_icon_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+</div>
+
+                        <div className='password_setting_zone'>
+                            {/* 알림 아이콘(색만 변경) */}
+                            <div className='password_bg_color_set'>
+                                <img onClick={(event) => toggleMenu(event, 'password_bg_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'password_bg_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+                            </div>
+                            <div className='password_title_color_set'>
+                                <img onClick={(event) => toggleMenu(event, 'password_title_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'password_title_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+                            </div>
+                            <div className='password_keypad_bg_color_set'>
+                                <img onClick={(event) => toggleMenu(event, 'password_keypad_bg_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'password_keypad_bg_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+                            </div>
+                            <div className='password_font_color_set'>
+                                <img onClick={(event) => toggleMenu(event, 'password_font_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'password_font_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+                            </div>
+
+                            {/* 알림 아이콘(아이콘&색 변경) */}
+                            <div className='unlock_icon_set'>
+                                <img onClick={(event) => toggleMenu(event, 'unlock_icon_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'unlock_icon_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+                            </div>
+                            <div className='lock_icon_set'>
+                                <img onClick={(event) => toggleMenu(event, 'lock_icon_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'lock_icon_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+                            </div>
                         </div>
                     </div>
                 </div>
