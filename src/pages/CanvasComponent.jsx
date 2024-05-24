@@ -4,45 +4,77 @@ import { FigureIcon, BasicIcon, ImageIcon, TextIcon } from '../icons/MenuIcon';
 
 const CanvasComponent = () => {
   const canvasRef = useRef(null);
-  const [frameColor, setFrameColor] = useState('#ffffff');//캔버스 바탕색 변수
-  const [rectangles, setRectangles] = useState([]); // 도형들을 저장하는 상태
-  const [selectedRect, setSelectedRect] = useState(null); // 선택된 도형을 저장하는 상태
-  const [keysPressed, setKeysPressed] = useState({}); // 키가 눌린 상태를 저장하는 상태
-  const [dragging, setDragging] = useState(false); // 드래그 상태를 저장하는 상태
-  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 }); // 드래그 오프셋을 저장하는 상태
-  const [selectedColor, setSelectedColor] = useState(); // 선택 도형의 컬러 초기화
-  const [showColorPicker, setShowColorPicker] = useState(false); // 색상 선택기 표시 여부
-  const [showColorPickerBox, setShowColorPickerBox] = useState(false); // 색상 선택기 박스(상단바) 표시 여부
-  const [rectWidth, setRectWidth] = useState(50);
-  const [rectHeight, setRectHeight] = useState(50);
+  const [frameColor, setFrameColor] = useState('#ffffff');
+  const [shapes, setShapes] = useState([]);
+  const [selectedShape, setSelectedShape] = useState(null);
+  const [keysPressed, setKeysPressed] = useState({});
+  const [dragging, setDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [resizing, setResizing] = useState(false);
+  const [selectedColor, setSelectedColor] = useState();
+  const [showColorPicker, setShowColorPicker] = useState(false);
+  const [showColorPickerBox, setShowColorPickerBox] = useState(false);
 
-  // 도형이 변경될 때 마다 다시 그리기
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    context.clearRect(0, 0, canvas.width, canvas.height); // 캔버스 초기화
-    context.fillStyle = frameColor;// 캔버스 배경색을 흰색으로 설정
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = frameColor;
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    rectangles.forEach(rect => {
-      context.fillStyle = rect.color;
-      context.fillRect(rect.x, rect.y, rect.width, rect.height); // 도형 그리기
-      
-    });
-    if (selectedRect) {
-      context.strokeStyle = '#FF9900'; // 선택된 도형의 윤곽선 색상
-      context.lineWidth = 3;
-      context.strokeRect(selectedRect.x, selectedRect.y, selectedRect.width, selectedRect.height); // 선택된 도형의 윤곽선 그리기  
-      
-    }
-  }, [rectangles, selectedRect, frameColor]);
+    shapes.forEach(shape => {
+      context.fillStyle = shape.color;
+      if (shape.type === 'rectangle') {
+        context.fillRect(shape.x, shape.y, shape.width, shape.height);
+      } else if (shape.type === 'ellipse') {
+        context.beginPath();
+        context.ellipse(shape.x + shape.width / 2, shape.y + shape.height / 2, shape.width / 2, shape.height / 2, 0, 0, 2 * Math.PI);
+        context.fill();
+      } else if (shape.type === 'polygon' || shape.type === 'star') {
+        context.beginPath();
+        shape.points.forEach((point, index) => {
+          if (index === 0) {
+            context.moveTo(point.x, point.y);
+          } else {
+            context.lineTo(point.x, point.y);
+          }
+        });
+        context.closePath();
+        context.fill();
+      }
 
-  useEffect(() => {
-    if (selectedRect) {
-      setRectWidth(selectedRect.width);
-      setRectHeight(selectedRect.height);
-    }
-  }, [selectedRect]);
+      if (shape === selectedShape) {
+        context.strokeStyle = '#FF9900';
+        context.lineWidth = 3;
+        if (shape.type === 'rectangle') {
+          context.strokeRect(shape.x, shape.y, shape.width, shape.height);
+        } else if (shape.type === 'ellipse') {
+          context.beginPath();
+          context.ellipse(shape.x + shape.width / 2, shape.y + shape.height / 2, shape.width / 2, shape.height / 2, 0, 0, 2 * Math.PI);
+          context.stroke();
+        } else if (shape.type === 'polygon' || shape.type === 'star') {
+          context.beginPath();
+          shape.points.forEach((point, index) => {
+            if (index === 0) {
+              context.moveTo(point.x, point.y);
+            } else {
+              context.lineTo(point.x, point.y);
+            }
+          });
+          context.closePath();
+          context.stroke();
+        }
+
+        context.fillStyle = '#FF9900';
+        if (shape.type !== 'polygon' && shape.type !== 'star') {
+          context.fillRect(shape.x + shape.width - 5, shape.y + shape.height - 5, 10, 10); // resize handle
+        } else {
+          const bbox = getBoundingBox(shape.points);
+          context.fillRect(bbox.x + bbox.width - 5, bbox.y + bbox.height - 5, 10, 10); // resize handle for polygons and stars
+        }
+      }
+    });
+  }, [shapes, selectedShape, frameColor]);
 
   const handleChangeComplete = (color) => {
     setFrameColor(color.hex);
@@ -51,136 +83,244 @@ const CanvasComponent = () => {
   const handleFocus = () => {
     canvasRef.current.style.outline = '3px solid #FF9900';
   };
+
   const handleBlur = () => {
     canvasRef.current.style.outline = '1px solid #FFBB6D';
   };
 
-  // 사각형 추가하기
   const addRectangle = () => {
     const newRect = {
-      id: rectangles.length,
+      id: shapes.length,
+      type: 'rectangle',
       x: 100,
       y: 100,
       width: 50,
       height: 50,
-      color: `#${Math.floor(Math.random()*16777215).toString(16)}`
+      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
     };
-    setRectangles(prevRectangles => [...prevRectangles, newRect]); // 새로운 도형 추가
+    setShapes(prevShapes => [...prevShapes, newRect]);
   };
 
-  // 캔버스를 클릭했을 때 이벤트
+  const addEllipse = () => {
+    const newEllipse = {
+      id: shapes.length,
+      type: 'ellipse',
+      x: 100,
+      y: 100,
+      width: 50,
+      height: 50,
+      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
+    };
+    setShapes(prevShapes => [...prevShapes, newEllipse]);
+  };
+
+  const addPolygon = () => {
+    const newPolygon = {
+      id: shapes.length,
+      type: 'polygon',
+      x: 100,
+      y: 100,
+      points: [
+        { x: 100, y: 90 },
+        { x: 140, y: 120 },
+        { x: 120, y: 160 },
+        { x: 80, y: 160 },
+        { x: 60, y: 120 },
+      ],
+      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
+    };
+    setShapes(prevShapes => [...prevShapes, newPolygon]);
+  };
+
+  const addStar = () => {
+    const points = calculateStarPoints(5, 50, 25);
+    const newStar = {
+      id: shapes.length,
+      type: 'star',
+      x: 100,
+      y: 100,
+      points: points,
+      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
+    };
+    setShapes(prevShapes => [...prevShapes, newStar]);
+  };
+
+  const calculateStarPoints = (points, outerRadius, innerRadius) => {
+    const angle = Math.PI / points;
+    const starPoints = [];
+    for (let i = 0; i < 2 * points; i++) {
+      const radius = i % 2 === 0 ? outerRadius : innerRadius;
+      const pointX = 100 + radius * Math.sin(i * angle);
+      const pointY = 100 - radius * Math.cos(i * angle);
+      starPoints.push({ x: pointX, y: pointY });
+    }
+    return starPoints;
+  };
+
+  const getBoundingBox = (points) => {
+    const xs = points.map(point => point.x);
+    const ys = points.map(point => point.y);
+    const x = Math.min(...xs);
+    const y = Math.min(...ys);
+    const width = Math.max(...xs) - x;
+    const height = Math.max(...ys) - y;
+    return { x, y, width, height };
+  };
+
   const handleClick = (e) => {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    // 클릭된 위치에 있는 도형을 찾습니다.
-    const clickedRect = rectangles.find(
-      rect => x >= rect.x && x <= rect.x + rect.width && y >= rect.y && y <= rect.y + rect.height
+    const context = canvas.getContext('2d');
+
+    const clickedShape = shapes.slice().reverse().find(
+      shape => shape.type === 'rectangle'
+        ? x >= shape.x && x <= shape.x + shape.width && y >= shape.y && y <= shape.y + shape.height
+        : shape.type === 'ellipse'
+          ? Math.pow(x - (shape.x + shape.width / 2), 2) / Math.pow(shape.width / 2, 2) + Math.pow(y - (shape.y + shape.height / 2), 2) / Math.pow(shape.height / 2, 2) <= 1
+          : context.isPointInPath(createPolygonPath(shape.points), x, y)
     );
-    if (clickedRect) {
-      // 도형을 클릭했을 때는 포커스를 설정하지 않습니다.
+    if (clickedShape) {
       handleBlur();
-      setSelectedRect(clickedRect);
+      setSelectedShape(clickedShape);
     } else {
-      setSelectedRect(null);
-      // 도형이 아닌 캔버스를 클릭했을 때만 포커스를 설정합니다.
+      setSelectedShape(null);
       canvasRef.current.focus();
     }
   };
 
-  //선택된 도형을 맨 위로 올리는 함수
   const bringToFront = () => {
-    if (selectedRect) {
-      setRectangles(prevRectangles => {
-        const otherRectangles = prevRectangles.filter(rect => rect !== selectedRect);
-        return [...otherRectangles, selectedRect]; // 선택된 도형을 배열의 끝으로 이동
+    if (selectedShape) {
+      setShapes(prevShapes => {
+        const otherShapes = prevShapes.filter(shape => shape !== selectedShape);
+        return [...otherShapes, selectedShape];
       });
     }
   };
-  
-  // 키보드로 선택 도형 움직이기위해 인자값 전달 받아 넘김
-  const moveSelectedRect = (dx, dy) => {
-    if (selectedRect) {
-      const updatedRect = {
-        ...selectedRect,
-        x: selectedRect.x + dx,
-        y: selectedRect.y + dy
+
+  const moveSelectedShape = (dx, dy) => {
+    if (selectedShape) {
+      const updatedShape = {
+        ...selectedShape,
+        x: selectedShape.x + dx,
+        y: selectedShape.y + dy
       };
-      // `selectedRect`의 변경 사항을 `rectangles` 배열에 반영
-      const updatedRectangles = rectangles.map(rect => 
-        rect === selectedRect ? updatedRect : rect
+      if (selectedShape.type === 'polygon' || selectedShape.type === 'star') {
+        updatedShape.points = updatedShape.points.map(point => ({
+          x: point.x + dx,
+          y: point.y + dy
+        }));
+      }
+      const updatedShapes = shapes.map(shape =>
+        shape === selectedShape ? updatedShape : shape
       );
-      setRectangles(updatedRectangles);
-      setSelectedRect(updatedRect); // 선택된 도형의 위치 업데이트
+      setShapes(updatedShapes);
+      setSelectedShape(updatedShape);
     }
   };
 
-  // 도형을 마우스로 눌렀을 때 이벤트. 마우스 드래그로 도형을 이동시키기 위함
   const handleMouseDown = (e) => {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    const clickedRect = rectangles.find(
-      rect => x >= rect.x && x <= rect.x + rect.width && y >= rect.y && y <= rect.y + rect.height
-    );
+    const context = canvas.getContext('2d');
 
-    if (clickedRect) {
-      setSelectedRect(clickedRect);
-      setDragging(true);
-      setDragOffset({ x: x - clickedRect.x, y: y - clickedRect.y });
+    if (selectedShape && (selectedShape.type === 'polygon' || selectedShape.type === 'star')) {
+      const bbox = getBoundingBox(selectedShape.points);
+      if (x >= bbox.x + bbox.width - 5 && x <= bbox.x + bbox.width + 5 &&
+        y >= bbox.y + bbox.height - 5 && y <= bbox.y + bbox.height + 5) {
+        setResizing(true);
+      } else {
+        const clickedShape = shapes.slice().reverse().find(
+          shape => shape.type === 'rectangle'
+            ? x >= shape.x && x <= shape.x + shape.width && y >= shape.y && y <= shape.y + shape.height
+            : shape.type === 'ellipse'
+              ? Math.pow(x - (shape.x + shape.width / 2), 2) / Math.pow(shape.width / 2, 2) + Math.pow(y - (shape.y + shape.height / 2), 2) / Math.pow(shape.height / 2, 2) <= 1
+              : context.isPointInPath(createPolygonPath(shape.points), x, y)
+        );
+        if (clickedShape) {
+          setSelectedShape(clickedShape);
+          setDragging(true);
+          setDragOffset({ x: x - clickedShape.x, y: y - clickedShape.y });
+        }
+      }
+    } else {
+      if (selectedShape && x >= selectedShape.x + selectedShape.width - 5 && x <= selectedShape.x + selectedShape.width + 5 &&
+        y >= selectedShape.y + selectedShape.height - 5 && y <= selectedShape.y + selectedShape.height + 5) {
+        setResizing(true);
+      } else {
+        const clickedShape = shapes.slice().reverse().find(
+          shape => shape.type === 'rectangle'
+            ? x >= shape.x && x <= shape.x + shape.width && y >= shape.y && y <= shape.y + shape.height
+            : shape.type === 'ellipse'
+              ? Math.pow(x - (shape.x + shape.width / 2), 2) / Math.pow(shape.width / 2, 2) + Math.pow(y - (shape.y + shape.height / 2), 2) / Math.pow(shape.height / 2, 2) <= 1
+              : context.isPointInPath(createPolygonPath(shape.points), x, y)
+        );
+        if (clickedShape) {
+          setSelectedShape(clickedShape);
+          setDragging(true);
+          setDragOffset({ x: x - clickedShape.x, y: y - clickedShape.y });
+        }
+      }
     }
   };
 
-  // 마우스로 도형 옮기기
   const handleMouseMove = (e) => {
-    if (dragging && selectedRect) {
+    if (dragging && selectedShape) {
       const canvas = canvasRef.current;
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      moveSelectedRect(x - selectedRect.x - dragOffset.x, y - selectedRect.y - dragOffset.y);
+      moveSelectedShape(x - selectedShape.x - dragOffset.x, y - selectedShape.y - dragOffset.y);
+    } else if (resizing && selectedShape) {
+      const canvas = canvasRef.current;
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      resizeSelectedShape(x - (selectedShape.x + selectedShape.width), y - (selectedShape.y + selectedShape.height));
     }
   };
-  // 마우스 뗐을 때
+
   const handleMouseUp = () => {
     setDragging(false);
+    setResizing(false);
   };
 
-  // 키보드로 도형 옮기기
   const handleKeyDown = (e) => {
     setKeysPressed(prev => ({ ...prev, [e.key]: true }));
 
-    if (selectedRect) {
+    if (selectedShape) {
       switch (e.key) {
         case 'ArrowUp':
-          if(keysPressed['Shift']) {
-            resizeSelectedRect(0, -5); // Shift + 화살표 위 => 높이 감소
+          if (keysPressed['Shift']) {
+            resizeSelectedShape(0, -5);
           } else {
-            moveSelectedRect(0, -5); // 위쪽으로 이동
+            moveSelectedShape(0, -5);
           }
           break;
         case 'ArrowDown':
-          if(keysPressed['Shift']) {
-            resizeSelectedRect(0, 5); // Shift + 화살표 아래 => 높이 증가
+          if (keysPressed['Shift']) {
+            resizeSelectedShape(0, 5);
           } else {
-            moveSelectedRect(0, 5); // 아래쪽으로 이동
+            moveSelectedShape(0, 5);
           }
           break;
         case 'ArrowLeft':
-          if(keysPressed['Shift']) {
-            resizeSelectedRect(-5, 0); // Shift + 화살표 왼쪽 => 너비 감소
+          if (keysPressed['Shift']) {
+            resizeSelectedShape(-5, 0);
           } else {
-            moveSelectedRect(-5, 0); // 왼쪽으로 이동
+            moveSelectedShape(-5, 0);
           }
           break;
         case 'ArrowRight':
-          if(keysPressed['Shift']) {
-            resizeSelectedRect(5, 0); // Shift + 화살표 오른쪽 => 너비 증가
+          if (keysPressed['Shift']) {
+            resizeSelectedShape(5, 0);
           } else {
-            moveSelectedRect(5, 0); // 오른쪽으로 이동
+            moveSelectedShape(5, 0);
           }
           break;
         default:
@@ -189,112 +329,108 @@ const CanvasComponent = () => {
     }
   };
 
-  // 도형의 크기 설정
-  const resizeSelectedRect = (dw, dh) => {
-    if (selectedRect) {
-      const updatedRect = {
-        ...selectedRect,
-        width: Math.max(10, selectedRect.width + dw), // 최소 너비를 10으로 설정
-        height: Math.max(10, selectedRect.height + dh) // 최소 높이를 10으로 설정
-      };
-      // `selectedRect`의 변경 사항을 `rectangles` 배열에 반영
-      const updatedRectangles = rectangles.map(rect => 
-        rect === selectedRect ? updatedRect : rect
-      );
-      setRectangles(updatedRectangles);
-      setSelectedRect(updatedRect); // 선택된 도형의 크기 업데이트
+  const resizeSelectedShape = (dw, dh) => {
+    if (selectedShape) {
+      if (selectedShape.type === 'polygon' || selectedShape.type === 'star') {
+        const bbox = getBoundingBox(selectedShape.points);
+        const scaleX = (bbox.width + dw) / bbox.width;
+        const scaleY = (bbox.height + dh) / bbox.height;
+        const updatedPoints = selectedShape.points.map(point => ({
+          x: bbox.x + (point.x - bbox.x) * scaleX,
+          y: bbox.y + (point.y - bbox.y) * scaleY
+        }));
+        const updatedShape = {
+          ...selectedShape,
+          points: updatedPoints
+        };
+        const updatedShapes = shapes.map(shape =>
+          shape === selectedShape ? updatedShape : shape
+        );
+        setShapes(updatedShapes);
+        setSelectedShape(updatedShape);
+      } else {
+        const updatedShape = {
+          ...selectedShape,
+          width: Math.max(10, selectedShape.width + dw),
+          height: Math.max(10, selectedShape.height + dh)
+        };
+        const updatedShapes = shapes.map(shape =>
+          shape === selectedShape ? updatedShape : shape
+        );
+        setShapes(updatedShapes);
+        setSelectedShape(updatedShape);
+      }
     }
   };
 
-  // 키보드 뗐을 때
   const handleKeyUp = (e) => {
     setKeysPressed(prev => ({ ...prev, [e.key]: false }));
   };
 
-  // 클리어 버튼으로 캔버스 청소하기
-  const clearRectangles = () => {
-    setRectangles([]); // 모든 도형 제거
-    setSelectedRect(null); // 선택된 도형 해제
+  const clearShapes = () => {
+    setShapes([]);
+    setSelectedShape(null);
   };
-  
-  // 선택 도형 컬러 변경
+
   const handleColorChange = (color) => {
     setSelectedColor(color.hex);
-    // 선택된 도형의 색상을 업데이트합니다.
-    if (selectedRect) {
-      const updatedRectangles = rectangles.map(rect => 
-        rect.id === selectedRect.id ? { ...rect, color: color.hex } : rect
+    if (selectedShape) {
+      const updatedShapes = shapes.map(shape =>
+        shape.id === selectedShape.id ? { ...shape, color: color.hex } : shape
       );
-      setRectangles(updatedRectangles);
-      setSelectedRect(prev => ({ ...prev, color: color.hex })); // 선택된 도형의 색상 업데이트
+      setShapes(updatedShapes);
+      setSelectedShape(prev => ({ ...prev, color: color.hex }));
     }
-  }
-  // 색상 변경 아이콘을 클릭하면 실행하는 함수
+  };
+
   const handleColorPickerIconClick = () => {
     setShowColorPicker(!showColorPicker);
   };
 
-  // 도형 너비 조절
-  const handleWidthChange = (event) => {
-    const newWidth = event.target.value;
-    setRectWidth(newWidth);
-    if (selectedRect) {
-      const updatedRectangles = rectangles.map(rect => 
-        rect === selectedRect ? { ...rect, width: newWidth } : rect
-      );
-      setRectangles(updatedRectangles);
-      setSelectedRect({ ...selectedRect, width: newWidth });
-    }
-  };
-  // 도형 높이 조절
-  const handleHeightChange = (event) => {
-    const newHeight = event.target.value;
-    setRectHeight(newHeight);
-    if (selectedRect) {
-      const updatedRectangles = rectangles.map(rect => 
-        rect === selectedRect ? { ...rect, height: newHeight } : rect
-      );
-      setRectangles(updatedRectangles);
-      setSelectedRect({ ...selectedRect, height: newHeight });
-    }
+  const createPolygonPath = (points) => {
+    const path = new Path2D();
+    points.forEach((point, index) => {
+      if (index === 0) {
+        path.moveTo(point.x, point.y);
+      } else {
+        path.lineTo(point.x, point.y);
+      }
+    });
+    path.closePath();
+    return path;
   };
 
   return (
     <div className='container'>
-
-      {/* 왼쪽 메뉴바 */}
       <div className='left-menubar'>
-          <div className='menu-icon'>
-              <FigureIcon />
-          </div>
-          <div className='menu-icon'>
-              <BasicIcon />
-          </div>
-          <div className='menu-icon'>
-              <ImageIcon />
-          </div>
-          <div className='menu-icon'>
-              <TextIcon />
-          </div>
+        <div className='menu-icon'>
+          <FigureIcon />
+        </div>
+        <div className='menu-icon'>
+          <BasicIcon />
+        </div>
+        <div className='menu-icon'>
+          <ImageIcon />
+        </div>
+        <div className='menu-icon'>
+          <TextIcon />
+        </div>
       </div>
-
-      {/* 도형 아이콘 클릭 시 노출되는 Drawer, 추후 열고 닫는 기능 구현 필요 */}
       <div className='left-drawer'>
-          <div onClick={addRectangle} className='drawer-icon'>
-              Rectangle
-          </div>
-          <div onClick={ ()=>{} } className='drawer-icon'>
-              Ellipse
-          </div>
-          <div className='drawer-icon'>
-              Polygon
-          </div>
-          <div className='drawer-icon'>
-              Star
-          </div>
-          <button onClick={clearRectangles}>Clear Rectangles</button>
+        <div onClick={addRectangle} className='drawer-icon'>
+          Rectangle
+        </div>
+        <div onClick={addEllipse} className='drawer-icon'>
+          Ellipse
+        </div>
+        <div onClick={addPolygon} className='drawer-icon'>
+          Polygon
+        </div>
+        <div onClick={addStar} className='drawer-icon'>
+          Star
+        </div>
+        <button onClick={clearShapes}>Clear Shapes</button>
       </div>
-
       <canvas
         ref={canvasRef}
         width={300}
@@ -310,31 +446,24 @@ const CanvasComponent = () => {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       />
-      <ChromePicker color={frameColor} onChangeComplete={handleChangeComplete} />
-      {/* showColorPickerBox가 true이면 ColorPickerBox(상단바)를 보여줍니다. */}
-      {selectedRect &&
-      <div className='color-picker-box'>
-      <img onClick={handleColorPickerIconClick} alt='색상 선택' src='/color-picker.png' className="color-picker-icon" />
-        {showColorPicker && (
-          <ChromePicker
-            color={selectedColor}
-            onChange={handleColorChange}
+      {selectedShape && (
+        <div className='color-picker-box'>
+          <img
+            onClick={handleColorPickerIconClick}
+            alt='색상 선택'
+            src='/color-picker.png'
+            className='color-picker-icon'
           />
-        )}
-        <label>
-          Width:
-          <input
-            type="range"
-            min="10"
-            max="200"
-            value={rectWidth}
-            onChange={handleWidthChange}
-          />
-        </label>
-        {selectedRect && <button onClick={bringToFront}>레이어 top</button>}
-      </div>
-      }
-
+          {showColorPicker && (
+            <ChromePicker
+              color={selectedColor}
+              onChange={handleColorChange}
+            />
+          )}
+          <ChromePicker color={frameColor} onChangeComplete={handleChangeComplete} />
+          {selectedShape && <button onClick={bringToFront}>레이어 top</button>}
+        </div>
+      )}
     </div>
   );
 };
