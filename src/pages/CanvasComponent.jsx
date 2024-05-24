@@ -10,49 +10,60 @@ const CanvasComponent = () => {
   const [keysPressed, setKeysPressed] = useState({}); // 키가 눌린 상태를 저장하는 상태
   const [dragging, setDragging] = useState(false); // 드래그 상태를 저장하는 상태
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 }); // 드래그 오프셋을 저장하는 상태
-  const [selectedColor, setSelectedColor] = useState(`#${Math.floor(Math.random()*16777215).toString(16)}`); // 선택 도형의 컬러 초기화
+  const [selectedColor, setSelectedColor] = useState(); // 선택 도형의 컬러 초기화
   const [showColorPicker, setShowColorPicker] = useState(false); // 색상 선택기 표시 여부
   const [showColorPickerBox, setShowColorPickerBox] = useState(false); // 색상 선택기 박스(상단바) 표시 여부
+  const [rectWidth, setRectWidth] = useState(50);
+  const [rectHeight, setRectHeight] = useState(50);
 
   // 도형이 변경될 때 마다 다시 그리기
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height); // 캔버스 초기화
-    // 캔버스 배경색을 흰색으로 설정
-    context.fillStyle = frameColor;
+    context.fillStyle = frameColor;// 캔버스 배경색을 흰색으로 설정
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     rectangles.forEach(rect => {
       context.fillStyle = rect.color;
       context.fillRect(rect.x, rect.y, rect.width, rect.height); // 도형 그리기
+      
     });
     if (selectedRect) {
       context.strokeStyle = '#FF9900'; // 선택된 도형의 윤곽선 색상
       context.lineWidth = 3;
-      context.strokeRect(selectedRect.x, selectedRect.y, selectedRect.width, selectedRect.height); // 선택된 도형의 윤곽선 그리기   
+      context.strokeRect(selectedRect.x, selectedRect.y, selectedRect.width, selectedRect.height); // 선택된 도형의 윤곽선 그리기  
+      
     }
   }, [rectangles, selectedRect, frameColor]);
+
+  useEffect(() => {
+    if (selectedRect) {
+      setRectWidth(selectedRect.width);
+      setRectHeight(selectedRect.height);
+    }
+  }, [selectedRect]);
+
   const handleChangeComplete = (color) => {
     setFrameColor(color.hex);
-};
+  };
 
   const handleFocus = () => {
     canvasRef.current.style.outline = '3px solid #FF9900';
   };
   const handleBlur = () => {
-    canvasRef.current.style.outline = 'none';
+    canvasRef.current.style.outline = '1px solid #FFBB6D';
   };
 
   // 사각형 추가하기
   const addRectangle = () => {
     const newRect = {
       id: rectangles.length,
-      x: 225,
-      y: 225,
+      x: 100,
+      y: 100,
       width: 50,
       height: 50,
-      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
+      color: `#${Math.floor(Math.random()*16777215).toString(16)}`
     };
     setRectangles(prevRectangles => [...prevRectangles, newRect]); // 새로운 도형 추가
   };
@@ -67,9 +78,14 @@ const CanvasComponent = () => {
     const clickedRect = rectangles.find(
       rect => x >= rect.x && x <= rect.x + rect.width && y >= rect.y && y <= rect.y + rect.height
     );
-    setSelectedRect(clickedRect || null); // 도형 선택 또는 선택 해제
     if (clickedRect) {
-      setSelectedColor(clickedRect.color); // 클릭된 도형의 색상을 선택된 색상으로 설정
+      // 도형을 클릭했을 때는 포커스를 설정하지 않습니다.
+      handleBlur();
+      setSelectedRect(clickedRect);
+    } else {
+      setSelectedRect(null);
+      // 도형이 아닌 캔버스를 클릭했을 때만 포커스를 설정합니다.
+      canvasRef.current.focus();
     }
   };
 
@@ -218,6 +234,31 @@ const CanvasComponent = () => {
     setShowColorPicker(!showColorPicker);
   };
 
+  // 도형 너비 조절
+  const handleWidthChange = (event) => {
+    const newWidth = event.target.value;
+    setRectWidth(newWidth);
+    if (selectedRect) {
+      const updatedRectangles = rectangles.map(rect => 
+        rect === selectedRect ? { ...rect, width: newWidth } : rect
+      );
+      setRectangles(updatedRectangles);
+      setSelectedRect({ ...selectedRect, width: newWidth });
+    }
+  };
+  // 도형 높이 조절
+  const handleHeightChange = (event) => {
+    const newHeight = event.target.value;
+    setRectHeight(newHeight);
+    if (selectedRect) {
+      const updatedRectangles = rectangles.map(rect => 
+        rect === selectedRect ? { ...rect, height: newHeight } : rect
+      );
+      setRectangles(updatedRectangles);
+      setSelectedRect({ ...selectedRect, height: newHeight });
+    }
+  };
+
   return (
     <div className='container'>
 
@@ -280,6 +321,16 @@ const CanvasComponent = () => {
             onChange={handleColorChange}
           />
         )}
+        <label>
+          Width:
+          <input
+            type="range"
+            min="10"
+            max="200"
+            value={rectWidth}
+            onChange={handleWidthChange}
+          />
+        </label>
         {selectedRect && <button onClick={bringToFront}>레이어 top</button>}
       </div>
       }
