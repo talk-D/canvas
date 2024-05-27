@@ -3,10 +3,15 @@ import { ChromePicker } from 'react-color';
 import { FigureIcon, BasicIcon, ImageIcon, TextIcon } from '../icons/MenuIcon';
 
 const CanvasComponent = () => {
+  // 캔버스 선언
   const canvasRef = useRef(null);
+  // 캔버스 컬러
   const [frameColor, setFrameColor] = useState('#ffffff');
+  // 도형 리스트(레이어top, 선택 순서 처리)
   const [shapes, setShapes] = useState([]);
+  // 선택된 도형(도형의 세부 설정 열고 닫을 때, 선택 도형 삭제)
   const [selectedShape, setSelectedShape] = useState();
+  // 
   const [keysPressed, setKeysPressed] = useState({});
   const [dragging, setDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
@@ -459,16 +464,15 @@ const CanvasComponent = () => {
         <div onClick={addEllipse} className='drawer-icon'>
           Ellipse
         </div>
+        <div onClick={addTriangle} className='drawer-icon'>
+          Triangle
+        </div>
         <div onClick={addPolygon} className='drawer-icon'>
           Polygon
         </div>
         <div onClick={addStar} className='drawer-icon'>
           Star
         </div>
-        <div onClick={addTriangle} className='drawer-icon'>
-          삼각형
-        </div>
-        
         <button onClick={clearShapes}>캔버스 초기화</button>
         <button onClick={deleteSelectedShape}>선택 도형 삭제</button>
       </div>
@@ -476,7 +480,7 @@ const CanvasComponent = () => {
     { selectedBasicIcon && (
       <div className='left-drawer'>
         <div onClick={addSvg} className='drawer-icon'>
-          svg 추가
+          Heart
         </div>
         <button onClick={clearShapes}>캔버스 초기화</button>
         <button onClick={deleteSelectedShape}>선택 도형 삭제</button>
@@ -513,7 +517,10 @@ const CanvasComponent = () => {
             />
           )}
           <ChromePicker color={frameColor} onChangeComplete={handleChangeComplete} />
-          {selectedShape && <button onClick={bringToFront}>레이어 top</button>}
+          {selectedShape && (
+            <div>
+              <button onClick={bringToFront}>레이어 top</button>
+            </div>)}
         </div>
       )}
     </div>
