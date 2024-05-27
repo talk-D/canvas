@@ -6,14 +6,16 @@ const CanvasComponent = () => {
   const canvasRef = useRef(null);
   const [frameColor, setFrameColor] = useState('#ffffff');
   const [shapes, setShapes] = useState([]);
-  const [selectedShape, setSelectedShape] = useState(null);
+  const [selectedShape, setSelectedShape] = useState();
   const [keysPressed, setKeysPressed] = useState({});
   const [dragging, setDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [resizing, setResizing] = useState(false);
-  const [selectedColor, setSelectedColor] = useState();
+  const [selectedColor, setSelectedColor] = useState(`#${Math.floor(Math.random() * 16777215).toString(16)}`);
   const [showColorPicker, setShowColorPicker] = useState(false);
-  const [showColorPickerBox, setShowColorPickerBox] = useState(false);
+  // 왼쪽 메뉴바 아이콘 눌렀을 때 메뉴 열고 닫기
+  const [selectedFigureIcon, setSelectedFigureIcon] = useState(false);
+  const [selectedBasicIcon, setSelectedBasicIcon] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -30,7 +32,7 @@ const CanvasComponent = () => {
         context.beginPath();
         context.ellipse(shape.x + shape.width / 2, shape.y + shape.height / 2, shape.width / 2, shape.height / 2, 0, 0, 2 * Math.PI);
         context.fill();
-      } else if (shape.type === 'polygon' || shape.type === 'star') {
+      } else if (shape.type === 'polygon' || shape.type === 'star' || shape.type === 'triangle') {
         context.beginPath();
         shape.points.forEach((point, index) => {
           if (index === 0) {
@@ -41,6 +43,12 @@ const CanvasComponent = () => {
         });
         context.closePath();
         context.fill();
+      } else if (shape.type === 'svg') {
+        const img = new Image();
+        img.src = shape.src;
+        img.onload = () => {
+          context.drawImage(img, shape.x, shape.y, shape.width, shape.height);
+        };
       }
 
       if (shape === selectedShape) {
@@ -52,7 +60,7 @@ const CanvasComponent = () => {
           context.beginPath();
           context.ellipse(shape.x + shape.width / 2, shape.y + shape.height / 2, shape.width / 2, shape.height / 2, 0, 0, 2 * Math.PI);
           context.stroke();
-        } else if (shape.type === 'polygon' || shape.type === 'star') {
+        } else if (shape.type === 'polygon' || shape.type === 'star' || shape.type === 'triangle') {
           context.beginPath();
           shape.points.forEach((point, index) => {
             if (index === 0) {
@@ -63,15 +71,12 @@ const CanvasComponent = () => {
           });
           context.closePath();
           context.stroke();
+        } else if (shape.type === 'svg') {
+          context.strokeRect(shape.x, shape.y, shape.width, shape.height);
         }
 
         context.fillStyle = '#FF9900';
-        if (shape.type !== 'polygon' && shape.type !== 'star') {
-          context.fillRect(shape.x + shape.width - 5, shape.y + shape.height - 5, 10, 10); // resize handle
-        } else {
-          const bbox = getBoundingBox(shape.points);
-          context.fillRect(bbox.x + bbox.width - 5, bbox.y + bbox.height - 5, 10, 10); // resize handle for polygons and stars
-        }
+        context.fillRect(shape.x + shape.width - 5, shape.y + shape.height - 5, 10, 10);
       }
     });
   }, [shapes, selectedShape, frameColor]);
@@ -121,11 +126,11 @@ const CanvasComponent = () => {
       x: 100,
       y: 100,
       points: [
-        { x: 100, y: 90 },
-        { x: 140, y: 120 },
-        { x: 120, y: 160 },
-        { x: 80, y: 160 },
-        { x: 60, y: 120 },
+        { x: 100, y: 100 },
+        { x: 150, y: 120 },
+        { x: 130, y: 170 },
+        { x: 70, y: 170 },
+        { x: 50, y: 120 },
       ],
       color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
     };
@@ -133,38 +138,57 @@ const CanvasComponent = () => {
   };
 
   const addStar = () => {
-    const points = calculateStarPoints(5, 50, 25);
     const newStar = {
       id: shapes.length,
       type: 'star',
       x: 100,
       y: 100,
-      points: points,
+      points: calculateStarPoints(100, 100, 5, 30, 15),
       color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
     };
     setShapes(prevShapes => [...prevShapes, newStar]);
   };
 
-  const calculateStarPoints = (points, outerRadius, innerRadius) => {
-    const angle = Math.PI / points;
-    const starPoints = [];
-    for (let i = 0; i < 2 * points; i++) {
-      const radius = i % 2 === 0 ? outerRadius : innerRadius;
-      const pointX = 100 + radius * Math.sin(i * angle);
-      const pointY = 100 - radius * Math.cos(i * angle);
-      starPoints.push({ x: pointX, y: pointY });
-    }
-    return starPoints;
+  const addTriangle = () => {
+    const newTriangle = {
+      id: shapes.length,
+      type: 'triangle',
+      x: 100,
+      y: 100,
+      points: [
+        { x: 100, y: 50 },
+        { x: 50, y: 150 },
+        { x: 150, y: 150 }
+      ],
+      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
+    };
+    setShapes(prevShapes => [...prevShapes, newTriangle]);
   };
 
-  const getBoundingBox = (points) => {
-    const xs = points.map(point => point.x);
-    const ys = points.map(point => point.y);
-    const x = Math.min(...xs);
-    const y = Math.min(...ys);
-    const width = Math.max(...xs) - x;
-    const height = Math.max(...ys) - y;
-    return { x, y, width, height };
+  const calculateStarPoints = (centerX, centerY, arms, outerRadius, innerRadius) => {
+    const points = [];
+    const angle = Math.PI / arms;
+    for (let i = 0; i < 2 * arms; i++) {
+      const radius = i % 2 === 0 ? outerRadius : innerRadius;
+      const pointX = centerX + Math.cos(i * angle) * radius;
+      const pointY = centerY + Math.sin(i * angle) * radius;
+      points.push({ x: pointX, y: pointY });
+    }
+    return points;
+  };
+
+  const addSvg = () => {
+    const newSvg = {
+      id: shapes.length,
+      type: 'svg',
+      x: 100,
+      y: 100,
+      width: 50,
+      height: 50,
+      color : 'green',
+      src: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53z"/></svg>' // currentColor를 사용하여 색상 변경 가능
+    };
+    setShapes(prevShapes => [...prevShapes, newSvg]);
   };
 
   const handleClick = (e) => {
@@ -179,11 +203,14 @@ const CanvasComponent = () => {
         ? x >= shape.x && x <= shape.x + shape.width && y >= shape.y && y <= shape.y + shape.height
         : shape.type === 'ellipse'
           ? Math.pow(x - (shape.x + shape.width / 2), 2) / Math.pow(shape.width / 2, 2) + Math.pow(y - (shape.y + shape.height / 2), 2) / Math.pow(shape.height / 2, 2) <= 1
-          : context.isPointInPath(createPolygonPath(shape.points), x, y)
+          : shape.type === 'svg'
+            ? x >= shape.x && x <= shape.x + shape.width && y >= shape.y && y <= shape.y + shape.height
+            : context.isPointInPath(createPolygonPath(shape.points), x, y)
     );
     if (clickedShape) {
       handleBlur();
       setSelectedShape(clickedShape);
+      setSelectedColor(clickedShape.color || '#000000'); // Ensure color is set for SVG shapes
     } else {
       setSelectedShape(null);
       canvasRef.current.focus();
@@ -206,7 +233,7 @@ const CanvasComponent = () => {
         x: selectedShape.x + dx,
         y: selectedShape.y + dy
       };
-      if (selectedShape.type === 'polygon' || selectedShape.type === 'star') {
+      if (selectedShape.type === 'polygon' || selectedShape.type === 'star' || selectedShape.type === 'triangle') {
         updatedShape.points = updatedShape.points.map(point => ({
           x: point.x + dx,
           y: point.y + dy
@@ -227,46 +254,38 @@ const CanvasComponent = () => {
     const y = e.clientY - rect.top;
     const context = canvas.getContext('2d');
 
-    if (selectedShape && (selectedShape.type === 'polygon' || selectedShape.type === 'star')) {
-      const bbox = getBoundingBox(selectedShape.points);
-      if (x >= bbox.x + bbox.width - 5 && x <= bbox.x + bbox.width + 5 &&
-        y >= bbox.y + bbox.height - 5 && y <= bbox.y + bbox.height + 5) {
-        setResizing(true);
-      } else {
-        const clickedShape = shapes.slice().reverse().find(
-          shape => shape.type === 'rectangle'
-            ? x >= shape.x && x <= shape.x + shape.width && y >= shape.y && y <= shape.y + shape.height
-            : shape.type === 'ellipse'
-              ? Math.pow(x - (shape.x + shape.width / 2), 2) / Math.pow(shape.width / 2, 2) + Math.pow(y - (shape.y + shape.height / 2), 2) / Math.pow(shape.height / 2, 2) <= 1
-              : context.isPointInPath(createPolygonPath(shape.points), x, y)
-        );
-        if (clickedShape) {
-          setSelectedShape(clickedShape);
-          setDragging(true);
-          setDragOffset({ x: x - clickedShape.x, y: y - clickedShape.y });
-        }
-      }
+    const resizeHandleClicked = (shape) => {
+      return x >= shape.x + shape.width - 5 && x <= shape.x + shape.width + 5 &&
+             y >= shape.y + shape.height - 5 && y <= shape.y + shape.height + 5;
+    };
+
+    if (selectedShape && resizeHandleClicked(selectedShape)) {
+      setResizing(true);
     } else {
-      if (selectedShape && x >= selectedShape.x + selectedShape.width - 5 && x <= selectedShape.x + selectedShape.width + 5 &&
-        y >= selectedShape.y + selectedShape.height - 5 && y <= selectedShape.y + selectedShape.height + 5) {
-        setResizing(true);
-      } else {
-        const clickedShape = shapes.slice().reverse().find(
-          shape => shape.type === 'rectangle'
-            ? x >= shape.x && x <= shape.x + shape.width && y >= shape.y && y <= shape.y + shape.height
-            : shape.type === 'ellipse'
-              ? Math.pow(x - (shape.x + shape.width / 2), 2) / Math.pow(shape.width / 2, 2) + Math.pow(y - (shape.y + shape.height / 2), 2) / Math.pow(shape.height / 2, 2) <= 1
+      const clickedShape = shapes.slice().reverse().find(
+        shape => shape.type === 'rectangle'
+          ? x >= shape.x && x <= shape.x + shape.width && y >= shape.y && y <= shape.y + shape.height
+          : shape.type === 'ellipse'
+            ? Math.pow(x - (shape.x + shape.width / 2), 2) / Math.pow(shape.width / 2, 2) + Math.pow(y - (shape.y + shape.height / 2), 2) / Math.pow(shape.height / 2, 2) <= 1
+            : shape.type === 'svg'
+              ? x >= shape.x && x <= shape.x + shape.width && y >= shape.y && y <= shape.y + shape.height
               : context.isPointInPath(createPolygonPath(shape.points), x, y)
-        );
-        if (clickedShape) {
-          setSelectedShape(clickedShape);
-          setDragging(true);
+      );
+      if (clickedShape) {
+        setSelectedShape(clickedShape);
+        setDragging(true);
+        if (clickedShape.type === 'polygon' || clickedShape.type === 'star' || clickedShape.type === 'triangle') {
+          const offsetX = x - clickedShape.points[0].x;
+          const offsetY = y - clickedShape.points[0].y;
+          setDragOffset({ x: offsetX, y: offsetY });
+        } else {
           setDragOffset({ x: x - clickedShape.x, y: y - clickedShape.y });
         }
       }
     }
   };
 
+  
   const handleMouseMove = (e) => {
     if (dragging && selectedShape) {
       const canvas = canvasRef.current;
@@ -274,7 +293,11 @@ const CanvasComponent = () => {
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      moveSelectedShape(x - selectedShape.x - dragOffset.x, y - selectedShape.y - dragOffset.y);
+      if (selectedShape.type === 'polygon' || selectedShape.type === 'star' || selectedShape.type === 'triangle') {
+        moveSelectedShape(x - selectedShape.points[0].x - dragOffset.x, y - selectedShape.points[0].y - dragOffset.y);
+      } else {
+        moveSelectedShape(x - selectedShape.x - dragOffset.x, y - selectedShape.y - dragOffset.y);
+      }
     } else if (resizing && selectedShape) {
       const canvas = canvasRef.current;
       const rect = canvas.getBoundingClientRect();
@@ -296,32 +319,16 @@ const CanvasComponent = () => {
     if (selectedShape) {
       switch (e.key) {
         case 'ArrowUp':
-          if (keysPressed['Shift']) {
-            resizeSelectedShape(0, -5);
-          } else {
-            moveSelectedShape(0, -5);
-          }
+          moveSelectedShape(0, -5);
           break;
         case 'ArrowDown':
-          if (keysPressed['Shift']) {
-            resizeSelectedShape(0, 5);
-          } else {
-            moveSelectedShape(0, 5);
-          }
+          moveSelectedShape(0, 5);
           break;
         case 'ArrowLeft':
-          if (keysPressed['Shift']) {
-            resizeSelectedShape(-5, 0);
-          } else {
-            moveSelectedShape(-5, 0);
-          }
+          moveSelectedShape(-5, 0);
           break;
         case 'ArrowRight':
-          if (keysPressed['Shift']) {
-            resizeSelectedShape(5, 0);
-          } else {
-            moveSelectedShape(5, 0);
-          }
+          moveSelectedShape(5, 0);
           break;
         default:
           break;
@@ -331,35 +338,25 @@ const CanvasComponent = () => {
 
   const resizeSelectedShape = (dw, dh) => {
     if (selectedShape) {
-      if (selectedShape.type === 'polygon' || selectedShape.type === 'star') {
-        const bbox = getBoundingBox(selectedShape.points);
-        const scaleX = (bbox.width + dw) / bbox.width;
-        const scaleY = (bbox.height + dh) / bbox.height;
-        const updatedPoints = selectedShape.points.map(point => ({
-          x: bbox.x + (point.x - bbox.x) * scaleX,
-          y: bbox.y + (point.y - bbox.y) * scaleY
+      const updatedShape = {
+        ...selectedShape,
+        width: Math.max(10, selectedShape.width + dw),
+        height: Math.max(10, selectedShape.height + dh)
+      };
+      /*
+      if (selectedShape.type === 'polygon' || selectedShape.type === 'star' || selectedShape.type === 'triangle') {
+        const scaleX = updatedShape.width / selectedShape.width;
+        const scaleY = updatedShape.height / selectedShape.height;
+        updatedShape.points = selectedShape.points.map(point => ({
+          x: selectedShape.x + (point.x - selectedShape.x) * scaleX,
+          y: selectedShape.y + (point.y - selectedShape.y) * scaleY
         }));
-        const updatedShape = {
-          ...selectedShape,
-          points: updatedPoints
-        };
-        const updatedShapes = shapes.map(shape =>
-          shape === selectedShape ? updatedShape : shape
-        );
-        setShapes(updatedShapes);
-        setSelectedShape(updatedShape);
-      } else {
-        const updatedShape = {
-          ...selectedShape,
-          width: Math.max(10, selectedShape.width + dw),
-          height: Math.max(10, selectedShape.height + dh)
-        };
-        const updatedShapes = shapes.map(shape =>
-          shape === selectedShape ? updatedShape : shape
-        );
-        setShapes(updatedShapes);
-        setSelectedShape(updatedShape);
-      }
+      }*/
+      const updatedShapes = shapes.map(shape =>
+        shape === selectedShape ? updatedShape : shape
+      );
+      setShapes(updatedShapes);
+      setSelectedShape(updatedShape);
     }
   };
 
@@ -372,6 +369,13 @@ const CanvasComponent = () => {
     setSelectedShape(null);
   };
 
+  const deleteSelectedShape = () => {
+    if (selectedShape) {
+      setShapes(prevShapes => prevShapes.filter(shape => shape !== selectedShape));
+      setSelectedShape(null);
+    }
+  };
+
   const handleColorChange = (color) => {
     setSelectedColor(color.hex);
     if (selectedShape) {
@@ -380,8 +384,39 @@ const CanvasComponent = () => {
       );
       setShapes(updatedShapes);
       setSelectedShape(prev => ({ ...prev, color: color.hex }));
+  
+      // Update the SVG src if the shape is an SVG
+      if (selectedShape && selectedShape.type === 'svg') {
+        // SVG 코드를 파싱하여 fill 속성을 변경
+        const svgElement = new DOMParser().parseFromString(selectedShape.src, "image/svg+xml").documentElement;
+        svgElement.setAttribute('fill', color.hex);
+        // 변경된 SVG 코드를 다시 문자열로 변환
+        const updatedSvgSrc = new XMLSerializer().serializeToString(svgElement);
+        // 변경된 SVG 코드를 selectedShape의 src 속성에 할당
+        const updatedSvg = {
+          ...selectedShape,
+          src: updatedSvgSrc
+        };
+        // shapes 배열에서 선택된 도형만 변경된 SVG로 교체
+        setShapes(prevShapes => prevShapes.map(shape =>
+          shape.id === selectedShape.id ? updatedSvg : shape
+        ));
+        setSelectedShape(updatedSvg);
+      }
     }
   };
+  
+  
+  
+  
+  const handleSelectedFigureIcon = () => {
+    setSelectedFigureIcon(!selectedFigureIcon);
+  }
+
+  const handleSelectedBasicIcon = () => {
+    setSelectedBasicIcon(!selectedBasicIcon);
+  }
+  
 
   const handleColorPickerIconClick = () => {
     setShowColorPicker(!showColorPicker);
@@ -403,10 +438,10 @@ const CanvasComponent = () => {
   return (
     <div className='container'>
       <div className='left-menubar'>
-        <div className='menu-icon'>
+        <div className='menu-icon' onClick={handleSelectedFigureIcon}>
           <FigureIcon />
         </div>
-        <div className='menu-icon'>
+        <div className='menu-icon' onClick={handleSelectedBasicIcon}>
           <BasicIcon />
         </div>
         <div className='menu-icon'>
@@ -416,7 +451,8 @@ const CanvasComponent = () => {
           <TextIcon />
         </div>
       </div>
-      <div className='left-drawer'>
+      { selectedFigureIcon && (
+        <div className='left-drawer'>
         <div onClick={addRectangle} className='drawer-icon'>
           Rectangle
         </div>
@@ -429,8 +465,24 @@ const CanvasComponent = () => {
         <div onClick={addStar} className='drawer-icon'>
           Star
         </div>
-        <button onClick={clearShapes}>Clear Shapes</button>
+        <div onClick={addTriangle} className='drawer-icon'>
+          삼각형
+        </div>
+        
+        <button onClick={clearShapes}>캔버스 초기화</button>
+        <button onClick={deleteSelectedShape}>선택 도형 삭제</button>
       </div>
+    )}
+    { selectedBasicIcon && (
+      <div className='left-drawer'>
+        <div onClick={addSvg} className='drawer-icon'>
+          svg 추가
+        </div>
+        <button onClick={clearShapes}>캔버스 초기화</button>
+        <button onClick={deleteSelectedShape}>선택 도형 삭제</button>
+      </div>
+    )}
+      
       <canvas
         ref={canvasRef}
         width={300}
