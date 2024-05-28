@@ -1,24 +1,25 @@
+/* src/components/CanvasComponent.css */
 .fontTest {
     text-align: center;
     font-family: 'NotoSans';
   }
-
-.container {
+  
+  .container {
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
     background-color: #FFF5DC;
-}
-
-.frame {
+  }
+  
+  .frame {
     position: relative;
     width: 336px;
     height: 336px;
     background-color: white;
-}
-
-.color-picker-box {
+  }
+  
+  .color-picker-box {
     display: flex;
     flex-direction: row-reverse;
     position: fixed;
@@ -27,51 +28,98 @@
     right: 0px;
     height: 100%;
     padding-top: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
     background-color: white;
     border-bottom: 1px solid #FFBB6D;
-}
-
-.color-picker-icon {
+  }
+  
+  .color-picker-container {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    height: 100%;
+    width: 30vh;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    border-left: 1px solid #FFBB6D;
+  }
+  
+  .color-picker-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .color-picker-header span {
+    margin-right: auto;
+  }
+  
+  .color-picker {
+    margin: 10px;
+  }
+  
+  .color-picker-icon {
     height: 38px;
     width: 38px;
     margin: 0px 8px 0px 8px;
-}
-
-.left-menubar {
+    
+  }
+  
+  .left-menubar {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    height: 100%;
+    width: 86px;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    position: fixed;
-    left: 0px;
-    height: 100vh;
-    width: 86px;
+    align-items: flex-start;
     background-color: white;
     border-right: 1px solid #FFBB6D;
-    z-index: 1;
-
-
-}
-
-.menu-icon {
+  }
+  
+  .menu-icon {
     padding-top: 3px;
-}
-
-.left-drawer {
+  }
+  
+  .left-drawer {
     display: flex;
     flex-direction: column;
     position: fixed;
+    bottom: 0px;
     left: 86px;
     height: 95.5vh;
     width: 240px;
     background-color: white;
     border-right: 1px solid #FFBB6D;
     padding-top: 38px;
-}
-
-.drawer-icon {
+  }
+  
+  .drawer-icon {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 50px;
-}
+  }
+  .drawer-icon-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 99%;
+    height: 40px;
+    margin :2px;
+    background-color: '#E6E0DC';
+    border: none; /* 테두리 경계선 없애기 */
+    border-radius: 5px; /* 모서리를 둥글게 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+    padding: 10px 20px; /* 패딩 추가 */
+  }
+  

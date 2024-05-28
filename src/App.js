@@ -11,6 +11,7 @@ import Chatroom from './pages/Chatroom';
 import CharacterChatroom from "./pages/CharacterChatroom";
 import Notification from './pages/Notification';
 import Thememaking from './pages/Thememaking';
+//import TestApp from './pages/TestApp';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
            <Route path='/step2/notification' element={<Notification />} />
            <Route path='/step3/thememaking' element={<Thememaking />} />
           <Route path='/theme' element={<Theme />} />
+          {/*<Route path='/test' element={<TestApp />} />*/}
         </Routes>
       </BrowserRouter>
     </div>

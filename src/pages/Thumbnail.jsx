@@ -1,7 +1,7 @@
 import React from 'react';
 import { Themeguide } from '../header/Themeguide.jsx';
 import Theme from './Theme.jsx';
-import CanvasComponent from './CanvasComponent.jsx';
+import CanvasComponent from '../components/CanvasComponent.jsx';
 import '../styles/Thumbnail.css';
 
 function Thumbnail() {
