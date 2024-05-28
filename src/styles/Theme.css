@@ -2,75 +2,82 @@
     text-align: center;
     font-family: 'NotoSans';
   }
-
-.container {
+  
+  .container {
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
     background-color: #FFF5DC;
-}
-
-.frame {
+  }
+  
+  .frame {
     position: relative;
-    width: 336px;
-    height: 336px;
+    width: 30vw;
+    height: 30vw;
+    max-width: 50vh;
+    max-height: 50vh;
     background-color: white;
-}
-
-.color-picker-box {
+  }
+  
+  .color-picker-box {
     display: flex;
     flex-direction: row-reverse;
     position: fixed;
     align-items: start;
     justify-content: end;
-    top: 0px;
-    height: 46px;
-    width: 100%;
-    padding-top: 8px;
+    top: 0;
+    height: 5vh;
+    width: 100vw;
+    padding-top: 1vh;
     background-color: white;
-    border-bottom: 1px solid #FFBB6D;
-}
-
-.color-picker-icon {
-    height: 38px;
-    width: 38px;
-    margin: 0px 8px 0px 8px;
-}
-
-.left-menubar {
+    border-bottom: 0.1vh solid #FFBB6D;
+  }
+  
+  .color-picker-icon {
+    height: 4vh;
+    width: 4vh;
+    margin: 0 1vh;
+  }
+  
+  .left-menubar {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: fixed;
-    left: 0px;
-    height: 100%;
-    width: 86px;
+    left: 0;
+    height: 100vh;
+    width: 7vw;
+    min-width: 50px; /* 최소 너비 설정 */
+    max-width: 100px; /* 최대 너비 설정 */
     background-color: white;
-    border-right: 1px solid #FFBB6D;
+    border-right: 0.1vh solid #FFBB6D;
     z-index: 1;
-}
-
-.menu-icon {
-    padding-top: 3px;
-}
-
-.left-drawer {
+  }
+  
+  .menu-icon {
+    padding-top: 1vh;
+  }
+  
+  .left-drawer {
     display: flex;
     flex-direction: column;
     position: fixed;
-    left: 86px;
-    height: 100%;
-    width: 240px;
+    left: 7vw;
+    height: 100vh;
+    width: 18vw;
+    min-width: 150px;
+    max-width: 400px;
     background-color: white;
-    border-right: 1px solid #FFBB6D;
-    padding-top: 38px;
+    border-right: 0.1vh solid #FFBB6D;
+    padding-top: 4vh;
 }
-
-.drawer-icon {
+  
+  .drawer-icon {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
-}
+    height: 5vh;
+  }
+  
