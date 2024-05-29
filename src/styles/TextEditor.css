@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'ChosunGs';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGs.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  .editor-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #fff;
+    margin-top: 20px;
+  }
+  
+  .editor-container {
+    display: flex;
+    flex-direction: column;
+    height: 200px; /* left-drawer에 맞게 높이 조정 */
+  }
+  
+  .custom-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .ql-toolbar {
+    border-bottom: 1px solid #FFBB6D;
+  }
+  
+  .ql-container {
+    border: 1px solid #FFBB6D;
+    border-top: none;
+    flex-grow: 1;
+    font-family: 'ChosunGs', 'Roboto', 'Open Sans', sans-serif;
+  }
+  
+  /* 반응형 웹 디자인 */
+  @media (max-width: 768px) {
+    .editor-wrapper {
+        padding: 5px;
+        margin-top: 10px;
+    }
+  
+    .editor-container {
+        height: 150px; /* 작은 화면에 맞게 높이 조정 */
+    }
+  
+    .custom-toolbar {
+        padding: 5px;
+        margin-bottom: 5px;
+    }
+  }
+  

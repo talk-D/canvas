@@ -2,6 +2,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { FigureIcon, BasicIcon, ImageIcon, TextIcon } from '../icons/MenuIcon';
 import ColorPickerComponent from './ColorPickerComponent'; // Import the new component
+import TextEditor from './TextEditor';
+import ImageUploader from './ImageUploader';
 
 const CanvasComponent = () => {
   // 캔버스 선언
@@ -25,6 +27,119 @@ const CanvasComponent = () => {
   // 왼쪽 메뉴바 아이콘 눌렀을 때 메뉴 열고 닫기
   const [selectedFigureIcon, setSelectedFigureIcon] = useState(false);
   const [selectedBasicIcon, setSelectedBasicIcon] = useState(false);
+
+  // 보문 코드 합치기
+  const [texts, setTexts] = useState([]);
+  const [images, setImages] = useState([]);
+  const [showTextEditor, setShowTextEditor] = useState(false);
+  const [showImageUploader, setShowImageUploader] = useState(false);
+  const [draggingText, setDraggingText] = useState(null);
+  const [draggingImage, setDraggingImage] = useState(null);
+  const [resizingImage, setResizingImage] = useState(null);
+  const [selectedFigureId, setSelectedFigureId] = useState(-1);
+  const handleTextIconClick = () => {
+    setShowTextEditor(!showTextEditor);
+  };
+  const handleImageIconClick = () => {
+    setShowImageUploader(!showImageUploader);
+  };
+  const handleSaveText = (text) => {
+    const newText = {
+      id: texts.length,
+      content: text,
+      top: 50,
+      left: 50,
+    };
+    setTexts([...texts, newText]);
+    setShowTextEditor(false);
+  };
+  const handleMouseDown2 = (e, id, type) => {
+    if (type === 'text') {
+      setDraggingText(id);
+    } else if (type === 'image') {
+      setDraggingImage(id);
+    }
+  };
+  const handleMouseMove2 = (e) => {
+    if (draggingText !== null) {
+      const updatedTexts = texts.map((text) => {
+        if (text.id === draggingText) {
+          return {
+            ...text,
+            top: e.clientY - canvasRef.current.getBoundingClientRect().top,
+            left: e.clientX - canvasRef.current.getBoundingClientRect().left,
+          };
+        }
+        return text;
+      });
+      setTexts(updatedTexts);
+    } else if (draggingImage !== null) {
+      const updatedImages = images.map((image) => {
+        if (image.id === draggingImage) {
+          return {
+            ...image,
+            top: e.clientY - canvasRef.current.getBoundingClientRect().top,
+            left: e.clientX - canvasRef.current.getBoundingClientRect().left,
+          };
+        }
+        return image;
+      });
+      setImages(updatedImages);
+    } else if (resizingImage !== null) {
+      const updatedImages = images.map((image) => {
+        if (image.id === resizingImage) {
+          return {
+            ...image,
+            width: Math.max(50, e.clientX - canvasRef.current.getBoundingClientRect().left - image.left),
+            height: Math.max(50, e.clientY - canvasRef.current.getBoundingClientRect().top - image.top),
+          };
+        }
+        return image;
+      });
+      setImages(updatedImages);
+    }
+  };
+  const handleMouseUp2 = () => {
+    setDraggingText(null);
+    setDraggingImage(null);
+    setResizingImage(null);
+  };
+
+  const handleImageClick = (image) => {
+    const newImage = {
+      id: images.length,
+      src: image,
+      top: 50,
+      left: 50,
+      width: 100,
+      height: 100,
+    };
+    setImages([...images, newImage]);
+  };
+
+  const handleResizeMouseDown = (e, id) => {
+    e.stopPropagation();
+    setResizingImage(id);
+  };
+  const handleContainerClick = (e) => {
+    if (e.target.classList.contains('container')) {
+      if (canvasRef.current) {
+        canvasRef.current.style.border = 'none';
+      }
+      setSelectedFigureId(-1);
+    }
+  };
+  const handleFrameClick = (e) => {
+    if (e.target.classList.contains('frame')) {
+      if (canvasRef.current) {
+        canvasRef.current.style.border = '3px solid #FF9900';
+      }
+      setSelectedFigureId(-1);
+    }
+  };
+
+
+  // 여기까지 보문 코드 추가
 
   // 도형(사이즈, 컬러), 선택도형, 캔버스 컬러 변경될 때 렌더링 
   useEffect(() => {
@@ -432,7 +547,7 @@ const CanvasComponent = () => {
   };
 
   return (
-    <div className='container'>
+    <div className='container' onClick={handleContainerClick} onMouseMove={handleMouseMove2} onMouseUp={handleMouseUp2}>
       <div className='left-menubar'>
         <div className='menu-icon' onClick={handleSelectedFigureIcon}>
           <FigureIcon />
@@ -440,13 +555,14 @@ const CanvasComponent = () => {
         <div className='menu-icon' onClick={handleSelectedBasicIcon}>
           <BasicIcon />
         </div>
-        <div className='menu-icon'>
+        <div className='menu-icon' onClick={handleImageIconClick}>
           <ImageIcon />
         </div>
-        <div className='menu-icon'>
+        <div className='menu-icon' onClick={handleTextIconClick}>
           <TextIcon />
         </div>
       </div>
+
       { selectedFigureIcon && (
         <div className='left-drawer'>
         <div onClick={addRectangle} className='drawer-icon'>
@@ -466,6 +582,7 @@ const CanvasComponent = () => {
         </div>
       </div>
     )}
+
     { selectedBasicIcon && (
       <div className='left-drawer'>
         <div onClick={addSvg} className='drawer-icon'>
@@ -473,7 +590,57 @@ const CanvasComponent = () => {
         </div>
       </div>
     )}
-      
+
+    <div
+        ref={canvasRef}
+        onClick={handleFrameClick}
+        className='frame'
+        style={{ backgroundColor: frameColor }}
+      >
+
+    {texts.map((text) => (
+      <div
+        key={text.id}
+        onMouseDown={(e) => handleMouseDown2(e, text.id, 'text')}
+        style={{
+          position: 'absolute',
+          top: `${text.top}px`,
+          left: `${text.left}px`,
+          cursor: 'move',
+        }}>
+        <div dangerouslySetInnerHTML={{ __html: text.content }} />
+      </div>
+    ))}
+    {images.map((image) => (
+      <div
+        key={image.id}
+        style={{
+          position: 'absolute',
+          top: `${image.top}px`,
+          left: `${image.left}px`,
+          width: `${image.width}px`,
+          height: `${image.height}px`,
+          cursor: 'move',
+          border: '1px solid #ccc',
+    }}
+            onMouseDown={(e) => handleMouseDown2(e, image.id, 'image')}
+          >
+            <img src={image.src} alt={`uploaded-${image.id}`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
+            <div
+              style={{
+                position: 'absolute',
+                bottom: 0,
+                right: 0,
+                width: '10px',
+                height: '10px',
+                backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                cursor: 'nwse-resize',
+              }}
+              onMouseDown={(e) => handleResizeMouseDown(e, image.id)}
+            />
+          </div>
+        ))}
+      </div>
       <canvas
         ref={canvasRef}
         width={300}
