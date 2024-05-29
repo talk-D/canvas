@@ -1,5 +1,5 @@
 import React from 'react';
-import {Logo} from '../header/Logo.jsx';
+import {Logo} from './/Logo.jsx';
 import '../styles/Themeguide.css';
 
 

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Themeguide } from '../header/Themeguide.jsx';
+import { Themeguide } from '../headers/Themeguide.jsx';
 import '../styles/Password.css';
 import html2canvas from 'html2canvas';
 import { SketchPicker } from 'react-color';
@@ -160,7 +160,7 @@ function Password() {
 
     const handlePasswordButton = async () => {
         try {
-            const canvas = await html2canvas(document.querySelector(".unlock_icon div"));
+            const canvas = await html2canvas(document.querySelector(".unlock_icon div"), { backgroundColor: null });
             const resizedCanvas = document.createElement('canvas');
             resizedCanvas.width = 132;
             resizedCanvas.height = 132;
@@ -168,7 +168,7 @@ function Password() {
             ctx.drawImage(canvas, 0, 0, 132, 132);
             const dataUrl = resizedCanvas.toDataURL("image/png");
 
-            const response = await fetch('/upload', {
+            const response = await fetch('http://localhost:3000/upload', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -186,6 +186,7 @@ function Password() {
             console.error('Error uploading image', error);
         }
     };
+
 
     return (
         <div className='wrap'>

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import '../styles/Main.css';
-import {Logo} from '../header/Logo.jsx';
+import {Logo} from '../headers/Logo.jsx';
 import {Megaphone} from '../icons/MainPageIcon';
 
 

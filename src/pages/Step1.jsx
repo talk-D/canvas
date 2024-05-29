@@ -1,5 +1,5 @@
 import React from 'react';
-import { Themeguide } from '../header/Themeguide.jsx';
+import { Themeguide } from '../headers/Themeguide.jsx';
 import {Megaphone} from "../icons/MainPageIcon";
 import '../styles/Step1.css';
 import { useState } from "react";

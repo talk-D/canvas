@@ -1,0 +1,39 @@
+
+.notification-style{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 616px;
+    height: 325px;
+    top: 600px;
+
+}
+
+.notification_bg_color{
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.notification_profile{
+    position: absolute;
+    top:-35px;
+    left: 100px;
+    z-index: 3;
+}
+
+.notification_name_color{
+    position: absolute;
+    top: -28px;
+    left: 180px;
+    z-index: 3;
+}
+
+.notification_message_color{
+    position: absolute;
+    top: 2px;
+    left: 180px;
+    z-index: 3;
+}
