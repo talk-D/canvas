@@ -1,4 +1,3 @@
-// src/components/CanvasComponent.js
 import React, { useRef, useState, useEffect } from 'react';
 import { FigureIcon, BasicIcon, ImageIcon, TextIcon } from '../icons/MenuIcon';
 import ColorPickerComponent from './ColorPickerComponent'; // Import the new component
@@ -6,29 +5,17 @@ import TextEditor from './TextEditor';
 import ImageUploader from './ImageUploader';
 
 const CanvasComponent = () => {
-  // 캔버스 선언
   const canvasRef = useRef(null);
-  // 캔버스 컬러
   const [frameColor, setFrameColor] = useState('#ffffff');
-  // 도형 리스트(레이어top, 선택 순서 처리)
   const [shapes, setShapes] = useState([]);
-  // 선택된 도형(도형의 세부 설정 열고 닫을 때, 선택 도형 삭제)
   const [selectedShape, setSelectedShape] = useState();
-  // ?
   const [keysPressed, setKeysPressed] = useState({});
-  // 드래그 상태
   const [dragging, setDragging] = useState(false);
-  // ?
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-  // 도형 크기 조절
   const [resizing, setResizing] = useState(false);
-  // 컬러 선택
   const [selectedColor, setSelectedColor] = useState(`#${Math.floor(Math.random() * 16777215).toString(16)}`);
-  // 왼쪽 메뉴바 아이콘 눌렀을 때 메뉴 열고 닫기
   const [selectedFigureIcon, setSelectedFigureIcon] = useState(false);
   const [selectedBasicIcon, setSelectedBasicIcon] = useState(false);
-
-  // 보문 코드 합치기
   const [texts, setTexts] = useState([]);
   const [images, setImages] = useState([]);
   const [showTextEditor, setShowTextEditor] = useState(false);
@@ -37,12 +24,22 @@ const CanvasComponent = () => {
   const [draggingImage, setDraggingImage] = useState(null);
   const [resizingImage, setResizingImage] = useState(null);
   const [selectedFigureId, setSelectedFigureId] = useState(-1);
+  const ChromePickerRef = useRef(null);
+  
   const handleTextIconClick = () => {
+    setSelectedFigureIcon(false);
+    setSelectedBasicIcon(false);
     setShowTextEditor(!showTextEditor);
+    setShowImageUploader(false);
   };
+
   const handleImageIconClick = () => {
+    setSelectedFigureIcon(false);
+    setSelectedBasicIcon(false);
+    setShowTextEditor(false);
     setShowImageUploader(!showImageUploader);
   };
+
   const handleSaveText = (text) => {
     const newText = {
       id: texts.length,
@@ -53,6 +50,7 @@ const CanvasComponent = () => {
     setTexts([...texts, newText]);
     setShowTextEditor(false);
   };
+
   const handleMouseDown2 = (e, id, type) => {
     if (type === 'text') {
       setDraggingText(id);
@@ -60,6 +58,7 @@ const CanvasComponent = () => {
       setDraggingImage(id);
     }
   };
+
   const handleMouseMove2 = (e) => {
     if (draggingText !== null) {
       const updatedTexts = texts.map((text) => {
@@ -99,6 +98,7 @@ const CanvasComponent = () => {
       setImages(updatedImages);
     }
   };
+
   const handleMouseUp2 = () => {
     setDraggingText(null);
     setDraggingImage(null);
@@ -121,6 +121,7 @@ const CanvasComponent = () => {
     e.stopPropagation();
     setResizingImage(id);
   };
+
   const handleContainerClick = (e) => {
     if (e.target.classList.contains('container')) {
       if (canvasRef.current) {
@@ -129,6 +130,7 @@ const CanvasComponent = () => {
       setSelectedFigureId(-1);
     }
   };
+
   const handleFrameClick = (e) => {
     if (e.target.classList.contains('frame')) {
       if (canvasRef.current) {
@@ -138,20 +140,12 @@ const CanvasComponent = () => {
     }
   };
 
-
-  // 여기까지 보문 코드 추가
-
-  // 도형(사이즈, 컬러), 선택도형, 캔버스 컬러 변경될 때 렌더링 
   useEffect(() => {
     const canvas = canvasRef.current;
-    // 컨텍스트 2D로 도형을 그림
     const context = canvas.getContext('2d');
     
-    // 캔버스 초기화
     context.clearRect(0, 0, canvas.width, canvas.height);
-    // frameColor는 화이트로 생성되어 있음
     context.fillStyle = frameColor;
-    // 
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     shapes.forEach(shape => {
@@ -212,11 +206,18 @@ const CanvasComponent = () => {
   }, [shapes, selectedShape, frameColor]);
 
   const handleFocus = () => {
-    canvasRef.current.style.outline = '3px solid #FF9900';
+    if (canvasRef.current) {
+      canvasRef.current.style.outline = '3px solid #FF9900'; // 노란색 윤곽선
+    }
   };
 
   const handleBlur = () => {
-    canvasRef.current.style.outline = '1px solid #FFBB6D';
+    if (canvasRef.current) {
+      canvasRef.current.style.outline = 'none'; // 윤곽선 제거
+    }else{
+      canvasRef.current.style.outline = '1px solid #FFBB6D';
+    }
+    
   };
 
   const addRectangle = () => {
@@ -263,7 +264,6 @@ const CanvasComponent = () => {
     setShapes(prevShapes => [...prevShapes, newPolygon]);
   };
 
-  // 다각형의 경로 설정
   const createPolygonPath = (points) => {
     const path = new Path2D();
     points.forEach((point, index) => {
@@ -276,7 +276,6 @@ const CanvasComponent = () => {
     path.closePath();
     return path;
   };
-  
 
   const addStar = () => {
     const newStar = {
@@ -388,12 +387,18 @@ const CanvasComponent = () => {
     }
   };
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (e, id, type) => {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const context = canvas.getContext('2d');
+
+    if (type === 'text') {
+      setDraggingText(id);
+    } else if (type === 'image') {
+      setDraggingImage(id);
+    }
 
     const resizeHandleClicked = (shape) => {
       return x >= shape.x + shape.width - 5 && x <= shape.x + shape.width + 5 &&
@@ -425,6 +430,7 @@ const CanvasComponent = () => {
       }
     }
   };
+
   const handleMouseMove = (e) => {
     if (dragging && selectedShape) {
       const canvas = canvasRef.current;
@@ -519,17 +525,13 @@ const CanvasComponent = () => {
   
       // Update the SVG src if the shape is an SVG
       if (selectedShape && selectedShape.type === 'svg') {
-        // SVG 코드를 파싱하여 fill 속성을 변경
         const svgElement = new DOMParser().parseFromString(selectedShape.src, "image/svg+xml").documentElement;
         svgElement.setAttribute('fill', color);
-        // 변경된 SVG 코드를 다시 문자열로 변환
         const updatedSvgSrc = new XMLSerializer().serializeToString(svgElement);
-        // 변경된 SVG 코드를 selectedShape의 src 속성에 할당
         const updatedSvg = {
           ...selectedShape,
           src: updatedSvgSrc
         };
-        // shapes 배열에서 선택된 도형만 변경된 SVG로 교체
         setShapes(prevShapes => prevShapes.map(shape =>
           shape.id === selectedShape.id ? updatedSvg : shape
         ));
@@ -540,10 +542,16 @@ const CanvasComponent = () => {
 
   const handleSelectedFigureIcon = () => {
     setSelectedFigureIcon(!selectedFigureIcon);
+    setSelectedBasicIcon(false);
+    setShowTextEditor(false);
+    setShowImageUploader(false);
   };
 
   const handleSelectedBasicIcon = () => {
+    setSelectedFigureIcon(false);
     setSelectedBasicIcon(!selectedBasicIcon);
+    setShowTextEditor(false);
+    setShowImageUploader(false);
   };
 
   return (
@@ -562,100 +570,107 @@ const CanvasComponent = () => {
           <TextIcon />
         </div>
       </div>
-
       { selectedFigureIcon && (
         <div className='left-drawer'>
-        <div onClick={addRectangle} className='drawer-icon'>
-          Rectangle
+          <div onClick={addRectangle} className='drawer-icon'>
+              Rectangle
+            </div>
+            <div onClick={addEllipse} className='drawer-icon'>
+              Ellipse
+            </div>
+            <div onClick={addTriangle} className='drawer-icon'>
+              Triangle
+            </div>
+            <div onClick={addPolygon} className='drawer-icon'>
+              Polygon
+            </div>
+            <div onClick={addStar} className='drawer-icon'>
+              Star
+            </div>
         </div>
-        <div onClick={addEllipse} className='drawer-icon'>
-          Ellipse
+      )}
+      {showTextEditor && (
+        <div className='left-drawer'>
+          <TextEditor onSave={handleSaveText} />
         </div>
-        <div onClick={addTriangle} className='drawer-icon'>
-          Triangle
+      )}
+      {showImageUploader && (
+        <div className='left-drawer'>
+          <ImageUploader onImageClick={handleImageClick} />
         </div>
-        <div onClick={addPolygon} className='drawer-icon'>
-          Polygon
-        </div>
-        <div onClick={addStar} className='drawer-icon'>
-          Star
-        </div>
-      </div>
-    )}
-
-    { selectedBasicIcon && (
-      <div className='left-drawer'>
-        <div onClick={addSvg} className='drawer-icon'>
-          Heart
-        </div>
-      </div>
-    )}
-
-    <div
-        ref={canvasRef}
-        onClick={handleFrameClick}
-        className='frame'
-        style={{ backgroundColor: frameColor }}
-      >
-
-    {texts.map((text) => (
-      <div
-        key={text.id}
-        onMouseDown={(e) => handleMouseDown2(e, text.id, 'text')}
-        style={{
-          position: 'absolute',
-          top: `${text.top}px`,
-          left: `${text.left}px`,
-          cursor: 'move',
-        }}>
-        <div dangerouslySetInnerHTML={{ __html: text.content }} />
-      </div>
-    ))}
-    {images.map((image) => (
-      <div
-        key={image.id}
-        style={{
-          position: 'absolute',
-          top: `${image.top}px`,
-          left: `${image.left}px`,
-          width: `${image.width}px`,
-          height: `${image.height}px`,
-          cursor: 'move',
-          border: '1px solid #ccc',
-    }}
-            onMouseDown={(e) => handleMouseDown2(e, image.id, 'image')}
-          >
-            <img src={image.src} alt={`uploaded-${image.id}`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
-            <div
-              style={{
-                position: 'absolute',
-                bottom: 0,
-                right: 0,
-                width: '10px',
-                height: '10px',
-                backgroundColor: 'rgba(255, 255, 255, 0.5)',
-                cursor: 'nwse-resize',
-              }}
-              onMouseDown={(e) => handleResizeMouseDown(e, image.id)}
-            />
+      )}
+      { selectedBasicIcon && (
+        <div className='left-drawer'>
+          <div onClick={addSvg} className='drawer-icon'>
+            Heart
           </div>
-        ))}
-      </div>
-      <canvas
-        ref={canvasRef}
-        width={300}
-        height={300}
-        style={{ border: '1px solid #FFBB6D' }}
-        onClick={handleClick}
-        tabIndex={0}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        onKeyDown={handleKeyDown}
-        onKeyUp={handleKeyUp}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
+        </div>
+      )}
+
+<div style={{ position: 'relative', width: '300px', height: '300px' }}>
+  <canvas
+    ref={canvasRef}
+    width={300}
+    height={300}
+    style={{ border: '1px solid #FFBB6D', position: 'absolute', top: 0, left: 0 }}
+    onClick={handleClick}
+    tabIndex={0}
+    onFocus={handleFocus}
+    onBlur={handleBlur}
+    onKeyDown={handleKeyDown}
+    onKeyUp={handleKeyUp}
+    onMouseDown={handleMouseDown}
+    onMouseMove={handleMouseMove}
+    onMouseUp={handleMouseUp}
+  />
+  {texts.map((text) => (
+    <div
+      key={text.id}
+      onMouseDown={(e) => handleMouseDown2(e, text.id, 'text')}
+      style={{
+        position: 'absolute',
+        top: `${text.top}px`,
+        left: `${text.left}px`,
+        cursor: 'move',
+        zIndex: 10 // z-index 추가하여 캔버스 위에 오버레이
+      }}
+    >
+      <div dangerouslySetInnerHTML={{ __html: text.content }} />
+    </div>
+  ))}
+  {images.map((image) => (
+    <div
+      key={image.id}
+      style={{
+        position: 'absolute',
+        top: `${image.top}px`,
+        left: `${image.left}px`,
+        width: `${image.width}px`,
+        height: `${image.height}px`,
+        cursor: 'move',
+        border: '1px solid #ccc',
+        zIndex: 10 // z-index 추가하여 캔버스 위에 오버레이
+      }}
+      onMouseDown={(e) => handleMouseDown2(e, image.id, 'image')}
+    >
+      <img src={image.src} alt={`uploaded-${image.id}`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          width: '10px',
+          height: '10px',
+          backgroundColor: 'rgba(255, 255, 255, 0.5)',
+          cursor: 'nwse-resize',
+        }}
+        onMouseDown={(e) => handleResizeMouseDown(e, image.id)}
       />
+    </div>
+  ))}
+</div>
+
+      
       {selectedShape && (
         <div>
           <ColorPickerComponent
@@ -669,7 +684,6 @@ const CanvasComponent = () => {
           /> 
         </div>
       )}
-      
     </div>
   );
 };
