@@ -24,7 +24,7 @@ const CanvasComponent = () => {
   const [draggingImage, setDraggingImage] = useState(null);
   const [resizingImage, setResizingImage] = useState(null);
   const [selectedFigureId, setSelectedFigureId] = useState(-1);
-  const ChromePickerRef = useRef(null);
+  const [selectedTextId, setSelectedTextId] = useState(null); // 추가된 상태
   
   const handleTextIconClick = () => {
     setSelectedFigureIcon(false);
@@ -54,6 +54,8 @@ const CanvasComponent = () => {
   const handleMouseDown2 = (e, id, type) => {
     if (type === 'text') {
       setDraggingText(id);
+      //setSelectedTextId(id); // 텍스트 선택 시 ID 저장
+      setSelectedTextId(prevSelectedTextId => (prevSelectedTextId === id ? null : id)); // 선택된 텍스트를 다시 누르면 윤곽선 제거
     } else if (type === 'image') {
       setDraggingImage(id);
     }
@@ -128,6 +130,7 @@ const CanvasComponent = () => {
         canvasRef.current.style.border = 'none';
       }
       setSelectedFigureId(-1);
+      setSelectedTextId(null);
     }
   };
 
@@ -337,6 +340,7 @@ const CanvasComponent = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const context = canvas.getContext('2d');
+    setSelectedTextId(null);
 
     const clickedShape = shapes.slice().reverse().find(
       shape => shape.type === 'rectangle'
@@ -554,6 +558,14 @@ const CanvasComponent = () => {
     setShowImageUploader(false);
   };
 
+  const handleDeleteSelectedText = () => {
+    if (selectedTextId !== null) {
+      setTexts(prevTexts => prevTexts.filter(text => text.id !== selectedTextId));
+      setSelectedTextId(null);
+    }
+  };
+
+  
   return (
     <div className='container' onClick={handleContainerClick} onMouseMove={handleMouseMove2} onMouseUp={handleMouseUp2}>
       <div className='left-menubar'>
@@ -589,14 +601,15 @@ const CanvasComponent = () => {
             </div>
         </div>
       )}
-      {showTextEditor && (
-        <div className='left-drawer'>
-          <TextEditor onSave={handleSaveText} />
-        </div>
-      )}
       {showImageUploader && (
         <div className='left-drawer'>
           <ImageUploader onImageClick={handleImageClick} />
+        </div>
+      )}
+      {showTextEditor && (
+        <div className='left-drawer'>
+          <TextEditor onSave={handleSaveText} />
+          
         </div>
       )}
       { selectedBasicIcon && (
@@ -632,7 +645,7 @@ const CanvasComponent = () => {
         top: `${text.top}px`,
         left: `${text.left}px`,
         cursor: 'move',
-        zIndex: 10 // z-index 추가하여 캔버스 위에 오버레이
+        outline: selectedTextId === text.id ? '2px solid #FFBB6D' : 'none', // 선택된 텍스트의 윤곽선 노란색으로 변경
       }}
     >
       <div dangerouslySetInnerHTML={{ __html: text.content }} />
@@ -682,6 +695,11 @@ const CanvasComponent = () => {
             clearShapes = {clearShapes}
             deleteSelectedShape = {deleteSelectedShape}
           /> 
+        </div>
+      )}
+      { selectedTextId &&(
+        <div className='color-picker-container'>
+          <button className='drawer-icon-button' onClick={handleDeleteSelectedText}>선택 텍스트 삭제</button>
         </div>
       )}
     </div>

@@ -50,10 +50,10 @@ const ColorPickerComponent = ({ currentColor, currentColor2, onColorChange,onCol
                 onChange={color => onColorChange(color.hex)}
             />
             </div>
-            )}
-            <button className='drawer-icon-button' onClick={bringToFront}>Layer Top</button>
-            <button className='drawer-icon-button' onClick={deleteSelectedShape}>선택 도형 삭제</button>
-            <button className='drawer-icon-button' onClick={clearShapes}>캔버스 초기화</button>
+        )}
+        <button className='drawer-icon-button' onClick={bringToFront}>Layer Top</button>
+        <button className='drawer-icon-button' onClick={deleteSelectedShape}>선택 도형 삭제</button>
+        <button className='drawer-icon-button' onClick={clearShapes}>캔버스 초기화</button>
         </div>
     );
 };
