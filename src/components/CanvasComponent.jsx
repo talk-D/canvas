@@ -24,7 +24,7 @@ const CanvasComponent = () => {
   const [draggingImage, setDraggingImage] = useState(null);
   const [resizingImage, setResizingImage] = useState(null);
   const [selectedFigureId, setSelectedFigureId] = useState(-1);
-  const [selectedTextId, setSelectedTextId] = useState(null); // 추가된 상태
+  const [selectedTextId, setSelectedTextId] = useState(false); // 추가된 상태
   
   const handleTextIconClick = () => {
     setSelectedFigureIcon(false);
@@ -697,7 +697,7 @@ const CanvasComponent = () => {
           /> 
         </div>
       )}
-      { selectedTextId &&(
+      { selectedTextId !=null &&(
         <div className='color-picker-container'>
           <button className='drawer-icon-button' onClick={handleDeleteSelectedText}>선택 텍스트 삭제</button>
         </div>
@@ -707,3 +707,4 @@ const CanvasComponent = () => {
 };
 
 export default CanvasComponent;
+ 
