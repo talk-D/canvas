@@ -5,7 +5,7 @@ import Theme from './pages/Theme';
 import Step1 from './pages/Step1';
 import Thumbnail from './pages/Thumbnail';
 import Password from './pages/Password';
-import Friendlist from './pages/Friendlist';
+import FriendList from './pages/Friendlist';
 import Tabbar from './pages/Tabbar';
 import Chatroom from './pages/Chatroom';
 import CharacterChatroom from "./pages/CharacterChatroom";
@@ -21,7 +21,7 @@ function App() {
            <Route path='/step1' element={<Step1 />} />
            <Route path='/step2/thumbnail' element={<Thumbnail />} />
            <Route path='/step2/password' element={<Password />} />
-           <Route path='/step2/friendlist' element={<Friendlist />} />
+           <Route path='/step2/friendlist' element={<FriendList />} />
            <Route path='/step2/tabbar' element={<Tabbar />} />
            <Route path='step2/chatroom' element={<Chatroom />} />
             <Route path='step2/characterchatroom' element={<CharacterChatroom />} />

@@ -1,0 +1,28 @@
+
+.background1{
+    background-color: #FFF5DC;
+    height: 80vh;
+    width: 92vw;
+    margin: 0 auto;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+
+.phone {
+    padding-top: 55px;
+    height: 474px;
+    overflow: hidden;
+}
+
+/*
+.phone {
+    padding-top: 50px;
+    height: 300px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+}*/

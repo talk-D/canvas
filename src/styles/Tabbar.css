@@ -1,0 +1,125 @@
+.tabbar_zone{
+    position: absolute;
+    top: 553.2px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 472px;
+    width: 430px;
+
+}
+
+.tabbar_bg_color {
+    padding-top: 50px;
+    height: 300px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+
+}
+
+
+
+.tabbar-icon-section1{
+    position: absolute;
+    top: 284px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display:flex;
+    justify-content: center;
+    gap:21px;
+}
+
+.tabbar-icon-section2{
+    position: absolute;
+    top: 225px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display:flex;
+    justify-content: center;
+    gap:21px;
+
+}
+
+.tabbar-icon-section1>div{
+    z-index: 10;
+}
+
+.tabbar-icon-section2>div{
+    z-index: 10;
+}
+
+.tabbar_setting_zone{
+    position: absolute;
+    top: 553.2px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 472px;
+    width: 430px;
+}
+
+.tabbar_bg_color_set{
+    position: absolute;
+    left: 370px;
+    top: 235px;
+}
+.tabbar_friend_color_set{
+    position: absolute;
+    left: 57px;
+    top: 305px;
+}
+
+.tabbar_chat_color_set{
+    position: absolute;
+    left: 127px;
+    top: 305px;
+}
+
+.tabbar_openchat_color_set{
+    position: absolute;
+    left: 197px;
+    top: 305px
+}
+
+.tabbar_shop_color_set{
+    position: absolute;
+    left: 266px;
+    top: 305px
+}
+
+.tabbar_setting_color_set{
+    position: absolute;
+    left: 334px;
+    top: 305px
+}
+
+.tabbar_friend_color_selected_set{
+    position: absolute;
+    left: 57px;
+    top: 165px;
+}
+
+.tabbar_chat_color_selected_set{
+    position: absolute;
+    left: 127px;
+    top: 165px;
+}
+
+.tabbar_openchat_color_selected_set{
+    position: absolute;
+    left: 197px;
+    top: 165px;
+}
+
+.tabbar_shop_color_selected_set{
+    position: absolute;
+    left: 266px;
+    top: 165px;
+}
+
+.tabbar_setting_color_selected_set{
+    position: absolute;
+    left: 334px;
+    top: 165px;
+}

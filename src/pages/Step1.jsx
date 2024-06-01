@@ -3,6 +3,7 @@ import { Themeguide } from '../headers/Themeguide.jsx';
 import {Megaphone} from "../icons/MainPageIcon";
 import '../styles/Step1.css';
 import { useState } from "react";
+import {InitializeLocalStorage} from "../function/InitializeLocalStorage.jsx";
 
 
 function Step1() {
@@ -16,6 +17,8 @@ function Step1() {
         localStorage.setItem("themeVersion", themeVersion);
         localStorage.setItem("themeNameKorean", themeNameKorean);
         localStorage.setItem("themeNameEnglish", themeNameEnglish);
+
+        InitializeLocalStorage();
 
         window.location.href = "/step2/thumbnail";
     };

@@ -1,39 +1,42 @@
 
-.notification-style{
+.notification_zone{
     position: absolute;
+    top: 553.2px;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 616px;
-    height: 325px;
-    top: 600px;
-
+    height: 472px;
+    width: 430px;
 }
 
 .notification_bg_color{
-    justify-content: center;
+    height: 472px;
+    overflow: hidden;
+}
+
+.notification_setting_zone{
     position: absolute;
+    top: 553.2px;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 3;
+    height: 472px;
+    width: 430px;
 }
 
-.notification_profile{
+
+.notification_bg_color_set{
     position: absolute;
-    top:-35px;
-    left: 100px;
-    z-index: 3;
+    left: 330px;
+    top: 36px;
 }
 
-.notification_name_color{
+.notification_name_color_set{
     position: absolute;
-    top: -28px;
-    left: 180px;
-    z-index: 3;
+    left: 140px;
+    top: 10px;
 }
 
-.notification_message_color{
+.notification_message_color_set{
     position: absolute;
-    top: 2px;
-    left: 180px;
-    z-index: 3;
+    left: 280px;
+    top: 25px;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Themeguide } from '../headers/Themeguide.jsx';
-import Theme from './Theme.jsx';
+import {Phone_cmp} from '../icons/ChatroomIcon.jsx';
+import '../styles/Chatroom.css';
 
 
 function Chatroom() {
@@ -11,7 +12,13 @@ function Chatroom() {
     return (
         <div className='wrap'>
             <Themeguide />
-            <Theme />
+            <div className='background1'>
+
+                <div className='phone'>
+                <Phone_cmp />
+                </div>
+
+            </div>
             <div className='footer'>
                 <div className='step1-button' onClick={handleChatroomButton}>다음</div>
             </div>

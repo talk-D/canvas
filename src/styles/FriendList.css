@@ -1,79 +1,121 @@
-.friendlist-style{
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 616px;
-    height: 325px;
-    top: 650px;
+.background-1{
+    background-color: #FFF5DC;
+    height: 75vh;
+    width: 92vw;
+    margin: 0 auto;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.friendlist_bg_color{
-    justify-content: center;
+.friendlist-style{
     position: absolute;
+    top: 503.2px;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 3;
+    height: 472px;
+    width: 430px;
+}
+
+
+.friendlist_bg_color{
+    padding-top: 50px;
+    height: 472px;
+    overflow: hidden;
 }
 
 .friendlist_title_color{
     position: absolute;
-    top: -135px;
-    left: 50px;
-    z-index: 3;
+    left: 61.2px;
+    top: 112px;
 }
-
 
 .friendlist_profile_color{
     position: absolute;
-    top: -90px;
     left: 50px;
-    z-index: 3;
+    top: 148px;
 }
 
 .friendlist_name_color{
     position: absolute;
-    top: -55px;
-    left: 140px;
-    z-index: 3;
-}
-
-.friendlist_dividing_line_color{
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    top: 5px;
-    z-index: 3;
-}
-
-
-.friendlist_second_title_color {
-    position: absolute;
-    top: 35px;
-    left: 50px;
-    z-index: 3;
-}
-
-
-
-
-.friendlist_second_profile_color{
-    position: absolute;
-    top: 70px;
-    left: 55px;
-    z-index: 3;
-}
-
-.friendlist_second_name_color{
-    position: absolute;
-    top: 83px;
-    left: 132px;
-    z-index: 3;
+    left: 97px;
+    top: 165.2px;
 }
 
 .friendlist_message_color{
     position: absolute;
-    top: 108px;
-    left: 132px;
-    z-index: 3;
+    left: 97px;
+    top: 278px;
 }
+
+.friendlist_dividing_line_color{
+    position: absolute;
+    left: 61px;
+    top: 195px;
+}
+
+.friendlist_second_title_color{
+    position: absolute;
+    left: 66px;
+    top: 222.4px;
+}
+
+
+.friendlist_setting_zone{
+    position: absolute;
+    top: 553.2px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 472px;
+    width: 430px;
+}
+
+
+
+
+.friendlist_bg_color_set{
+    position: absolute;
+    left: 340px;
+    top: 36px;
+}
+
+.friendlist_title_color_set{
+    position: absolute;
+    left: 90px;
+    top: 30px;
+}
+
+.friendlist_second_title_color_set{
+    position: absolute;
+    left: 20px;
+    top: 160px;
+}
+
+.friendlist_name_color_set{
+    position: absolute;
+    left: 133px;
+    top: 82px;
+}
+
+.friendlist_message_color_set{
+    position: absolute;
+    left: 175px;
+    top: 310px;
+}
+
+.friendlist_profile_color_set{
+    position: absolute;
+    left: 23px;
+    top: 335px;
+}
+
+.friendlist_dividing_line_color_set{
+    position: absolute;
+    left: 200px;
+    top: 142px;
+}
+
+
+
+
+
 

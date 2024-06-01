@@ -1,165 +1,249 @@
-export const Tabbar_bg_color_cmp = ({color}) => {
+export const Tabbar_bg_color_cmp = ({tabbarBgColor}) => {
     return (
-        <svg width="700" height="90" viewBox="0 0 848 102" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="848" height="102" fill={color}/>
+        <svg width="423" height="654" viewBox="0 0 423 654" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_i_992_59)">
+                <rect x="3" width="417" height="654" rx="62" fill="#E6E6E6"/>
+            </g>
+            <rect x="3.5" y="0.5" width="416" height="653" rx="61.5" stroke="url(#paint0_linear_992_59)"/>
+            <rect x="7" y="4" width="409" height="646" rx="58" fill="#828282"/>
+            <g filter="url(#filter1_i_992_59)">
+                <path d="M0 137.6C0 137.04 0 136.76 0.108993 136.546C0.204867 136.358 0.357847 136.205 0.546009 136.109C0.759921 136 1.03995 136 1.6 136H3V166H1.6C1.03995 166 0.759921 166 0.546009 165.891C0.357847 165.795 0.204867 165.642 0.108993 165.454C0 165.24 0 164.96 0 164.4V137.6Z" fill="#CCCCCC"/>
+            </g>
+            <g filter="url(#filter2_i_992_59)">
+                <path d="M0 199.6C0 199.04 0 198.76 0.108993 198.546C0.204867 198.358 0.357847 198.205 0.546009 198.109C0.759921 198 1.03995 198 1.6 198H3V260H1.6C1.03995 260 0.759921 260 0.546009 259.891C0.357847 259.795 0.204867 259.642 0.108993 259.454C0 259.24 0 258.96 0 258.4V199.6Z" fill="#CCCCCC"/>
+            </g>
+            <g filter="url(#filter3_i_992_59)">
+                <path d="M0 279.6C0 279.04 0 278.76 0.108993 278.546C0.204867 278.358 0.357847 278.205 0.546009 278.109C0.759921 278 1.03995 278 1.6 278H3V340H1.6C1.03995 340 0.759921 340 0.546009 339.891C0.357847 339.795 0.204867 339.642 0.108993 339.454C0 339.24 0 338.96 0 338.4V279.6Z" fill="#CCCCCC"/>
+            </g>
+            <g filter="url(#filter4_i_992_59)">
+                <path d="M420 220H421.4C421.96 220 422.24 220 422.454 220.109C422.642 220.205 422.795 220.358 422.891 220.546C423 220.76 423 221.04 423 221.6V318.4C423 318.96 423 319.24 422.891 319.454C422.795 319.642 422.642 319.795 422.454 319.891C422.24 320 421.96 320 421.4 320H420V220Z" fill="#CCCCCC"/>
+            </g>
+            <rect x="25" y="22" width="373" height="610" rx="40" fill="white"/>
+            <path d="M25 477H398V592C398 614.091 380.091 632 358 632H65C42.9086 632 25 614.091 25 592V477Z" fill={tabbarBgColor}/>
+            <defs>
+                <filter id="filter0_i_992_59" x="3" y="0" width="417" height="654" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset/>
+                    <feGaussianBlur stdDeviation="4"/>
+                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"/>
+                    <feBlend mode="normal" in2="shape" result="effect1_innerShadow_992_59"/>
+                </filter>
+                <filter id="filter1_i_992_59" x="0" y="136" width="4" height="30" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dx="1"/>
+                    <feGaussianBlur stdDeviation="1"/>
+                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+                    <feBlend mode="normal" in2="shape" result="effect1_innerShadow_992_59"/>
+                </filter>
+                <filter id="filter2_i_992_59" x="0" y="198" width="4" height="62" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dx="1"/>
+                    <feGaussianBlur stdDeviation="1"/>
+                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+                    <feBlend mode="normal" in2="shape" result="effect1_innerShadow_992_59"/>
+                </filter>
+                <filter id="filter3_i_992_59" x="0" y="278" width="4" height="62" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dx="1"/>
+                    <feGaussianBlur stdDeviation="1"/>
+                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+                    <feBlend mode="normal" in2="shape" result="effect1_innerShadow_992_59"/>
+                </filter>
+                <filter id="filter4_i_992_59" x="419" y="220" width="4" height="100" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dx="-1"/>
+                    <feGaussianBlur stdDeviation="1"/>
+                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+                    <feBlend mode="normal" in2="shape" result="effect1_innerShadow_992_59"/>
+                </filter>
+                <linearGradient id="paint0_linear_992_59" x1="211.5" y1="0" x2="211.5" y2="654" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="white" stop-opacity="0.6"/>
+                    <stop offset="1" stop-color="white" stop-opacity="0.3"/>
+                </linearGradient>
+            </defs>
         </svg>
-    );
-};
 
-export const Tabbar_friend_color_cmp = ({fill,stroke}) => {
-    return (
-        <svg width="80" height="80" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <mask id="path-1-outside-1_904_165" maskUnits="userSpaceOnUse" x="22" y="28" width="69" height="59" fill="black">
-                <rect fill="white" x="22" y="28" width="69" height="59"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M63.9527 58.1078C68.3101 55.603 71.2444 50.9016 71.2444 45.515C71.2444 37.4986 64.7458 31 56.7294 31C48.713 31 42.2144 37.4986 42.2144 45.515C42.2144 50.9016 45.1487 55.603 49.5061 58.1078C37.3456 60.9998 27.952 71.032 26 83.5298H87.4588C85.5068 71.032 76.1132 60.9998 63.9527 58.1078Z"/>
-            </mask>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M63.9527 58.1078C68.3101 55.603 71.2444 50.9016 71.2444 45.515C71.2444 37.4986 64.7458 31 56.7294 31C48.713 31 42.2144 37.4986 42.2144 45.515C42.2144 50.9016 45.1487 55.603 49.5061 58.1078C37.3456 60.9998 27.952 71.032 26 83.5298H87.4588C85.5068 71.032 76.1132 60.9998 63.9527 58.1078Z" fill={fill}/>
-            <path d="M63.9527 58.1078L62.4576 55.5069L55.9001 59.2764L63.2586 61.0264L63.9527 58.1078ZM49.5061 58.1078L50.2002 61.0264L57.5587 59.2764L51.0012 55.5069L49.5061 58.1078ZM26 83.5298L23.0359 83.0669L22.4951 86.5298H26V83.5298ZM87.4588 83.5298V86.5298H90.9637L90.4229 83.0669L87.4588 83.5298ZM68.2444 45.515C68.2444 49.7845 65.9222 53.5153 62.4576 55.5069L65.4478 60.7087C70.6979 57.6907 74.2444 52.0188 74.2444 45.515H68.2444ZM56.7294 34C63.0889 34 68.2444 39.1554 68.2444 45.515H74.2444C74.2444 35.8417 66.4026 28 56.7294 28V34ZM45.2144 45.515C45.2144 39.1554 50.3699 34 56.7294 34V28C47.0562 28 39.2144 35.8417 39.2144 45.515H45.2144ZM51.0012 55.5069C47.5366 53.5153 45.2144 49.7845 45.2144 45.515H39.2144C39.2144 52.0188 42.7609 57.6907 48.011 60.7087L51.0012 55.5069ZM28.9641 83.9928C30.7267 72.7076 39.2157 63.6387 50.2002 61.0264L48.812 55.1892C35.4755 58.3608 25.1773 69.3565 23.0359 83.0669L28.9641 83.9928ZM87.4588 80.5298H26V86.5298H87.4588V80.5298ZM63.2586 61.0264C74.2431 63.6387 82.7321 72.7076 84.4947 83.9928L90.4229 83.0669C88.2815 69.3565 77.9833 58.3608 64.6468 55.1892L63.2586 61.0264Z" fill={stroke} mask="url(#path-1-outside-1_904_165)"/>
-        </svg>
-
-    );
-};
-
-
-export const Tabbar_chat_color_cmp = ({fill,stroke}) => {
-    return (
-        <svg width="80" height="80" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <mask id="path-1-outside-1_904_166" maskUnits="userSpaceOnUse" x="21" y="28" width="72" height="61" fill="black">
-                <rect fill="white" x="21" y="28" width="72" height="61"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M89.5529 31H24V72.8423H48.6164L57.4739 83.9998L66.3313 72.8423H89.5529V31Z"/>
-            </mask>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M89.5529 31H24V72.8423H48.6164L57.4739 83.9998L66.3313 72.8423H89.5529V31Z" fill={fill}/>
-            <path d="M24 31V28H21V31H24ZM89.5529 31H92.5529V28H89.5529V31ZM24 72.8423H21V75.8423H24V72.8423ZM48.6164 72.8423L50.9661 70.977L50.0653 69.8423H48.6164V72.8423ZM57.4739 83.9998L55.1242 85.865L57.4739 88.8248L59.8235 85.865L57.4739 83.9998ZM66.3313 72.8423V69.8423H64.8825L63.9817 70.977L66.3313 72.8423ZM89.5529 72.8423V75.8423H92.5529V72.8423H89.5529ZM24 34H89.5529V28H24V34ZM27 72.8423V31H21V72.8423H27ZM48.6164 69.8423H24V75.8423H48.6164V69.8423ZM59.8235 82.1345L50.9661 70.977L46.2668 74.7076L55.1242 85.865L59.8235 82.1345ZM63.9817 70.977L55.1242 82.1345L59.8235 85.865L68.6809 74.7076L63.9817 70.977ZM89.5529 69.8423H66.3313V75.8423H89.5529V69.8423ZM86.5529 31V72.8423H92.5529V31H86.5529Z" fill={stroke} mask="url(#path-1-outside-1_904_166)"/>
-            <path d="M33.7634 43.4482H79.7899" stroke={stroke} stroke-width="3" stroke-linecap="round"/>
-            <path d="M33.7634 51.8164H79.7899" stroke={stroke} stroke-width="3" stroke-linecap="round"/>
-            <path d="M33.7634 60.1855H79.7899" stroke={stroke} stroke-width="3" stroke-linecap="round"/>
-        </svg>
-
-    );
-};
-
-
-export const Tabbar_openchat_color_cmp = ({fill,stroke}) => {
-    return (
-        <svg width="80" height="80" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="21.5" y="30.5" width="71.5714" height="53" fill={fill} stroke={stroke} stroke-width="3"/>
-            <path d="M28.7146 42L57.2938 60.5595" stroke={stroke} stroke-width="3.5" stroke-linecap="round"/>
-            <path d="M57.2859 60.5586L85.865 41.9991" stroke={stroke} stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-
-    );
-};
-
-
-export const Tabbar_shop_color_cmp = ({fill,stroke}) => {
-    return (
-        <svg width="80" height="80" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="28.5" y="30.5" width="57.7895" height="52" fill={fill} stroke={stroke} stroke-width="3"/>
-            <mask id="path-2-inside-1_904_168" fill={fill}>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M47.2632 29H27V52.8816V53.6053H27.0295C27.4275 58.463 31.7983 62.2895 37.1316 62.2895C42.4649 62.2895 46.8357 58.463 47.2336 53.6053H47.2632V52.8816V29Z"/>
-            </mask>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M47.2632 29H27V52.8816V53.6053H27.0295C27.4275 58.463 31.7983 62.2895 37.1316 62.2895C42.4649 62.2895 46.8357 58.463 47.2336 53.6053H47.2632V52.8816V29Z" fill="white"/>
-            <path d="M27 29V26H24V29H27ZM47.2632 29H50.2632V26H47.2632V29ZM27 53.6053H24V56.6053H27V53.6053ZM27.0295 53.6053L30.0195 53.3603L29.7938 50.6053H27.0295V53.6053ZM47.2336 53.6053V50.6053H44.4693L44.2436 53.3603L47.2336 53.6053ZM47.2632 53.6053V56.6053H50.2632V53.6053H47.2632ZM27 32H47.2632V26H27V32ZM30 52.8816V29H24V52.8816H30ZM30 53.6053V52.8816H24V53.6053H30ZM27.0295 50.6053H27V56.6053H27.0295V50.6053ZM37.1316 59.2895C33.1847 59.2895 30.2761 56.4924 30.0195 53.3603L24.0395 53.8502C24.5789 60.4335 30.4119 65.2895 37.1316 65.2895V59.2895ZM44.2436 53.3603C43.9871 56.4924 41.0784 59.2895 37.1316 59.2895V65.2895C43.8513 65.2895 49.6843 60.4335 50.2236 53.8502L44.2436 53.3603ZM47.2632 50.6053H47.2336V56.6053H47.2632V50.6053ZM44.2632 52.8816V53.6053H50.2632V52.8816H44.2632ZM44.2632 29V52.8816H50.2632V29H44.2632Z" fill={stroke} mask="url(#path-2-inside-1_904_168)"/>
-            <mask id="path-4-inside-2_904_168" fill={fill}>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M67.5263 29H47.2632V52.8602C47.2632 52.8673 47.2632 52.8744 47.2632 52.8816C47.2632 52.8887 47.2632 52.8959 47.2632 52.903V53.6053H47.2927C47.6906 58.463 52.0615 62.2895 57.3947 62.2895C62.728 62.2895 67.0988 58.463 67.4968 53.6053H67.5263V29Z"/>
-            </mask>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M67.5263 29H47.2632V52.8602C47.2632 52.8673 47.2632 52.8744 47.2632 52.8816C47.2632 52.8887 47.2632 52.8959 47.2632 52.903V53.6053H47.2927C47.6906 58.463 52.0615 62.2895 57.3947 62.2895C62.728 62.2895 67.0988 58.463 67.4968 53.6053H67.5263V29Z" fill={fill}/>
-            <path d="M47.2632 29V26H44.2632V29H47.2632ZM67.5263 29H70.5263V26H67.5263V29ZM47.2632 52.8602L50.2632 52.8674V52.8602H47.2632ZM47.2632 52.903L50.2632 52.903L50.2632 52.8958L47.2632 52.903ZM47.2632 53.6053H44.2632V56.6053H47.2632V53.6053ZM47.2927 53.6053L50.2827 53.3603L50.057 50.6053H47.2927V53.6053ZM67.4968 53.6053V50.6053H64.7325L64.5068 53.3603L67.4968 53.6053ZM67.5263 53.6053V56.6053H70.5263V53.6053H67.5263ZM47.2632 32H67.5263V26H47.2632V32ZM50.2632 52.8602V29H44.2632V52.8602H50.2632ZM50.2632 52.8816C50.2632 52.8768 50.2632 52.8721 50.2632 52.8674L44.2632 52.853C44.2632 52.8625 44.2632 52.872 44.2632 52.8816H50.2632ZM50.2632 52.8958C50.2632 52.8911 50.2632 52.8863 50.2632 52.8816H44.2632C44.2632 52.8911 44.2632 52.9007 44.2632 52.9102L50.2632 52.8958ZM50.2632 53.6053V52.903H44.2632V53.6053H50.2632ZM47.2927 50.6053H47.2632V56.6053H47.2927V50.6053ZM57.3947 59.2895C53.4479 59.2895 50.5393 56.4924 50.2827 53.3603L44.3027 53.8502C44.842 60.4335 50.675 65.2895 57.3947 65.2895V59.2895ZM64.5068 53.3603C64.2502 56.4924 61.3416 59.2895 57.3947 59.2895V65.2895C64.1144 65.2895 69.9474 60.4335 70.4868 53.8502L64.5068 53.3603ZM67.5263 50.6053H67.4968V56.6053H67.5263V50.6053ZM64.5263 29V53.6053H70.5263V29H64.5263Z" fill={stroke} mask="url(#path-4-inside-2_904_168)"/>
-            <mask id="path-6-inside-3_904_168" fill={fill}>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M87.7895 29H67.5264V52.8513C67.5263 52.8614 67.5263 52.8715 67.5263 52.8816C67.5263 52.8917 67.5263 52.9018 67.5264 52.9119V53.6053H67.5558C67.9538 58.463 72.3246 62.2895 77.6579 62.2895C82.9912 62.2895 87.362 58.463 87.7599 53.6053H87.7895V29Z"/>
-            </mask>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M87.7895 29H67.5264V52.8513C67.5263 52.8614 67.5263 52.8715 67.5263 52.8816C67.5263 52.8917 67.5263 52.9018 67.5264 52.9119V53.6053H67.5558C67.9538 58.463 72.3246 62.2895 77.6579 62.2895C82.9912 62.2895 87.362 58.463 87.7599 53.6053H87.7895V29Z" fill={fill}/>
-            <path d="M67.5264 29V26H64.5264V29H67.5264ZM87.7895 29H90.7895V26H87.7895V29ZM67.5264 52.8513L70.5264 52.8615V52.8513H67.5264ZM67.5264 52.9119L70.5264 52.9119L70.5263 52.9017L67.5264 52.9119ZM67.5264 53.6053H64.5264V56.6053H67.5264V53.6053ZM67.5558 53.6053L70.5458 53.3603L70.3201 50.6053H67.5558V53.6053ZM87.7599 53.6053V50.6053H84.9957L84.77 53.3603L87.7599 53.6053ZM87.7895 53.6053V56.6053H90.7895V53.6053H87.7895ZM67.5264 32H87.7895V26H67.5264V32ZM70.5264 52.8513V29H64.5264V52.8513H70.5264ZM70.5263 52.8816C70.5263 52.8749 70.5263 52.8682 70.5263 52.8615L64.5264 52.8411C64.5263 52.8546 64.5263 52.8681 64.5263 52.8816H70.5263ZM70.5263 52.9017C70.5263 52.895 70.5263 52.8883 70.5263 52.8816H64.5263C64.5263 52.8951 64.5263 52.9086 64.5264 52.9221L70.5263 52.9017ZM70.5264 53.6053V52.9119H64.5264V53.6053H70.5264ZM67.5558 50.6053H67.5264V56.6053H67.5558V50.6053ZM77.6579 59.2895C73.711 59.2895 70.8024 56.4924 70.5458 53.3603L64.5659 53.8502C65.1052 60.4335 70.9382 65.2895 77.6579 65.2895V59.2895ZM84.77 53.3603C84.5134 56.4924 81.6048 59.2895 77.6579 59.2895V65.2895C84.3776 65.2895 90.2106 60.4335 90.7499 53.8502L84.77 53.3603ZM87.7895 50.6053H87.7599V56.6053H87.7895V50.6053ZM84.7895 29V53.6053H90.7895V29H84.7895Z" fill={stroke} mask="url(#path-6-inside-3_904_168)"/>
-            <line x1="76.2632" y1="65.1846" x2="76.2632" y2="76.7635" stroke={stroke} stroke-width="3"/>
-            <line x1="76.2632" y1="65.1846" x2="76.2632" y2="76.7635" stroke={stroke} stroke-width="3"/>
-        </svg>
-
-    );
-};
-
-
-export const Tabbar_setting_color_cmp = ({fill,stroke}) => {
-    return (
-        <svg width="80" height="80" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M57 35L57 79" stroke={stroke} stroke-width="3" stroke-linecap="round"/>
-            <path d="M79 57L35 57" stroke={stroke} stroke-width="3" stroke-linecap="round"/>
-        </svg>
 
     );
 };
 
-export const Tabbar_friend_color_selected_cmp = ({fill,stroke}) => {
+export const Tabbar_friend_color_cmp = ({tabbarFriendFillColor,tabbarFriendStrokeColor}) => {
     return (
-        <svg width="80" height="80" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <mask id="path-1-outside-1_904_165" maskUnits="userSpaceOnUse" x="22" y="28" width="69" height="59" fill="black">
-                <rect fill={fill} x="22" y="28" width="69" height="59"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M63.9527 58.1078C68.3101 55.603 71.2444 50.9016 71.2444 45.515C71.2444 37.4986 64.7458 31 56.7294 31C48.713 31 42.2144 37.4986 42.2144 45.515C42.2144 50.9016 45.1487 55.603 49.5061 58.1078C37.3456 60.9998 27.952 71.032 26 83.5298H87.4588C85.5068 71.032 76.1132 60.9998 63.9527 58.1078Z"/>
+        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="path-1-outside-1_956_539" maskUnits="userSpaceOnUse" x="8.79724" y="11.2998" width="30" height="26" fill="black">
+                <rect fill="white" x="8.79724" y="11.2998" width="30" height="26"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M26.5582 24.7184C28.3671 23.6631 29.5852 21.6829 29.5852 19.4142C29.5852 16.0372 26.8866 13.2996 23.5577 13.2996C20.2288 13.2996 17.5302 16.0372 17.5302 19.4142C17.5302 21.683 18.7483 23.6632 20.5573 24.7185C15.508 25.9371 11.6076 30.163 10.7971 35.4275H36.3187C35.5081 30.163 31.6076 25.937 26.5582 24.7184Z"/>
             </mask>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M63.9527 58.1078C68.3101 55.603 71.2444 50.9016 71.2444 45.515C71.2444 37.4986 64.7458 31 56.7294 31C48.713 31 42.2144 37.4986 42.2144 45.515C42.2144 50.9016 45.1487 55.603 49.5061 58.1078C37.3456 60.9998 27.952 71.032 26 83.5298H87.4588C85.5068 71.032 76.1132 60.9998 63.9527 58.1078Z" fill={fill}/>
-            <path d="M63.9527 58.1078L62.4576 55.5069L55.9001 59.2764L63.2586 61.0264L63.9527 58.1078ZM49.5061 58.1078L50.2002 61.0264L57.5587 59.2764L51.0012 55.5069L49.5061 58.1078ZM26 83.5298L23.0359 83.0669L22.4951 86.5298H26V83.5298ZM87.4588 83.5298V86.5298H90.9637L90.4229 83.0669L87.4588 83.5298ZM68.2444 45.515C68.2444 49.7845 65.9222 53.5153 62.4576 55.5069L65.4478 60.7087C70.6979 57.6907 74.2444 52.0188 74.2444 45.515H68.2444ZM56.7294 34C63.0889 34 68.2444 39.1554 68.2444 45.515H74.2444C74.2444 35.8417 66.4026 28 56.7294 28V34ZM45.2144 45.515C45.2144 39.1554 50.3699 34 56.7294 34V28C47.0562 28 39.2144 35.8417 39.2144 45.515H45.2144ZM51.0012 55.5069C47.5366 53.5153 45.2144 49.7845 45.2144 45.515H39.2144C39.2144 52.0188 42.7609 57.6907 48.011 60.7087L51.0012 55.5069ZM28.9641 83.9928C30.7267 72.7076 39.2157 63.6387 50.2002 61.0264L48.812 55.1892C35.4755 58.3608 25.1773 69.3565 23.0359 83.0669L28.9641 83.9928ZM87.4588 80.5298H26V86.5298H87.4588V80.5298ZM63.2586 61.0264C74.2431 63.6387 82.7321 72.7076 84.4947 83.9928L90.4229 83.0669C88.2815 69.3565 77.9833 58.3608 64.6468 55.1892L63.2586 61.0264Z" fill={stroke} mask="url(#path-1-outside-1_904_165)"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M26.5582 24.7184C28.3671 23.6631 29.5852 21.6829 29.5852 19.4142C29.5852 16.0372 26.8866 13.2996 23.5577 13.2996C20.2288 13.2996 17.5302 16.0372 17.5302 19.4142C17.5302 21.683 18.7483 23.6632 20.5573 24.7185C15.508 25.9371 11.6076 30.163 10.7971 35.4275H36.3187C35.5081 30.163 31.6076 25.937 26.5582 24.7184Z" fill={tabbarFriendFillColor}/>
+            <path d="M26.5582 24.7184L25.8023 23.4228L22.5814 25.3018L26.2063 26.1766L26.5582 24.7184ZM20.5573 24.7185L20.9092 26.1766L24.5342 25.3018L21.3132 23.4228L20.5573 24.7185ZM10.7971 35.4275L9.31454 35.1993L9.04846 36.9275H10.7971V35.4275ZM36.3187 35.4275V36.9275H38.0673L37.8012 35.1993L36.3187 35.4275ZM28.0852 19.4142C28.0852 21.135 27.1631 22.6289 25.8023 23.4228L27.314 26.0141C29.5712 24.6973 31.0852 22.2309 31.0852 19.4142H28.0852ZM23.5577 14.7996C26.038 14.7996 28.0852 16.8453 28.0852 19.4142H31.0852C31.0852 15.2291 27.7353 11.7996 23.5577 11.7996V14.7996ZM19.0302 19.4142C19.0302 16.8453 21.0774 14.7996 23.5577 14.7996V11.7996C19.3802 11.7996 16.0302 15.2291 16.0302 19.4142H19.0302ZM21.3132 23.4228C19.9523 22.629 19.0302 21.135 19.0302 19.4142H16.0302C16.0302 22.2309 17.5443 24.6974 19.8015 26.0141L21.3132 23.4228ZM20.2054 23.2603C14.5588 24.6231 10.2167 29.3395 9.31454 35.1993L12.2796 35.6558C12.9985 30.9866 16.4572 27.2511 20.9092 26.1766L20.2054 23.2603ZM10.7971 36.9275H36.3187V33.9275H10.7971V36.9275ZM37.8012 35.1993C36.899 29.3394 32.5568 24.6229 26.9101 23.2603L26.2063 26.1766C30.6585 27.251 34.1172 30.9866 34.8361 35.6558L37.8012 35.1993Z" fill={tabbarFriendStrokeColor} mask="url(#path-1-outside-1_956_539)"/>
+        </svg>
+
+
+    );
+};
+
+
+export const Tabbar_chat_color_cmp = ({tabbarChatFillColor,tabbarChatStrokeColor}) => {
+    return (
+        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="path-1-outside-1_956_502" maskUnits="userSpaceOnUse" x="8.30627" y="11.2998" width="31" height="27" fill="black">
+                <rect fill="white" x="8.30627" y="11.2998" width="31" height="27"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M37.528 13.2998H10.3063V30.9262H20.5278L24.2065 35.627L27.8851 30.9262H37.528V13.2998Z"/>
+            </mask>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M37.528 13.2998H10.3063V30.9262H20.5278L24.2065 35.627L27.8851 30.9262H37.528V13.2998Z" fill={tabbarChatFillColor}/>
+            <path d="M10.3063 13.2998V11.7998H8.80627V13.2998H10.3063ZM37.528 13.2998H39.028V11.7998H37.528V13.2998ZM10.3063 30.9262H8.80627V32.4262H10.3063V30.9262ZM20.5278 30.9262L21.7091 30.0017L21.2587 29.4262H20.5278V30.9262ZM24.2065 35.627L23.0252 36.5514L24.2065 38.0609L25.3878 36.5514L24.2065 35.627ZM27.8851 30.9262V29.4262H27.1543L26.7039 30.0017L27.8851 30.9262ZM37.528 30.9262V32.4262H39.028V30.9262H37.528ZM10.3063 14.7998H37.528V11.7998H10.3063V14.7998ZM11.8063 30.9262V13.2998H8.80627V30.9262H11.8063ZM20.5278 29.4262H10.3063V32.4262H20.5278V29.4262ZM25.3878 34.7025L21.7091 30.0017L19.3465 31.8506L23.0252 36.5514L25.3878 34.7025ZM26.7039 30.0017L23.0252 34.7025L25.3878 36.5514L29.0664 31.8506L26.7039 30.0017ZM37.528 29.4262H27.8851V32.4262H37.528V29.4262ZM36.028 13.2998V30.9262H39.028V13.2998H36.028Z" fill={tabbarChatStrokeColor} mask="url(#path-1-outside-1_956_502)"/>
+            <path d="M14.3605 18.5439H33.4736" stroke={tabbarChatStrokeColor} stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M14.3605 22.0693H33.4736" stroke={tabbarChatStrokeColor} stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M14.3605 25.5947H33.4736" stroke={tabbarChatStrokeColor} stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+
+
+
+    );
+};
+
+
+export const Tabbar_openchat_color_cmp = ({tabbarOpenchatFillColor,tabbarOpenchatStrokeColor}) => {
+    return (
+        <svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="9.48083" y="12.9717" width="29.9752" height="22.5628" fill={tabbarOpenchatFillColor} stroke={tabbarOpenchatStrokeColor} stroke-width="1.5"/>
+            <path d="M12.6038 17.9326L24.4716 25.7509" stroke={tabbarOpenchatStrokeColor} stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M24.4685 25.751L36.3364 17.9327" stroke={tabbarOpenchatStrokeColor} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    );
+};
+
+
+export const Tabbar_shop_color_cmp = ({tabbarShopFillColor,tabbarShopStrokeColor}) => {
+    return (
+        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="11.9819" y="13.207" width="23.7436" height="21.6691" fill={tabbarShopFillColor} stroke={tabbarShopStrokeColor} stroke-width="1.5"/>
+            <mask id="path-2-inside-1_956_524" fill={tabbarShopFillColor}>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6465 12.458H11.2319V22.4923C11.2319 22.501 11.2318 22.5098 11.2318 22.5186C11.2318 22.5274 11.2319 22.5362 11.2319 22.545V22.8231H11.2441C11.4092 24.8696 13.2243 26.4818 15.4391 26.4818C17.654 26.4818 19.4691 24.8696 19.6341 22.8231H19.6465V12.458Z"/>
+            </mask>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6465 12.458H11.2319V22.4923C11.2319 22.501 11.2318 22.5098 11.2318 22.5186C11.2318 22.5274 11.2319 22.5362 11.2319 22.545V22.8231H11.2441C11.4092 24.8696 13.2243 26.4818 15.4391 26.4818C17.654 26.4818 19.4691 24.8696 19.6341 22.8231H19.6465V12.458Z" fill="white"/>
+            <path d="M11.2319 12.458V10.958H9.73193V12.458H11.2319ZM19.6465 12.458H21.1465V10.958H19.6465V12.458ZM11.2319 22.4923L12.7319 22.5026V22.4923H11.2319ZM11.2319 22.545H12.732L12.7319 22.5346L11.2319 22.545ZM11.2319 22.8231H9.73193V24.3231H11.2319V22.8231ZM11.2441 22.8231L12.7392 22.7025L12.6279 21.3231H11.2441V22.8231ZM19.6341 22.8231V21.3231H18.2503L18.139 22.7025L19.6341 22.8231ZM19.6465 22.8231V24.3231H21.1465V22.8231H19.6465ZM11.2319 13.958H19.6465V10.958H11.2319V13.958ZM12.7319 22.4923V12.458H9.73193V22.4923H12.7319ZM12.7318 22.5186C12.7318 22.5133 12.7319 22.508 12.7319 22.5026L9.73197 22.4819C9.73188 22.4941 9.73184 22.5064 9.73184 22.5186H12.7318ZM12.7319 22.5346C12.7319 22.5293 12.7318 22.524 12.7318 22.5186H9.73184C9.73184 22.5309 9.73188 22.5431 9.73197 22.5554L12.7319 22.5346ZM12.7319 22.8231V22.545H9.73193V22.8231H12.7319ZM11.2441 21.3231H11.2319V24.3231H11.2441V21.3231ZM15.4391 24.9818C13.9364 24.9818 12.836 23.9025 12.7392 22.7025L9.74893 22.9438C9.9823 25.8368 12.5121 27.9818 15.4391 27.9818V24.9818ZM18.139 22.7025C18.0422 23.9025 16.9418 24.9818 15.4391 24.9818V27.9818C18.3661 27.9818 20.8959 25.8368 21.1293 22.9438L18.139 22.7025ZM19.6465 21.3231H19.6341V24.3231H19.6465V21.3231ZM18.1465 12.458V22.8231H21.1465V12.458H18.1465Z" fill={tabbarShopStrokeColor} mask="url(#path-2-inside-1_956_524)"/>
+            <mask id="path-4-inside-2_956_524" fill={tabbarShopFillColor}>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M28.0608 12.458H19.6462V22.8231H19.6586C19.8237 24.8696 21.6388 26.4818 23.8537 26.4818C26.0685 26.4818 27.8836 24.8696 28.0487 22.8231H28.0608V22.5541C28.0609 22.5423 28.0609 22.5305 28.0609 22.5186C28.0609 22.5068 28.0609 22.495 28.0608 22.4832V12.458Z"/>
+            </mask>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M28.0608 12.458H19.6462V22.8231H19.6586C19.8237 24.8696 21.6388 26.4818 23.8537 26.4818C26.0685 26.4818 27.8836 24.8696 28.0487 22.8231H28.0608V22.5541C28.0609 22.5423 28.0609 22.5305 28.0609 22.5186C28.0609 22.5068 28.0609 22.495 28.0608 22.4832V12.458Z" fill="white"/>
+            <path d="M19.6462 12.458V10.958H18.1462V12.458H19.6462ZM28.0608 12.458H29.5608V10.958H28.0608V12.458ZM19.6462 22.8231H18.1462V24.3231H19.6462V22.8231ZM19.6586 22.8231L21.1538 22.7025L21.0425 21.3231H19.6586V22.8231ZM28.0487 22.8231V21.3231H26.6648L26.5536 22.7025L28.0487 22.8231ZM28.0608 22.8231V24.3231H29.5608V22.8231H28.0608ZM28.0608 22.5541L26.5608 22.5402V22.5541H28.0608ZM28.0608 22.4832H26.5607L26.5608 22.4971L28.0608 22.4832ZM19.6462 13.958H28.0608V10.958H19.6462V13.958ZM21.1462 22.8231V12.458H18.1462V22.8231H21.1462ZM19.6586 21.3231H19.6462V24.3231H19.6586V21.3231ZM23.8537 24.9818C22.351 24.9818 21.2506 23.9025 21.1538 22.7025L18.1635 22.9438C18.3969 25.8368 20.9267 27.9818 23.8537 27.9818V24.9818ZM26.5536 22.7025C26.4568 23.9025 25.3564 24.9818 23.8537 24.9818V27.9818C26.7807 27.9818 29.3105 25.8368 29.5439 22.9438L26.5536 22.7025ZM28.0608 21.3231H28.0487V24.3231H28.0608V21.3231ZM26.5608 22.5541V22.8231H29.5608V22.5541H26.5608ZM26.5609 22.5186C26.5609 22.5258 26.5609 22.533 26.5608 22.5402L29.5607 22.568C29.5609 22.5516 29.5609 22.5351 29.5609 22.5186H26.5609ZM26.5608 22.4971C26.5609 22.5043 26.5609 22.5115 26.5609 22.5186H29.5609C29.5609 22.5021 29.5609 22.4857 29.5607 22.4692L26.5608 22.4971ZM26.5608 12.458V22.4832H29.5608V12.458H26.5608Z" fill={tabbarShopStrokeColor} mask="url(#path-4-inside-2_956_524)"/>
+            <mask id="path-6-inside-3_956_524" fill={tabbarShopFillColor}>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M36.4753 12.458H28.0608V22.4977C28.0608 22.5047 28.0607 22.5116 28.0607 22.5186C28.0607 22.5256 28.0608 22.5326 28.0608 22.5396V22.8231H28.073C28.2381 24.8696 30.0532 26.4818 32.268 26.4818C34.4828 26.4818 36.298 24.8696 36.463 22.8231H36.4753V12.458Z"/>
+            </mask>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M36.4753 12.458H28.0608V22.4977C28.0608 22.5047 28.0607 22.5116 28.0607 22.5186C28.0607 22.5256 28.0608 22.5326 28.0608 22.5396V22.8231H28.073C28.2381 24.8696 30.0532 26.4818 32.268 26.4818C34.4828 26.4818 36.298 24.8696 36.463 22.8231H36.4753V12.458Z" fill="white"/>
+            <path d="M28.0608 12.458V10.958H26.5608V12.458H28.0608ZM36.4753 12.458H37.9753V10.958H36.4753V12.458ZM28.0608 22.4977L29.5608 22.5059V22.4977H28.0608ZM28.0608 22.5396H29.5608L29.5608 22.5313L28.0608 22.5396ZM28.0608 22.8231H26.5608V24.3231H28.0608V22.8231ZM28.073 22.8231L29.5681 22.7025L29.4568 21.3231H28.073V22.8231ZM36.463 22.8231V21.3231H35.0792L34.9679 22.7025L36.463 22.8231ZM36.4753 22.8231V24.3231H37.9753V22.8231H36.4753ZM28.0608 13.958H36.4753V10.958H28.0608V13.958ZM29.5608 22.4977V12.458H26.5608V22.4977H29.5608ZM29.5607 22.5186C29.5607 22.5144 29.5607 22.5102 29.5608 22.5059L26.5608 22.4895C26.5608 22.4992 26.5607 22.5089 26.5607 22.5186H29.5607ZM29.5608 22.5313C29.5607 22.5271 29.5607 22.5229 29.5607 22.5186H26.5607C26.5607 22.5284 26.5608 22.5381 26.5608 22.5478L29.5608 22.5313ZM29.5608 22.8231V22.5396H26.5608V22.8231H29.5608ZM28.073 21.3231H28.0608V24.3231H28.073V21.3231ZM32.268 24.9818C30.7653 24.9818 29.6649 23.9025 29.5681 22.7025L26.5778 22.9438C26.8112 25.8368 29.341 27.9818 32.268 27.9818V24.9818ZM34.9679 22.7025C34.8711 23.9025 33.7707 24.9818 32.268 24.9818V27.9818C35.195 27.9818 37.7248 25.8368 37.9582 22.9438L34.9679 22.7025ZM36.4753 21.3231H36.463V24.3231H36.4753V21.3231ZM34.9753 12.458V22.8231H37.9753V12.458H34.9753Z" fill={tabbarShopStrokeColor} mask="url(#path-6-inside-3_956_524)"/>
+            <line x1="31.8159" y1="27.7002" x2="31.8159" y2="32.5779" stroke={tabbarShopStrokeColor} stroke-width="1.5"/>
+            <line x1="31.8159" y1="27.7002" x2="31.8159" y2="32.5779" stroke={tabbarShopStrokeColor} stroke-width="1.5"/>
+        </svg>
+
+
+    );
+};
+
+
+export const Tabbar_setting_color_cmp = ({tabbarSettingFillColor,tabbarSettingStrokeColor}) => {
+    return (
+        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.0299 14.9854L24.0299 33.5207" stroke={tabbarSettingStrokeColor} stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M33.1656 24.2529L14.8941 24.2529" stroke={tabbarSettingStrokeColor} stroke-width="1.5" stroke-linecap="round"/>
         </svg>
 
     );
 };
 
-export const Tabbar_chat_color_selected_cmp = ({fill,stroke}) => {
+export const Tabbar_friend_color_selected_cmp = ({tabbarFriendFillColorSelected,tabbarFriendStrokeColorSelected}) => {
     return (
-        <svg width="80" height="80" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <mask id="path-1-outside-1_904_166" maskUnits="userSpaceOnUse" x="21" y="28" width="72" height="61" fill="black">
-                <rect fill="white" x="21" y="28" width="72" height="61"/>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M89.5529 31H24V72.8423H48.6164L57.4739 83.9998L66.3313 72.8423H89.5529V31Z"/>
+        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="path-1-outside-1_949_592" maskUnits="userSpaceOnUse" x="8.797" y="11.0596" width="30" height="26" fill="black">
+                <rect fill="white" x="8.797" y="11.0596" width="30" height="26"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M26.5582 24.4784C28.3671 23.4231 29.5852 21.4429 29.5852 19.1741C29.5852 15.7971 26.8866 13.0596 23.5577 13.0596C20.2288 13.0596 17.5302 15.7971 17.5302 19.1741C17.5302 21.4429 18.7483 23.4231 20.5573 24.4784C15.5079 25.697 11.6075 29.923 10.797 35.1875H36.3186C35.508 29.9229 31.6076 25.6969 26.5582 24.4784Z"/>
             </mask>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M89.5529 31H24V72.8423H48.6164L57.4739 83.9998L66.3313 72.8423H89.5529V31Z" fill={fill}/>
-            <path d="M24 31V28H21V31H24ZM89.5529 31H92.5529V28H89.5529V31ZM24 72.8423H21V75.8423H24V72.8423ZM48.6164 72.8423L50.9661 70.977L50.0653 69.8423H48.6164V72.8423ZM57.4739 83.9998L55.1242 85.865L57.4739 88.8248L59.8235 85.865L57.4739 83.9998ZM66.3313 72.8423V69.8423H64.8825L63.9817 70.977L66.3313 72.8423ZM89.5529 72.8423V75.8423H92.5529V72.8423H89.5529ZM24 34H89.5529V28H24V34ZM27 72.8423V31H21V72.8423H27ZM48.6164 69.8423H24V75.8423H48.6164V69.8423ZM59.8235 82.1345L50.9661 70.977L46.2668 74.7076L55.1242 85.865L59.8235 82.1345ZM63.9817 70.977L55.1242 82.1345L59.8235 85.865L68.6809 74.7076L63.9817 70.977ZM89.5529 69.8423H66.3313V75.8423H89.5529V69.8423ZM86.5529 31V72.8423H92.5529V31H86.5529Z" fill={stroke} mask="url(#path-1-outside-1_904_166)"/>
-            <path d="M33.7634 43.4482H79.7899" stroke={stroke} stroke-width="3" stroke-linecap="round"/>
-            <path d="M33.7634 51.8164H79.7899" stroke={stroke} stroke-width="3" stroke-linecap="round"/>
-            <path d="M33.7634 60.1855H79.7899" stroke={stroke} stroke-width="3" stroke-linecap="round"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M26.5582 24.4784C28.3671 23.4231 29.5852 21.4429 29.5852 19.1741C29.5852 15.7971 26.8866 13.0596 23.5577 13.0596C20.2288 13.0596 17.5302 15.7971 17.5302 19.1741C17.5302 21.4429 18.7483 23.4231 20.5573 24.4784C15.5079 25.697 11.6075 29.923 10.797 35.1875H36.3186C35.508 29.9229 31.6076 25.6969 26.5582 24.4784Z" fill={tabbarFriendFillColorSelected}/>
+            <path d="M26.5582 24.4784L25.8023 23.1827L22.5813 25.0618L26.2063 25.9365L26.5582 24.4784ZM20.5573 24.4784L20.9092 25.9366L24.5342 25.0618L21.3131 23.1828L20.5573 24.4784ZM10.797 35.1875L9.31447 34.9592L9.04838 36.6875H10.797V35.1875ZM36.3186 35.1875V36.6875H38.0672L37.8011 34.9592L36.3186 35.1875ZM28.0852 19.1741C28.0852 20.895 27.1631 22.3889 25.8023 23.1827L27.314 25.774C29.5711 24.4573 31.0852 21.9909 31.0852 19.1741H28.0852ZM23.5577 14.5596C26.038 14.5596 28.0852 16.6052 28.0852 19.1741H31.0852C31.0852 14.989 27.7352 11.5596 23.5577 11.5596V14.5596ZM19.0302 19.1741C19.0302 16.6052 21.0774 14.5596 23.5577 14.5596V11.5596C19.3802 11.5596 16.0302 14.989 16.0302 19.1741H19.0302ZM21.3131 23.1828C19.9523 22.3889 19.0302 20.895 19.0302 19.1741H16.0302C16.0302 21.9909 17.5443 24.4573 19.8015 25.7741L21.3131 23.1828ZM20.2054 23.0203C14.5587 24.383 10.2166 29.0994 9.31447 34.9592L12.2795 35.4157C12.9984 30.7465 16.4571 27.011 20.9092 25.9366L20.2054 23.0203ZM10.797 36.6875H36.3186V33.6875H10.797V36.6875ZM37.8011 34.9592C36.8989 29.0993 32.5568 24.3829 26.91 23.0203L26.2063 25.9365C30.6584 27.0109 34.1172 30.7465 34.836 35.4157L37.8011 34.9592Z" fill={tabbarFriendStrokeColorSelected} mask="url(#path-1-outside-1_949_592)"/>
+        </svg>
+
+
+
+    );
+};
+
+export const Tabbar_chat_color_selected_cmp = ({tabbarChatFillColorSelected,tabbarChatStrokeColorSelected}) => {
+    return (
+        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="path-1-outside-1_949_555" maskUnits="userSpaceOnUse" x="8.30627" y="11.0596" width="31" height="27" fill="black">
+                <rect fill="white" x="8.30627" y="11.0596" width="31" height="27"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M37.528 13.0596H10.3063V30.6859H20.528L24.2065 35.3865L27.8851 30.6859H37.528V13.0596Z"/>
+            </mask>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M37.528 13.0596H10.3063V30.6859H20.528L24.2065 35.3865L27.8851 30.6859H37.528V13.0596Z" fill={tabbarChatFillColorSelected}/>
+            <path d="M10.3063 13.0596V11.5596H8.80627V13.0596H10.3063ZM37.528 13.0596H39.028V11.5596H37.528V13.0596ZM10.3063 30.6859H8.80627V32.1859H10.3063V30.6859ZM20.528 30.6859L21.7093 29.7615L21.2589 29.1859H20.528V30.6859ZM24.2065 35.3865L23.0253 36.311L24.2065 37.8205L25.3878 36.311L24.2065 35.3865ZM27.8851 30.6859V29.1859H27.1542L26.7038 29.7615L27.8851 30.6859ZM37.528 30.6859V32.1859H39.028V30.6859H37.528ZM10.3063 14.5596H37.528V11.5596H10.3063V14.5596ZM11.8063 30.6859V13.0596H8.80627V30.6859H11.8063ZM20.528 29.1859H10.3063V32.1859H20.528V29.1859ZM25.3878 34.4621L21.7093 29.7615L19.3467 31.6103L23.0253 36.311L25.3878 34.4621ZM26.7038 29.7615L23.0253 34.4621L25.3878 36.311L29.0663 31.6103L26.7038 29.7615ZM37.528 29.1859H27.8851V32.1859H37.528V29.1859ZM36.028 13.0596V30.6859H39.028V13.0596H36.028Z" fill={tabbarChatStrokeColorSelected} mask="url(#path-1-outside-1_949_555)"/>
+            <path d="M14.3606 18.3037H33.4737" stroke={tabbarChatStrokeColorSelected} stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M14.3606 21.8291H33.4737" stroke={tabbarChatStrokeColorSelected} stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M14.3606 25.3545H33.4737" stroke={tabbarChatStrokeColorSelected} stroke-width="1.5" stroke-linecap="round"/>
         </svg>
 
     );
 };
 
-export const Tabbar_openchat_color_selected_cmp = ({fill,stroke}) => {
+export const Tabbar_openchat_color_selected_cmp = ({tabbarOpenchatFillColorSelected,tabbarOpenchatStrokeColorSelected}) => {
     return (
-        <svg width="80" height="80" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="21.5" y="30.5" width="71.5714" height="53" fill={fill} stroke={stroke} stroke-width="3"/>
-            <path d="M28.7146 42L57.2938 60.5595" stroke={stroke} stroke-width="3.5" stroke-linecap="round"/>
-            <path d="M57.2859 60.5586L85.865 41.9991" stroke={stroke} stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="9.48071" y="12.7285" width="29.9752" height="22.5628" fill={tabbarOpenchatFillColorSelected} stroke={tabbarOpenchatStrokeColorSelected} stroke-width="1.5"/>
+            <path d="M12.6038 17.6895L24.4716 25.5078" stroke={tabbarOpenchatStrokeColorSelected} stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M24.4684 25.5078L36.3363 17.6895" stroke={tabbarOpenchatStrokeColorSelected} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
+
     );
 };
 
-export const Tabbar_shop_color_selected_cmp = ({fill,stroke}) => {
+export const Tabbar_shop_color_selected_cmp = ({tabbarShopFillColorSelected,tabbarShopStrokeColorSelected}) => {
     return (
-        <svg width="80" height="80" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="28.5" y="30.5" width="57.7895" height="52" fill={fill} stroke={stroke} stroke-width="3"/>
-            <mask id="path-2-inside-1_904_168" fill={fill}>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M47.2632 29H27V52.8816V53.6053H27.0295C27.4275 58.463 31.7983 62.2895 37.1316 62.2895C42.4649 62.2895 46.8357 58.463 47.2336 53.6053H47.2632V52.8816V29Z"/>
+        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="11.9821" y="12.9678" width="23.7436" height="21.6691" fill={tabbarShopFillColorSelected} stroke={tabbarShopStrokeColorSelected} stroke-width="1.5"/>
+            <mask id="path-2-inside-1_949_577" fill="white">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6466 12.2188H11.2321V22.2495C11.232 22.2595 11.2319 22.2696 11.2319 22.2796C11.2319 22.2896 11.232 22.2996 11.2321 22.3097V22.5839H11.2442C11.4091 24.6305 13.2243 26.2427 15.4392 26.2427C17.6541 26.2427 19.4693 24.6305 19.6343 22.5839H19.6466V12.2188Z"/>
             </mask>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M47.2632 29H27V52.8816V53.6053H27.0295C27.4275 58.463 31.7983 62.2895 37.1316 62.2895C42.4649 62.2895 46.8357 58.463 47.2336 53.6053H47.2632V52.8816V29Z" fill={fill}/>
-            <path d="M27 29V26H24V29H27ZM47.2632 29H50.2632V26H47.2632V29ZM27 53.6053H24V56.6053H27V53.6053ZM27.0295 53.6053L30.0195 53.3603L29.7938 50.6053H27.0295V53.6053ZM47.2336 53.6053V50.6053H44.4693L44.2436 53.3603L47.2336 53.6053ZM47.2632 53.6053V56.6053H50.2632V53.6053H47.2632ZM27 32H47.2632V26H27V32ZM30 52.8816V29H24V52.8816H30ZM30 53.6053V52.8816H24V53.6053H30ZM27.0295 50.6053H27V56.6053H27.0295V50.6053ZM37.1316 59.2895C33.1847 59.2895 30.2761 56.4924 30.0195 53.3603L24.0395 53.8502C24.5789 60.4335 30.4119 65.2895 37.1316 65.2895V59.2895ZM44.2436 53.3603C43.9871 56.4924 41.0784 59.2895 37.1316 59.2895V65.2895C43.8513 65.2895 49.6843 60.4335 50.2236 53.8502L44.2436 53.3603ZM47.2632 50.6053H47.2336V56.6053H47.2632V50.6053ZM44.2632 52.8816V53.6053H50.2632V52.8816H44.2632ZM44.2632 29V52.8816H50.2632V29H44.2632Z" fill={stroke} mask="url(#path-2-inside-1_904_168)"/>
-            <mask id="path-4-inside-2_904_168" fill={fill}>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M67.5263 29H47.2632V52.8602C47.2632 52.8673 47.2632 52.8744 47.2632 52.8816C47.2632 52.8887 47.2632 52.8959 47.2632 52.903V53.6053H47.2927C47.6906 58.463 52.0615 62.2895 57.3947 62.2895C62.728 62.2895 67.0988 58.463 67.4968 53.6053H67.5263V29Z"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6466 12.2188H11.2321V22.2495C11.232 22.2595 11.2319 22.2696 11.2319 22.2796C11.2319 22.2896 11.232 22.2996 11.2321 22.3097V22.5839H11.2442C11.4091 24.6305 13.2243 26.2427 15.4392 26.2427C17.6541 26.2427 19.4693 24.6305 19.6343 22.5839H19.6466V12.2188Z" fill={tabbarShopFillColorSelected}/>
+            <path d="M11.2321 12.2188V10.7188H9.73205V12.2188H11.2321ZM19.6466 12.2188H21.1466V10.7188H19.6466V12.2188ZM11.2321 22.2495L12.7321 22.2614V22.2495H11.2321ZM11.2321 22.3097H12.7321L12.732 22.2978L11.2321 22.3097ZM11.2321 22.5839H9.73205V24.0839H11.2321V22.5839ZM11.2442 22.5839L12.7393 22.4634L12.6281 21.0839H11.2442V22.5839ZM19.6343 22.5839V21.0839H18.2503L18.1391 22.4634L19.6343 22.5839ZM19.6466 22.5839V24.0839H21.1466V22.5839H19.6466ZM11.2321 13.7188H19.6466V10.7188H11.2321V13.7188ZM12.7321 22.2495V12.2188H9.73205V22.2495H12.7321ZM12.7319 22.2796C12.7319 22.2735 12.732 22.2674 12.732 22.2614L9.7321 22.2377C9.73199 22.2517 9.73193 22.2656 9.73193 22.2796H12.7319ZM12.732 22.2978C12.732 22.2918 12.7319 22.2857 12.7319 22.2796H9.73193C9.73193 22.2936 9.73199 22.3075 9.7321 22.3215L12.732 22.2978ZM12.7321 22.5839V22.3097H9.73205V22.5839H12.7321ZM11.2442 21.0839H11.2321V24.0839H11.2442V21.0839ZM15.4392 24.7427C13.9364 24.7427 12.836 23.6634 12.7393 22.4634L9.749 22.7044C9.98221 25.5976 12.5121 27.7427 15.4392 27.7427V24.7427ZM18.1391 22.4634C18.0424 23.6634 16.942 24.7427 15.4392 24.7427V27.7427C18.3663 27.7427 20.8962 25.5976 21.1294 22.7044L18.1391 22.4634ZM19.6466 21.0839H19.6343V24.0839H19.6466V21.0839ZM18.1466 12.2188V22.5839H21.1466V12.2188H18.1466Z" fill={tabbarShopStrokeColorSelected} mask="url(#path-2-inside-1_949_577)"/>
+            <mask id="path-4-inside-2_949_577" fill="white">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M28.0609 12.2188H19.6464V22.5839H19.6587C19.8237 24.6305 21.6388 26.2427 23.8538 26.2427C26.0687 26.2427 27.8838 24.6305 28.0488 22.5839H28.0609V22.3096C28.061 22.2996 28.061 22.2896 28.061 22.2796C28.061 22.2696 28.061 22.2596 28.0609 22.2496V12.2188Z"/>
             </mask>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M67.5263 29H47.2632V52.8602C47.2632 52.8673 47.2632 52.8744 47.2632 52.8816C47.2632 52.8887 47.2632 52.8959 47.2632 52.903V53.6053H47.2927C47.6906 58.463 52.0615 62.2895 57.3947 62.2895C62.728 62.2895 67.0988 58.463 67.4968 53.6053H67.5263V29Z" fill={fill}/>
-            <path d="M47.2632 29V26H44.2632V29H47.2632ZM67.5263 29H70.5263V26H67.5263V29ZM47.2632 52.8602L50.2632 52.8674V52.8602H47.2632ZM47.2632 52.903L50.2632 52.903L50.2632 52.8958L47.2632 52.903ZM47.2632 53.6053H44.2632V56.6053H47.2632V53.6053ZM47.2927 53.6053L50.2827 53.3603L50.057 50.6053H47.2927V53.6053ZM67.4968 53.6053V50.6053H64.7325L64.5068 53.3603L67.4968 53.6053ZM67.5263 53.6053V56.6053H70.5263V53.6053H67.5263ZM47.2632 32H67.5263V26H47.2632V32ZM50.2632 52.8602V29H44.2632V52.8602H50.2632ZM50.2632 52.8816C50.2632 52.8768 50.2632 52.8721 50.2632 52.8674L44.2632 52.853C44.2632 52.8625 44.2632 52.872 44.2632 52.8816H50.2632ZM50.2632 52.8958C50.2632 52.8911 50.2632 52.8863 50.2632 52.8816H44.2632C44.2632 52.8911 44.2632 52.9007 44.2632 52.9102L50.2632 52.8958ZM50.2632 53.6053V52.903H44.2632V53.6053H50.2632ZM47.2927 50.6053H47.2632V56.6053H47.2927V50.6053ZM57.3947 59.2895C53.4479 59.2895 50.5393 56.4924 50.2827 53.3603L44.3027 53.8502C44.842 60.4335 50.675 65.2895 57.3947 65.2895V59.2895ZM64.5068 53.3603C64.2502 56.4924 61.3416 59.2895 57.3947 59.2895V65.2895C64.1144 65.2895 69.9474 60.4335 70.4868 53.8502L64.5068 53.3603ZM67.5263 50.6053H67.4968V56.6053H67.5263V50.6053ZM64.5263 29V53.6053H70.5263V29H64.5263Z" fill={stroke} mask="url(#path-4-inside-2_904_168)"/>
-            <mask id="path-6-inside-3_904_168" fill={fill}>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M87.7895 29H67.5264V52.8513C67.5263 52.8614 67.5263 52.8715 67.5263 52.8816C67.5263 52.8917 67.5263 52.9018 67.5264 52.9119V53.6053H67.5558C67.9538 58.463 72.3246 62.2895 77.6579 62.2895C82.9912 62.2895 87.362 58.463 87.7599 53.6053H87.7895V29Z"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M28.0609 12.2188H19.6464V22.5839H19.6587C19.8237 24.6305 21.6388 26.2427 23.8538 26.2427C26.0687 26.2427 27.8838 24.6305 28.0488 22.5839H28.0609V22.3096C28.061 22.2996 28.061 22.2896 28.061 22.2796C28.061 22.2696 28.061 22.2596 28.0609 22.2496V12.2188Z" fill={tabbarShopFillColorSelected}/>
+            <path d="M19.6464 12.2188V10.7188H18.1464V12.2188H19.6464ZM28.0609 12.2188H29.5609V10.7188H28.0609V12.2188ZM19.6464 22.5839H18.1464V24.0839H19.6464V22.5839ZM19.6587 22.5839L21.1538 22.4634L21.0427 21.0839H19.6587V22.5839ZM28.0488 22.5839V21.0839H26.6648L26.5537 22.4634L28.0488 22.5839ZM28.0609 22.5839V24.0839H29.5609V22.5839H28.0609ZM28.0609 22.3096L26.5609 22.2978V22.3096H28.0609ZM28.0609 22.2496H26.5609L26.561 22.2614L28.0609 22.2496ZM19.6464 13.7188H28.0609V10.7188H19.6464V13.7188ZM21.1464 22.5839V12.2188H18.1464V22.5839H21.1464ZM19.6587 21.0839H19.6464V24.0839H19.6587V21.0839ZM23.8538 24.7427C22.351 24.7427 21.2506 23.6634 21.1538 22.4634L18.1635 22.7044C18.3968 25.5976 20.9267 27.7427 23.8538 27.7427V24.7427ZM26.5537 22.4634C26.4569 23.6634 25.3565 24.7427 23.8538 24.7427V27.7427C26.7808 27.7427 29.3108 25.5976 29.544 22.7044L26.5537 22.4634ZM28.0609 21.0839H28.0488V24.0839H28.0609V21.0839ZM26.5609 22.3096V22.5839H29.5609V22.3096H26.5609ZM26.561 22.2796C26.561 22.2857 26.561 22.2918 26.561 22.2978L29.5609 22.3215C29.561 22.3075 29.561 22.2935 29.561 22.2796H26.561ZM26.561 22.2614C26.561 22.2674 26.561 22.2735 26.561 22.2796H29.561C29.561 22.2657 29.561 22.2517 29.5609 22.2377L26.561 22.2614ZM26.5609 12.2188V22.2496H29.5609V12.2188H26.5609Z" fill={tabbarShopStrokeColorSelected} mask="url(#path-4-inside-2_949_577)"/>
+            <mask id="path-6-inside-3_949_577" fill="white">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M36.4753 12.2188H28.0608V22.2796V22.5839H28.073C28.238 24.6305 30.0531 26.2427 32.2681 26.2427C34.483 26.2427 36.2982 24.6305 36.4631 22.5839H36.4753V22.2796V12.2188Z"/>
             </mask>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M87.7895 29H67.5264V52.8513C67.5263 52.8614 67.5263 52.8715 67.5263 52.8816C67.5263 52.8917 67.5263 52.9018 67.5264 52.9119V53.6053H67.5558C67.9538 58.463 72.3246 62.2895 77.6579 62.2895C82.9912 62.2895 87.362 58.463 87.7599 53.6053H87.7895V29Z" fill={fill}/>
-            <path d="M67.5264 29V26H64.5264V29H67.5264ZM87.7895 29H90.7895V26H87.7895V29ZM67.5264 52.8513L70.5264 52.8615V52.8513H67.5264ZM67.5264 52.9119L70.5264 52.9119L70.5263 52.9017L67.5264 52.9119ZM67.5264 53.6053H64.5264V56.6053H67.5264V53.6053ZM67.5558 53.6053L70.5458 53.3603L70.3201 50.6053H67.5558V53.6053ZM87.7599 53.6053V50.6053H84.9957L84.77 53.3603L87.7599 53.6053ZM87.7895 53.6053V56.6053H90.7895V53.6053H87.7895ZM67.5264 32H87.7895V26H67.5264V32ZM70.5264 52.8513V29H64.5264V52.8513H70.5264ZM70.5263 52.8816C70.5263 52.8749 70.5263 52.8682 70.5263 52.8615L64.5264 52.8411C64.5263 52.8546 64.5263 52.8681 64.5263 52.8816H70.5263ZM70.5263 52.9017C70.5263 52.895 70.5263 52.8883 70.5263 52.8816H64.5263C64.5263 52.8951 64.5263 52.9086 64.5264 52.9221L70.5263 52.9017ZM70.5264 53.6053V52.9119H64.5264V53.6053H70.5264ZM67.5558 50.6053H67.5264V56.6053H67.5558V50.6053ZM77.6579 59.2895C73.711 59.2895 70.8024 56.4924 70.5458 53.3603L64.5659 53.8502C65.1052 60.4335 70.9382 65.2895 77.6579 65.2895V59.2895ZM84.77 53.3603C84.5134 56.4924 81.6048 59.2895 77.6579 59.2895V65.2895C84.3776 65.2895 90.2106 60.4335 90.7499 53.8502L84.77 53.3603ZM87.7895 50.6053H87.7599V56.6053H87.7895V50.6053ZM84.7895 29V53.6053H90.7895V29H84.7895Z" fill={stroke} mask="url(#path-6-inside-3_904_168)"/>
-            <line x1="76.2632" y1="65.1846" x2="76.2632" y2="76.7635" stroke={stroke} stroke-width="3"/>
-            <line x1="76.2632" y1="65.1846" x2="76.2632" y2="76.7635" stroke={stroke} stroke-width="3"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M36.4753 12.2188H28.0608V22.2796V22.5839H28.073C28.238 24.6305 30.0531 26.2427 32.2681 26.2427C34.483 26.2427 36.2982 24.6305 36.4631 22.5839H36.4753V22.2796V12.2188Z" fill={tabbarShopFillColorSelected}/>
+            <path d="M28.0608 12.2188V10.7188H26.5608V12.2188H28.0608ZM36.4753 12.2188H37.9753V10.7188H36.4753V12.2188ZM28.0608 22.5839H26.5608V24.0839H28.0608V22.5839ZM28.073 22.5839L29.5682 22.4634L29.457 21.0839H28.073V22.5839ZM36.4631 22.5839V21.0839H35.0792L34.968 22.4634L36.4631 22.5839ZM36.4753 22.5839V24.0839H37.9753V22.5839H36.4753ZM28.0608 13.7188H36.4753V10.7188H28.0608V13.7188ZM29.5608 22.2796V12.2188H26.5608V22.2796H29.5608ZM29.5608 22.5839V22.2796H26.5608V22.5839H29.5608ZM28.073 21.0839H28.0608V24.0839H28.073V21.0839ZM32.2681 24.7427C30.7653 24.7427 29.6649 23.6634 29.5682 22.4634L26.5779 22.7044C26.8111 25.5976 29.341 27.7427 32.2681 27.7427V24.7427ZM34.968 22.4634C34.8712 23.6634 33.7708 24.7427 32.2681 24.7427V27.7427C35.1952 27.7427 37.7251 25.5976 37.9583 22.7044L34.968 22.4634ZM36.4753 21.0839H36.4631V24.0839H36.4753V21.0839ZM34.9753 22.2796V22.5839H37.9753V22.2796H34.9753ZM34.9753 12.2188V22.2796H37.9753V12.2188H34.9753Z" fill={tabbarShopStrokeColorSelected} mask="url(#path-6-inside-3_949_577)"/>
+            <line x1="31.816" y1="27.4609" x2="31.816" y2="32.3386" stroke={tabbarShopStrokeColorSelected} stroke-width="1.5"/>
+            <line x1="31.816" y1="27.4609" x2="31.816" y2="32.3386" stroke={tabbarShopStrokeColorSelected} stroke-width="1.5"/>
         </svg>
+
     );
 };
 
-export const Tabbar_setting_color_selected_cmp = ({fill,stroke}) => {
+export const Tabbar_setting_color_selected_cmp = ({tabbarSettingFillColorSelected,tabbarSettingStrokeColorSelected}) => {
     return (
-        <svg width="80" height="80" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M57 35L57 79" stroke={stroke} stroke-width="3" stroke-linecap="round"/>
-            <path d="M79 57L35 57" stroke={stroke} stroke-width="3" stroke-linecap="round"/>
+        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.0298 14.7432L24.0298 33.2785" stroke={tabbarSettingFillColorSelected} stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M33.1656 24.0107L14.8941 24.0107" stroke={tabbarSettingFillColorSelected} stroke-width="1.5" stroke-linecap="round"/>
         </svg>
+
 
     );
 };
