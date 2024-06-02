@@ -3,6 +3,7 @@ import { FigureIcon, BasicIcon, ImageIcon, TextIcon } from '../icons/MenuIcon';
 import ColorPickerComponent from './ColorPickerComponent'; // Import the new component
 import TextEditor from './TextEditor';
 import ImageUploader from './ImageUploader';
+import IconComponent from './IconComponent';
 import { SketchPicker } from 'react-color';
 
 const CanvasComponent = () => {
@@ -605,6 +606,11 @@ const CanvasComponent = () => {
             </div>
         </div>
       )}
+      {selectedBasicIcon && (
+        <div className='left-drawer'>
+          <IconComponent onImageClick={handleImageClick} />
+        </div>
+      )}
       {showImageUploader && (
         <div className='left-drawer'>
           <ImageUploader onImageClick={handleImageClick} />
@@ -614,13 +620,6 @@ const CanvasComponent = () => {
         <div className='left-drawer'>
           <TextEditor onSave={handleSaveText} />
           
-        </div>
-      )}
-      { selectedBasicIcon && (
-        <div className='left-drawer'>
-          <div onClick={addSvg} className='drawer-icon'>
-            Heart
-          </div>
         </div>
       )}
 
