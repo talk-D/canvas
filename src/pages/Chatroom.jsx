@@ -140,23 +140,28 @@ function Chatroom() {
                                 <>
                                 <SketchPicker color={chatroomReceiveBg1Color} onChangeComplete={handleChangeChatroomReceiveBg1Color} />
                                 <SketchPicker color={chatroomReceiveTextColor} onChangeComplete={handleChangeChatroomReceiveTextColor} />
-                                    <SketchPicker color={chatroomReceiveUnreadTextColor} onChangeComplete={handleChangeChatroomReceiveUnreadTextColor} />
 
                                 </>
                             )}
                             {activeButton === 'chatroom_receive_bg2_color_set' && (
+                                <>
                                 <SketchPicker color={chatroomReceiveBg2Color} onChangeComplete={handleChangeChatroomReceiveBg2Color} />
+                <SketchPicker color={chatroomReceiveUnreadTextColor} onChangeComplete={handleChangeChatroomReceiveUnreadTextColor} />
+
+            </>
                             )}
 
 
                             {activeButton === 'chatroom_send_bg1_color_set' && (
+                                <>
                                 <SketchPicker color={chatroomSendBg1Color} onChangeComplete={handleChangeChatroomSendBg1Color} />
+                                <SketchPicker color={chatroomSendTextColor} onChangeComplete={handleChangeChatroomSendTextColor} />
+                                </>
                             )}
                             {activeButton === 'chatroom_send_bg2_color_set' && (
                                 <>
                                 <SketchPicker color={chatroomSendBg2Color} onChangeComplete={handleChangeChatroomSendBg2Color} />
-                                <SketchPicker color={chatroomSendTextColor} onChangeComplete={handleChangeChatroomSendTextColor} />
-                                    <SketchPicker color={chatroomSendUnreadTextColor} onChangeComplete={handleChangeChatroomSendUnreadTextColor} />
+                                <SketchPicker color={chatroomSendUnreadTextColor} onChangeComplete={handleChangeChatroomSendUnreadTextColor} />
                                 </>
                             )}
 
