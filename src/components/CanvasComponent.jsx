@@ -3,6 +3,7 @@ import { FigureIcon, BasicIcon, ImageIcon, TextIcon } from '../icons/MenuIcon';
 import ColorPickerComponent from './ColorPickerComponent'; // Import the new component
 import TextEditor from './TextEditor';
 import ImageUploader from './ImageUploader';
+import { SketchPicker } from 'react-color';
 
 const CanvasComponent = () => {
   const canvasRef = useRef(null);
@@ -220,7 +221,6 @@ const CanvasComponent = () => {
     }else{
       canvasRef.current.style.outline = '1px solid #FFBB6D';
     }
-    
   };
 
   const addRectangle = () => {
@@ -509,6 +509,10 @@ const CanvasComponent = () => {
     setShapes([]);
     setSelectedShape(null);
     setFrameColor("#ffffff")
+    setTexts(prevTexts => prevTexts.filter(text => text.id !== selectedTextId));
+    setSelectedTextId(null);
+    
+
   };
 
   const deleteSelectedShape = () => {
@@ -682,8 +686,6 @@ const CanvasComponent = () => {
     </div>
   ))}
 </div>
-
-      
       {selectedShape && (
         <div>
           <ColorPickerComponent
@@ -699,7 +701,9 @@ const CanvasComponent = () => {
       )}
       { selectedTextId !=null &&(
         <div className='color-picker-container'>
+          
           <button className='drawer-icon-button' onClick={handleDeleteSelectedText}>선택 텍스트 삭제</button>
+          <button className='drawer-icon-button' onClick={clearShapes}>캔버스 초기화</button>
         </div>
       )}
     </div>

@@ -24,6 +24,7 @@
   "devDependencies": {
     "nodemon": "^3.1.1"
   },
+  "proxy": "http://localhost:5000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -53,6 +54,6 @@
   "main": "index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "proxy": "http://localhost:5000"
+  "license": "ISC"
+  
 }
