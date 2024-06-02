@@ -3,8 +3,17 @@ import { FigureIcon, BasicIcon, ImageIcon, TextIcon } from '../icons/MenuIcon';
 import ColorPickerComponent from './ColorPickerComponent'; // Import the new component
 import TextEditor from './TextEditor';
 import ImageUploader from './ImageUploader';
-import IconComponent from './IconComponent';
+import Bubble from '../icons/Bubble'
+import Bubble2 from '../icons/Bubble2'
+import Heart1 from '../icons/Heart1'
+import Heart2 from '../icons/Heart2'
+import Heart3 from '../icons/Heart3'
 import { SketchPicker } from 'react-color';
+import PixelHeart from '../icons/PixelHeart';
+import Bone from '../icons/Bone';
+import Bubble3 from '../icons/Bubble3';
+import Bubble4 from '../icons/Bubble4';
+import ReactDOMServer from 'react-dom/server';
 
 const CanvasComponent = () => {
   const canvasRef = useRef(null);
@@ -27,6 +36,7 @@ const CanvasComponent = () => {
   const [resizingImage, setResizingImage] = useState(null);
   const [selectedFigureId, setSelectedFigureId] = useState(-1);
   const [selectedTextId, setSelectedTextId] = useState(null); // 추가된 상태
+  const [selectedShapeId, setSelectedShapeId] = useState(null);
   
   const handleTextIconClick = () => {
     setSelectedFigureIcon(false);
@@ -355,7 +365,6 @@ const CanvasComponent = () => {
     if (clickedShape) {
       handleBlur();
       setSelectedShape(clickedShape);
-      setSelectedColor(clickedShape.color || '#000000'); // Ensure color is set for SVG shapes
     } else {
       setSelectedShape(null);
       canvasRef.current.focus();
@@ -533,8 +542,9 @@ const CanvasComponent = () => {
       setSelectedShape(prev => ({ ...prev, color: color }));
   
       // Update the SVG src if the shape is an SVG
-      if (selectedShape && selectedShape.type === 'svg') {
+      if (selectedShape.type === 'svg') {
         const svgElement = new DOMParser().parseFromString(selectedShape.src, "image/svg+xml").documentElement;
+        console.log(color);
         svgElement.setAttribute('fill', color);
         const updatedSvgSrc = new XMLSerializer().serializeToString(svgElement);
         const updatedSvg = {
@@ -546,6 +556,19 @@ const CanvasComponent = () => {
         ));
         setSelectedShape(updatedSvg);
       }
+    }
+  };
+
+  const handleColorChange2 = (event) => {
+    const color = event.target.value;
+    setSelectedColor(color);
+
+    if (selectedShapeId !== null) {
+      setShapes(prevShapes => 
+        prevShapes.map(shape => 
+          shape.id === selectedShapeId ? { ...shape, color } : shape
+        )
+      );
     }
   };
 
@@ -568,6 +591,24 @@ const CanvasComponent = () => {
       setTexts(prevTexts => prevTexts.filter(text => text.id !== selectedTextId));
       setSelectedTextId(null);
     }
+  };
+
+  const handleIconClick = (svgSource) => {
+    const svgString = ReactDOMServer.renderToStaticMarkup(svgSource);
+    const newSvg = {
+      id: shapes.length,
+      type: 'svg',
+      x: 50,
+      y: 50,
+      width: 50,
+      height: 50,
+      //color: selectedColor,
+      src: `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`,
+    };
+    setShapes(prevShapes => [...prevShapes, newSvg]);
+  };
+  const handleShapeClick = (id) => {
+    setSelectedShapeId(id);
   };
 
   
@@ -608,9 +649,50 @@ const CanvasComponent = () => {
       )}
       {selectedBasicIcon && (
         <div className='left-drawer'>
-          <IconComponent onImageClick={handleImageClick} />
-        </div>
-      )}
+          <span className='subtitle'>기본 아이콘</span>
+          <br/>
+          <div className='basic-icon-grid-container'>
+            <div className='basic-icon-grid'>
+            
+            <div className='drawer-basic-icon' onClick={() => handleIconClick(`data:image/svg+xml;utf8,<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M24.9998 6.25C36.4582 6.25 45.8332 13.7083 45.8332 22.9167C45.8332 32.125 36.4582 39.5833 24.9998 39.5833C22.4165 39.5833 19.9373 39.2083 17.6457 38.5417C11.5623 43.75 4.1665 43.75 4.1665 43.75C9.02067 38.8958 9.7915 35.625 9.89567 34.375C6.354 31.3958 4.1665 27.3542 4.1665 22.9167C4.1665 13.7083 13.5415 6.25 24.9998 6.25Z" fill="#f00000"/></svg>`)}>
+              <Bubble2 />
+            </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble color={selectedColor} />)}>
+                <Bubble />
+              </div>          
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(Bubble3)}>
+                <Bubble3 />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(Heart1)}>
+                <Heart1 />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(Heart2)}>
+                <Heart2 />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(Heart3)}>
+                <Heart3 />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(PixelHeart)}>
+                <PixelHeart />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(Bone)}>
+                <Bone />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(Bubble4)}>
+                <Bubble4 />
+              </div>
+            </div>
+          </div>
+          
+      <div style={{ marginTop: 'auto' }}>
+        <SketchPicker
+          color={selectedColor}
+          onChangeComplete={(color) => handleColorChange(color.hex)}
+        />
+      </div>
+          
+    </div>
+    )}
       {showImageUploader && (
         <div className='left-drawer'>
           <ImageUploader onImageClick={handleImageClick} />
@@ -700,7 +782,6 @@ const CanvasComponent = () => {
       )}
       { selectedTextId !=null &&(
         <div className='color-picker-container'>
-          
           <button className='drawer-icon-button' onClick={handleDeleteSelectedText}>선택 텍스트 삭제</button>
           <button className='drawer-icon-button' onClick={clearShapes}>캔버스 초기화</button>
         </div>
