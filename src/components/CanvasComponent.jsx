@@ -543,10 +543,12 @@ const CanvasComponent = () => {
   
       // Update the SVG src if the shape is an SVG
       if (selectedShape.type === 'svg') {
-        const svgElement = new DOMParser().parseFromString(selectedShape.src, "image/svg+xml").documentElement;
+        const svgElement = new DOMParser().parseFromString(decodeURIComponent(selectedShape.src.split(',')[1]), "image/svg+xml").documentElement;
         console.log(color);
         svgElement.setAttribute('fill', color);
-        const updatedSvgSrc = new XMLSerializer().serializeToString(svgElement);
+        
+        const updatedSvgSrc = `data:image/svg+xml;utf8,${encodeURIComponent(new XMLSerializer().serializeToString(svgElement))}`;
+
         const updatedSvg = {
           ...selectedShape,
           src: updatedSvgSrc
@@ -555,6 +557,7 @@ const CanvasComponent = () => {
           shape.id === selectedShape.id ? updatedSvg : shape
         ));
         setSelectedShape(updatedSvg);
+        console.log(updatedSvg);
       }
     }
   };
@@ -654,31 +657,31 @@ const CanvasComponent = () => {
           <div className='basic-icon-grid-container'>
             <div className='basic-icon-grid'>
             
-            <div className='drawer-basic-icon' onClick={() => handleIconClick(`data:image/svg+xml;utf8,<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M24.9998 6.25C36.4582 6.25 45.8332 13.7083 45.8332 22.9167C45.8332 32.125 36.4582 39.5833 24.9998 39.5833C22.4165 39.5833 19.9373 39.2083 17.6457 38.5417C11.5623 43.75 4.1665 43.75 4.1665 43.75C9.02067 38.8958 9.7915 35.625 9.89567 34.375C6.354 31.3958 4.1665 27.3542 4.1665 22.9167C4.1665 13.7083 13.5415 6.25 24.9998 6.25Z" fill="#f00000"/></svg>`)}>
+            <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble2 color={selectedColor}/>)}>
               <Bubble2 />
             </div>
               <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble color={selectedColor} />)}>
                 <Bubble />
               </div>          
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(Bubble3)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble3 color={selectedColor}/>)}>
                 <Bubble3 />
               </div>
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(Heart1)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Heart1 color={selectedColor}/>)}>
                 <Heart1 />
               </div>
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(Heart2)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Heart2 color={selectedColor}/>)}>
                 <Heart2 />
               </div>
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(Heart3)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Heart3 color={selectedColor}/>)}>
                 <Heart3 />
               </div>
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(PixelHeart)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<PixelHeart color={selectedColor}/>)}>
                 <PixelHeart />
               </div>
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(Bone)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bone color={selectedColor}/>)}>
                 <Bone />
               </div>
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(Bubble4)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble4 color={selectedColor}/>)}>
                 <Bubble4 />
               </div>
             </div>
