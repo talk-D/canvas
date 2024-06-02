@@ -77,10 +77,23 @@ const CanvasComponent = () => {
     if (draggingText !== null) {
       const updatedTexts = texts.map((text) => {
         if (text.id === draggingText) {
+          const newTop = e.clientY - canvasRef.current.getBoundingClientRect().top;
+          const newLeft = e.clientX - canvasRef.current.getBoundingClientRect().left;
+
+          // 텍스트의 폭과 높이를 계산
+          const textElement = document.getElementById(`text-${text.id}`);
+          const textWidth = textElement.offsetWidth;
+          const textHeight = textElement.offsetHeight;
+
+
+          // 캔버스 영역 밖으로 나가지 않도록 제한
+          const boundedTop = Math.max(0, Math.min(newTop, canvasRef.current.height - textHeight)); // 20은 텍스트 높이의 대략적인 값
+          const boundedLeft = Math.max(0, Math.min(newLeft, canvasRef.current.width  - textWidth)); // 20은 텍스트 폭의 대략적인 값
+  
           return {
             ...text,
-            top: e.clientY - canvasRef.current.getBoundingClientRect().top,
-            left: e.clientX - canvasRef.current.getBoundingClientRect().left,
+            top: boundedTop,
+            left: boundedLeft,
           };
         }
         return text;
@@ -89,10 +102,17 @@ const CanvasComponent = () => {
     } else if (draggingImage !== null) {
       const updatedImages = images.map((image) => {
         if (image.id === draggingImage) {
+          const newTop = e.clientY - canvasRef.current.getBoundingClientRect().top;
+          const newLeft = e.clientX - canvasRef.current.getBoundingClientRect().left;
+  
+          // 캔버스 영역 밖으로 나가지 않도록 제한
+          const boundedTop = Math.max(0, Math.min(newTop, canvasRef.current.height - image.height));
+          const boundedLeft = Math.max(0, Math.min(newLeft, canvasRef.current.width - image.width));
+  
           return {
             ...image,
-            top: e.clientY - canvasRef.current.getBoundingClientRect().top,
-            left: e.clientX - canvasRef.current.getBoundingClientRect().left,
+            top: boundedTop,
+            left: boundedLeft,
           };
         }
         return image;
@@ -112,7 +132,7 @@ const CanvasComponent = () => {
       setImages(updatedImages);
     }
   };
-
+  
   const handleMouseUp2 = () => {
     setDraggingText(null);
     setDraggingImage(null);
@@ -329,20 +349,6 @@ const CanvasComponent = () => {
       points.push({ x: pointX, y: pointY });
     }
     return points;
-  };
-
-  const addSvg = () => {
-    const newSvg = {
-      id: shapes.length,
-      type: 'svg',
-      x: 100,
-      y: 100,
-      width: 50,
-      height: 50,
-      color: 'green',
-      src: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53z"/></svg>' // currentColor를 사용하여 색상 변경 가능
-    };
-    setShapes(prevShapes => [...prevShapes, newSvg]);
   };
 
   const handleClick = (e) => {
@@ -562,18 +568,6 @@ const CanvasComponent = () => {
     }
   };
 
-  const handleColorChange2 = (event) => {
-    const color = event.target.value;
-    setSelectedColor(color);
-
-    if (selectedShapeId !== null) {
-      setShapes(prevShapes => 
-        prevShapes.map(shape => 
-          shape.id === selectedShapeId ? { ...shape, color } : shape
-        )
-      );
-    }
-  };
 
   const handleSelectedFigureIcon = () => {
     setSelectedFigureIcon(!selectedFigureIcon);
@@ -610,10 +604,7 @@ const CanvasComponent = () => {
     };
     setShapes(prevShapes => [...prevShapes, newSvg]);
   };
-  const handleShapeClick = (id) => {
-    setSelectedShapeId(id);
-  };
-
+  
   
   return (
     <div className='container' onClick={handleContainerClick} onMouseMove={handleMouseMove2} onMouseUp={handleMouseUp2}>
@@ -684,15 +675,11 @@ const CanvasComponent = () => {
               <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble4 color={selectedColor}/>)}>
                 <Bubble4 />
               </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble4 color={selectedColor}/>)}>
+                <Bubble4 />
+              </div>
             </div>
           </div>
-          
-      <div style={{ marginTop: 'auto' }}>
-        <SketchPicker
-          color={selectedColor}
-          onChangeComplete={(color) => handleColorChange(color.hex)}
-        />
-      </div>
           
     </div>
     )}
@@ -727,6 +714,7 @@ const CanvasComponent = () => {
   {texts.map((text) => (
     <div
       key={text.id}
+      id={`text-${text.id}`}
       onMouseDown={(e) => handleMouseDown2(e, text.id, 'text')}
       style={{
         position: 'absolute',
@@ -734,6 +722,7 @@ const CanvasComponent = () => {
         left: `${text.left}px`,
         cursor: 'move',
         outline: selectedTextId === text.id ? '2px solid #FFBB6D' : 'none', // 선택된 텍스트의 윤곽선 노란색으로 변경
+        whiteSpace: 'nowrap', // 텍스트를 한 줄로 고정
       }}
     >
       <div dangerouslySetInnerHTML={{ __html: text.content }} />
