@@ -50,10 +50,15 @@ export function InitializeLocalStorage() {
     localStorage.setItem("chatroomNameColor", "#3D3D3D");
     localStorage.setItem("chatroomrRceiveTextColor", "#3D3D3D");
     localStorage.setItem("chatroomReceiveUnreadTextColor", "#828282");
-    localStorage.setItem("chatroomSendTextcolor", "#3D3D3D");
+    localStorage.setItem("chatroomSendTextColor", "#3D3D3D");
     localStorage.setItem("chatroomSendUnreadTextColor", "#828282");
     localStorage.setItem("chatroomInputBgColor", "#FFECB4");
     localStorage.setItem("chatroomInputIconColor", "#828282");
+
+    localStorage.setItem("chatroomReceiveBg1Color", "#FFECB4");
+    localStorage.setItem("chatroomReceiveBg2Color", "#FFECB4");
+    localStorage.setItem("chatroomSendBg1Color", "#FFECB4");
+    localStorage.setItem("chatroomSendBg2Color", "#FFECB4");
 
     // notification창
     localStorage.setItem("notificationBgColor", "#FFECB4");
