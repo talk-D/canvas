@@ -116,6 +116,15 @@ function Chatroom() {
 
 
     const handleChatroomButton = () => {
+        localStorage.setItem("chatroomBgColor", chatroomBgColor);
+        localStorage.setItem("chatroomTitleColor", chatroomTitleColor);
+        localStorage.setItem("chatroomNameColor", chatroomNameColor);
+        localStorage.setItem("chatroomReceiveTextColor", chatroomReceiveTextColor);
+        localStorage.setItem("chatroomReceiveUnreadTextColor", chatroomReceiveUnreadTextColor);
+        localStorage.setItem("chatroomSendTextColor", chatroomSendTextColor);
+        localStorage.setItem("chatroomSendUnreadTextColor", chatroomSendUnreadTextColor);
+        localStorage.setItem("chatroomInputBgColor", chatroomInputBgColor);
+        localStorage.setItem("chatroomInputIconColor", chatroomInputIconColor);
         window.location.href = "/step2/Notification";
     };
 

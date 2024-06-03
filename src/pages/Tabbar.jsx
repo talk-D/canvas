@@ -157,6 +157,7 @@ function Tabbar() {
 
 
     const handleTabberButton = () => {
+        localStorage.setItem("tabbarBgColor", tabbarBgColor);
         const themeType = localStorage.getItem("themeType");
         switch (themeType) {
             case "1":

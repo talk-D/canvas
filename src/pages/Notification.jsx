@@ -3,6 +3,9 @@ import { Themeguide } from '../headers/Themeguide.jsx';
 import {Notification_bg_color_cmp} from "../icons/NotificationIcon";
 import '../styles/Notification.css';
 import {SketchPicker} from "react-color";
+import MakeTheme from "../function/MakeTheme.jsx";
+
+
 
 
 function Notification() {
@@ -48,13 +51,15 @@ function Notification() {
         setNotificationMessageColor(color.hex);
     }
 
-    const handleNotificationButton = () => {
+    const handleNotificationButton = async () => {
         // 로컬스토리지에 색상값 저장
         localStorage.setItem("notificationBgColor", notificationBgColor);
         localStorage.setItem("notificationNameColor", notificationNameColor);
         localStorage.setItem("notificationMessageColor", notificationMessageColor);
 
-        window.location.href = "/step2/Step3";
+
+        await MakeTheme();
+        window.location.href = "/Step3";
     };
 
 

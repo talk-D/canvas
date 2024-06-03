@@ -9,8 +9,12 @@ function Themedownload() {
     return (
         <div className='wrap'>
             <Themeguide />
-            <Theme />
-
+            <div className='background'>
+                <div className='download-message'>
+                    <div>테마가 제작되었습니다.</div>
+                    <div>아래 버튼을 클릭하여 다운해주세요!</div>
+                </div>
+            </div>
         </div>
 
 
