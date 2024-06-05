@@ -13,6 +13,8 @@ import PixelHeart from '../icons/PixelHeart';
 import Bone from '../icons/Bone';
 import Bubble3 from '../icons/Bubble3';
 import Bubble4 from '../icons/Bubble4';
+import Triangle1 from '../icons/Triangle1';
+import Polygon from '../icons/Polygon';
 import ReactDOMServer from 'react-dom/server';
 
 const CanvasComponent = () => {
@@ -280,24 +282,6 @@ const CanvasComponent = () => {
     setShapes(prevShapes => [...prevShapes, newEllipse]);
   };
 
-  const addPolygon = () => {
-    const newPolygon = {
-      id: shapes.length,
-      type: 'polygon',
-      x: 100,
-      y: 100,
-      points: [
-        { x: 100, y: 100 },
-        { x: 150, y: 120 },
-        { x: 130, y: 170 },
-        { x: 70, y: 170 },
-        { x: 50, y: 120 },
-      ],
-      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-    };
-    setShapes(prevShapes => [...prevShapes, newPolygon]);
-  };
-
   const createPolygonPath = (points) => {
     const path = new Path2D();
     points.forEach((point, index) => {
@@ -309,34 +293,6 @@ const CanvasComponent = () => {
     });
     path.closePath();
     return path;
-  };
-
-  const addStar = () => {
-    const newStar = {
-      id: shapes.length,
-      type: 'star',
-      x: 100,
-      y: 100,
-      points: calculateStarPoints(100, 100, 5, 30, 15),
-      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-    };
-    setShapes(prevShapes => [...prevShapes, newStar]);
-  };
-
-  const addTriangle = () => {
-    const newTriangle = {
-      id: shapes.length,
-      type: 'triangle',
-      x: 100,
-      y: 100,
-      points: [
-        { x: 100, y: 50 },
-        { x: 50, y: 150 },
-        { x: 150, y: 150 }
-      ],
-      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-    };
-    setShapes(prevShapes => [...prevShapes, newTriangle]);
   };
 
   const calculateStarPoints = (centerX, centerY, arms, outerRadius, innerRadius) => {
@@ -599,8 +555,7 @@ const CanvasComponent = () => {
       y: 50,
       width: 50,
       height: 50,
-      //color: selectedColor,
-      src: `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`,
+      src: `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`
     };
     setShapes(prevShapes => [...prevShapes, newSvg]);
   };
@@ -630,14 +585,11 @@ const CanvasComponent = () => {
             <div onClick={addEllipse} className='drawer-icon'>
               Ellipse
             </div>
-            <div onClick={addTriangle} className='drawer-icon'>
+            <div className='drawer-icon' onClick={() => handleIconClick(<Triangle1 color={selectedColor}/>)}>
               Triangle
             </div>
-            <div onClick={addPolygon} className='drawer-icon'>
+            <div onClick={() => handleIconClick(<Polygon color={selectedColor}/>)} className='drawer-icon'>
               Polygon
-            </div>
-            <div onClick={addStar} className='drawer-icon'>
-              Star
             </div>
         </div>
       )}
@@ -676,7 +628,7 @@ const CanvasComponent = () => {
                 <Bubble4 />
               </div>
               <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble4 color={selectedColor}/>)}>
-                <Bubble4 />
+                <Triangle1 />
               </div>
             </div>
           </div>
