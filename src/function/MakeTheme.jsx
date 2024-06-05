@@ -16,7 +16,7 @@ const MakeTheme = async () => {
         chatroomInputIconColor: localStorage.getItem('chatroomInputIconColor') || '',
         chatroomSendTextcolor: localStorage.getItem('chatroomSendTextcolor') || '',
         chatroomSendUnreadTextColor: localStorage.getItem('chatroomSendUnreadTextColor') || '',
-        chatroomrRceiveTextColor: localStorage.getItem('chatroomrRceiveTextColor') || '',
+        chatroomReceiveTextColor: localStorage.getItem('chatroomReceiveTextColor') || '',
         chatroomReceiveUnreadTextColor: localStorage.getItem('chatroomReceiveUnreadTextColor') || '',
         passwordBgColor: localStorage.getItem('passwordBgColor') || '',
         passwordTitleColor: localStorage.getItem('passwordTitleColor') || '',

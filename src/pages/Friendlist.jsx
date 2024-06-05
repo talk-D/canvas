@@ -5,6 +5,13 @@ import {
     Friendlist_bg_color_cmp
 } from '../icons/FriendListIcon.jsx';
 import '../styles/FriendList.css';
+import {convertSvgToPng} from "../function/convertSvgToPng";
+import {
+    Target_Chatroom_set_profile_color_cmp,
+    Target_Friendlist_bg_color_cmp, Target_Friendlist_profile_color_cmp,
+    Target_Password_bg_color_cmp
+} from "../icons/TargetIcon";
+
 
 
 function Friendlist() {
@@ -46,9 +53,6 @@ function Friendlist() {
         setFriendlistBgColor(color.hex);
     }
 
-    const handleChangeFriendlistTitleColor = (color) => {
-        setFriendlistTitleColor(color.hex);
-    }
 
     const handleChangeFriendlistSecondTitleColor = (color) => {
         setFriendlistSecondTitleColor(color.hex);
@@ -60,6 +64,7 @@ function Friendlist() {
 
     const handleChangeFriendlistNameColor = (color) => {
         setFriendlistNameColor(color.hex);
+        setFriendlistTitleColor(color.hex);
     }
 
     const handleChangeFriendlistMessageColor = (color) => {
@@ -70,7 +75,13 @@ function Friendlist() {
         setFriendlistProfileColor(color.hex);
     }
 
-    const handleFriendlistButton = () => {
+    const handleFriendlistButton = async () => {
+
+
+        await convertSvgToPng(Target_Friendlist_bg_color_cmp, { friendlistBgColor }, 'mainBgImage@3x.png');
+        await convertSvgToPng(Target_Friendlist_profile_color_cmp, { friendlistProfileColor }, 'profileImg01@3x.png');
+
+
         localStorage.setItem("friendlistBgColor", friendlistBgColor);
         localStorage.setItem("friendlistTitleColor", friendlistTitleColor);
         localStorage.setItem("friendlistSecondTitleColor", friendlistSecondTitleColor);
@@ -93,9 +104,6 @@ function Friendlist() {
                         <div className="drawer">
                             {activeButton === 'friendlist_bg_color_set' && (
                                 <SketchPicker color={friendlistBgColor} onChangeComplete={handleChangeFriendlistBgColor} />
-                            )}
-                            {activeButton === 'friendlist_title_color_set' && (
-                                <SketchPicker color={friendlistTitleColor} onChangeComplete={handleChangeFriendlistTitleColor} />
                             )}
                             {activeButton === 'friendlist_second_title_color_set' && (
                                 <SketchPicker color={friendlistSecondTitleColor} onChangeComplete={handleChangeFriendlistSecondTitleColor} />
@@ -133,10 +141,6 @@ function Friendlist() {
 
                     <div className='friendlist_bg_color_set'>
                         <img onClick={(event) => toggleMenu(event, 'friendlist_bg_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'friendlist_bg_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
-                    </div>
-
-                    <div className='friendlist_title_color_set'>
-                        <img onClick={(event) => toggleMenu(event, 'friendlist_title_color_set')} alt='비밀번호 색상 버튼 미선택' src={activeButton === 'friendlist_title_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
                     </div>
 
                     <div className='friendlist_second_title_color_set'>

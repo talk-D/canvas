@@ -1,15 +1,52 @@
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const archiver = require('archiver');
 
+const router = express.Router();
+
+router.get('/', (req, res) => {
+
+
+    const {
+        themeNameKorean,
+        themeVersion,
+        themeNameEnglish,
+        tabbarBgColor,
+        friendlistTitleColor,
+        friendlistBgColor,
+        friendlistMessageColor,
+        friendlistNameColor,
+        chatroomBgColor,
+        chatroomInputBgColor,
+        chatroomInputIconColor,
+        chatroomSendTextcolor,
+        chatroomSendUnreadTextColor,
+        chatroomReceiveTextColor,
+        chatroomReceiveUnreadTextColor,
+        passwordBgColor,
+        passwordTitleColor,
+        passwordKeypadColor,
+        passwordKeypadFontColor,
+        notificationBgColor,
+        notificationNameColor,
+        notificationMessageColor
+    } = req.query;
+
+
+    // Read query parameters and generate CSS content
+    const content = `
 /*
  Manifest
  */
 
 ManifestStyle
 {
-    -kakaotalk-theme-name: 제발;
-    -kakaotalk-theme-version: 10.3.5; 
+    -kakaotalk-theme-name: ${themeNameKorean};
+    -kakaotalk-theme-version: ${themeVersion}; 
     -kakaotalk-theme-url: 'http://www.kakao.com';
     -kakaotalk-author-name: 'talk:D';
-    -kakaotalk-theme-id: 'com.kakao.talk.theme.please';
+    -kakaotalk-theme-id: 'com.kakao.talk.theme.${themeNameEnglish}';
 }
 
 
@@ -20,7 +57,7 @@ ManifestStyle
 TabBarStyle-Main
 {
     /* 배경 이미지 */
-    background-color: #FFFFFF;
+    background-color: ${tabbarBgColor};
     -ios-background-image: 'maintabBgImage.png';        /* 배경 이미지 top-center-crop */
     
     /* 홈탭 */
@@ -62,26 +99,26 @@ TabBarStyle-Main
 
 HeaderStyle-Main
 {
-    -ios-text-color: #4D4D4D;
+    -ios-text-color: ${friendlistTitleColor};
 
-    -ios-tab-text-color: #4D4D4D;
-    -ios-tab-highlighted-text-color: #4D4D4D;
+    -ios-tab-text-color: ${friendlistTitleColor};
+    -ios-tab-highlighted-text-color: ${friendlistTitleColor};
 }
 
 MainViewStyle-Primary
 {
-    background-color: #FFFFFF;
+    background-color: ${friendlistBgColor};
     -ios-background-image: 'mainBgImage.png';
 
     /* 텍스트 스타일 */                                        /* 이름변경 */
-    -ios-text-color: #4D4D4D;                            /* Title : 리스트 목록*/
-    -ios-highlighted-text-color: #4D4D4D;                        /* Title Pressed */
+    -ios-text-color: ${friendlistTitleColor};                            /* Title : 리스트 목록*/
+    -ios-highlighted-text-color: ${friendlistTitleColor};                        /* Title Pressed */
     
-    -ios-description-text-color: #4D4D4D;                    /* Description : 상태메세지 */
-    -ios-description-highlighted-text-color: #4D4D4D;        /* Description Pressed */
+    -ios-description-text-color: ${friendlistMessageColor};                    /* Description : 상태메세지 */
+    -ios-description-highlighted-text-color: ${friendlistMessageColor};        /* Description Pressed */
 
-    -ios-paragraph-text-color: #4D4D4D;                    /* Paragraph : 라스트메세지 */ 
-    -ios-paragraph-highlighted-text-color: ##4D4D4D;          /* Paragraph Pressed*/
+    -ios-paragraph-text-color: ${friendlistMessageColor};                    /* Paragraph : 라스트메세지 */ 
+    -ios-paragraph-highlighted-text-color: #${friendlistMessageColor};          /* Paragraph Pressed*/
 
     /* 셀 스타일 */
     -ios-normal-background-color: #5b5b5b;                 /* Cell Background */
@@ -93,7 +130,7 @@ MainViewStyle-Primary
 
 MainViewStyle-Secondary
 {
-    background-color: #FFFFFF;
+    background-color: ${friendlistBgColor};
 }
 
 SectionTitleStyle-Main
@@ -112,7 +149,7 @@ SectionTitleStyle-Main
 
 FeatureStyle-Primary                                       /* Primary : 버튼 텍스트 */
 {
-    -ios-text-color: #4D4D4D;
+    -ios-text-color: ${friendlistNameColor};
 }
 
 
@@ -139,25 +176,25 @@ DefaultProfileStyle
 
 BackgroundStyle-ChatRoom
 {
-    background-color: #FFFFFF;
+    background-color: ${chatroomBgColor};
     -ios-background-image: 'chatroomBgImage.png';
 }
 
 InputBarStyle-Chat
 {
     /* 입력창 배경 */
-    background-color: #FFECB4;
+    background-color: ${chatroomInputBgColor};
     
     /* 전송 버튼 */
-    -ios-send-normal-background-color: #828282;
+    -ios-send-normal-background-color: ${chatroomInputIconColor};
     -ios-send-normal-foreground-color: #FFFFFF;
     
     -ios-send-highlighted-background-color: #FFFFFF;
-    -ios-send-highlighted-foreground-color: #828282;
+    -ios-send-highlighted-foreground-color: ${chatroomInputIconColor};
 
     /* 그밖의 버튼 */
-    -ios-button-normal-foreground-color: #828282;
-    -ios-button-highlighted-foreground-color: #828282;
+    -ios-button-normal-foreground-color: ${chatroomInputIconColor};
+    -ios-button-highlighted-foreground-color: ${chatroomInputIconColor};
 }
 
 
@@ -174,9 +211,9 @@ MessageCellStyle-Send
     -ios-title-edgeinsets: 10px 13.5px 7px 15px;  /* top, left, bottom, right */
     -ios-group-title-edgeinsets: 10px 13.5px 7px 15px;
 
-    -ios-text-color: ;
-    -ios-selected-text-color: ;
-    -ios-unread-text-color: #828282;
+    -ios-text-color: ${chatroomSendTextcolor};
+    -ios-selected-text-color: ${chatroomSendTextcolor};
+    -ios-unread-text-color: ${chatroomSendUnreadTextColor};
 }
 
 MessageCellStyle-Receive
@@ -188,9 +225,9 @@ MessageCellStyle-Receive
     -ios-title-edgeinsets: 10px 15px 7px 12.8px;  /* top, left, bottom, right */
     -ios-group-title-edgeinsets: 10px 15px 7px 12.8px;
 
-    -ios-text-color: #3D3D3D;
-    -ios-selected-text-color: #3D3D3D;
-    -ios-unread-text-color: #828282;
+    -ios-text-color: ${chatroomReceiveTextColor};
+    -ios-selected-text-color: ${chatroomReceiveTextColor};
+    -ios-unread-text-color: ${chatroomReceiveUnreadTextColor};
 }
 
 
@@ -200,13 +237,13 @@ MessageCellStyle-Receive
 
 BackgroundStyle-Passcode
 {
-    background-color: #FFFFFF;
+    background-color: ${passwordBgColor};
     -ios-background-image: 'passcodeBgImage.png';
 }
 
 LabelStyle-PasscodeTitle
 {
-    -ios-text-color: #4A4A4A;
+    -ios-text-color: ${passwordTitleColor};
 }
 
 
@@ -222,8 +259,8 @@ PasscodeStyle
     -ios-bullet-selected-third-image: 'passcodeImgCode03Selected.png';
     -ios-bullet-selected-fourth-image: 'passcodeImgCode04Selected.png';
     
-    -ios-keypad-background-color: #FFECB4;
-    -ios-keypad-text-normal-color: #828282;
+    -ios-keypad-background-color: ${passwordKeypadColor};
+    -ios-keypad-text-normal-color: ${passwordKeypadFontColor};
         
     -ios-keypad-number-highlighted-image : 'passcodeKeypadPressed.png';
 }
@@ -235,17 +272,17 @@ PasscodeStyle
 
 BackgroundStyle-MessageNotificationBar
 {
-    background-color: #FFECB4;
+    background-color: ${notificationBgColor};
 }
 
 LabelStyle-MessageNotificationBarName
 {
-    -ios-text-color: #3D3D3D;
+    -ios-text-color: ${notificationNameColor};
 }
 
 LabelStyle-MessageNotificationBarMessage
 {
-    -ios-text-color: #828282;
+    -ios-text-color: ${notificationMessageColor};
 }
 
 
@@ -255,17 +292,17 @@ LabelStyle-MessageNotificationBarMessage
 
 BackgroundStyle-DirectShareBar
 {
-    background-color:  #FFECB4;
+    background-color:  ${notificationBgColor};
 }
 
 LabelStyle-DirectShareBarName
 {
-    -ios-text-color: #3D3D3D;
+    -ios-text-color: ${notificationNameColor};
 }
 
 LabelStyle-DirectShareBarMessage
 {
-    -ios-text-color: #828282;
+    -ios-text-color: ${notificationMessageColor};
 }
 
 
@@ -274,6 +311,53 @@ LabelStyle-DirectShareBarMessage
  */
 
 BottomBannerStyle {
-    background-color: #FFFFFF;
+    background-color: ${tabbarBgColor};
 }
-    
+    `;
+
+    const kthemeDir = path.join(__dirname, '../ktheme');
+    if (!fs.existsSync(kthemeDir)) {
+        fs.mkdirSync(kthemeDir);
+    }
+
+    fs.writeFileSync(path.join(kthemeDir, 'KakaoTalkTheme.css'), content);
+
+
+    const zipFilePath = path.join(kthemeDir, `${themeNameEnglish}.zip`);
+    const kthemeFilePath = path.join(kthemeDir, `${themeNameEnglish}.ktheme`);
+
+    const output = fs.createWriteStream(zipFilePath);
+    const archive = archiver('zip', { zlib: { level: 9 } });
+
+    output.on('close', () => {
+        console.log(`Zip file created: ${archive.pointer()} total bytes`);
+
+        fs.rename(zipFilePath, kthemeFilePath, (err) => {
+            if (err) {
+                console.error('Error renaming the file:', err);
+                res.status(500).send('Error renaming the file');
+                return;
+            }
+
+            const downloadFileName = `${themeNameEnglish}.ktheme`;
+            res.download(kthemeFilePath, downloadFileName, (err) => {
+                if (err) {
+                    console.error('Error downloading the file:', err);
+                    res.status(500).send('Error downloading the file');
+                }
+            });
+        });
+    });
+
+    archive.on('error', (err) => {
+        throw err;
+    });
+
+    archive.pipe(output);
+    archive.directory(path.join(__dirname, '../ktheme/Images'), 'Images');
+    archive.file(path.join(__dirname, '../ktheme', 'KakaoTalkTheme.css'), { name: 'KakaoTalkTheme.css' });
+
+    archive.finalize();
+});
+
+module.exports = router;

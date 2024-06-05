@@ -10,7 +10,7 @@ export const Target_Tabbar_bg_color_cmp = ({tabbarBgColor}) => {
 
 export const Target_Tabbar_friend_color_cmp = ({tabbarFriendFillColor,tabbarFriendStrokeColor}) => {
     return (
-        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask id="path-1-outside-1_956_539" maskUnits="userSpaceOnUse" x="8.79724" y="11.2998" width="30" height="26" fill="black">
                 <rect fill="white" x="8.79724" y="11.2998" width="30" height="26"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M26.5582 24.7184C28.3671 23.6631 29.5852 21.6829 29.5852 19.4142C29.5852 16.0372 26.8866 13.2996 23.5577 13.2996C20.2288 13.2996 17.5302 16.0372 17.5302 19.4142C17.5302 21.683 18.7483 23.6632 20.5573 24.7185C15.508 25.9371 11.6076 30.163 10.7971 35.4275H36.3187C35.5081 30.163 31.6076 25.937 26.5582 24.7184Z"/>
@@ -24,7 +24,7 @@ export const Target_Tabbar_friend_color_cmp = ({tabbarFriendFillColor,tabbarFrie
 
 export const Target_Tabbar_chat_color_cmp = ({tabbarChatFillColor,tabbarChatStrokeColor}) => {
     return (
-        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask id="path-1-outside-1_956_502" maskUnits="userSpaceOnUse" x="8.30627" y="11.2998" width="31" height="27" fill="black">
                 <rect fill="white" x="8.30627" y="11.2998" width="31" height="27"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M37.528 13.2998H10.3063V30.9262H20.5278L24.2065 35.627L27.8851 30.9262H37.528V13.2998Z"/>
@@ -44,7 +44,7 @@ export const Target_Tabbar_chat_color_cmp = ({tabbarChatFillColor,tabbarChatStro
 
 export const Target_Tabbar_openchat_color_cmp = ({tabbarOpenchatFillColor,tabbarOpenchatStrokeColor}) => {
     return (
-        <svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="114" height="114" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="9.48083" y="12.9717" width="29.9752" height="22.5628" fill={tabbarOpenchatFillColor} stroke={tabbarOpenchatStrokeColor} stroke-width="1.5"/>
             <path d="M12.6038 17.9326L24.4716 25.7509" stroke={tabbarOpenchatStrokeColor} stroke-width="1.5" stroke-linecap="round"/>
             <path d="M24.4685 25.751L36.3364 17.9327" stroke={tabbarOpenchatStrokeColor} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -55,7 +55,7 @@ export const Target_Tabbar_openchat_color_cmp = ({tabbarOpenchatFillColor,tabbar
 
 export const Target_Tabbar_shop_color_cmp = ({tabbarShopFillColor,tabbarShopStrokeColor}) => {
     return (
-        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="11.9819" y="13.207" width="23.7436" height="21.6691" fill={tabbarShopFillColor} stroke={tabbarShopStrokeColor} stroke-width="1.5"/>
             <mask id="path-2-inside-1_956_524" fill={tabbarShopFillColor}>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6465 12.458H11.2319V22.4923C11.2319 22.501 11.2318 22.5098 11.2318 22.5186C11.2318 22.5274 11.2319 22.5362 11.2319 22.545V22.8231H11.2441C11.4092 24.8696 13.2243 26.4818 15.4391 26.4818C17.654 26.4818 19.4691 24.8696 19.6341 22.8231H19.6465V12.458Z"/>
@@ -83,7 +83,7 @@ export const Target_Tabbar_shop_color_cmp = ({tabbarShopFillColor,tabbarShopStro
 
 export const Target_Tabbar_setting_color_cmp = ({tabbarSettingFillColor,tabbarSettingStrokeColor}) => {
     return (
-        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M24.0299 14.9854L24.0299 33.5207" stroke={tabbarSettingStrokeColor} stroke-width="1.5" stroke-linecap="round"/>
             <path d="M33.1656 24.2529L14.8941 24.2529" stroke={tabbarSettingStrokeColor} stroke-width="1.5" stroke-linecap="round"/>
         </svg>
@@ -93,7 +93,7 @@ export const Target_Tabbar_setting_color_cmp = ({tabbarSettingFillColor,tabbarSe
 
 export const Target_Tabbar_friend_color_selected_cmp = ({tabbarFriendFillColorSelected,tabbarFriendStrokeColorSelected}) => {
     return (
-        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask id="path-1-outside-1_949_592" maskUnits="userSpaceOnUse" x="8.797" y="11.0596" width="30" height="26" fill="black">
                 <rect fill="white" x="8.797" y="11.0596" width="30" height="26"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M26.5582 24.4784C28.3671 23.4231 29.5852 21.4429 29.5852 19.1741C29.5852 15.7971 26.8866 13.0596 23.5577 13.0596C20.2288 13.0596 17.5302 15.7971 17.5302 19.1741C17.5302 21.4429 18.7483 23.4231 20.5573 24.4784C15.5079 25.697 11.6075 29.923 10.797 35.1875H36.3186C35.508 29.9229 31.6076 25.6969 26.5582 24.4784Z"/>
@@ -109,7 +109,7 @@ export const Target_Tabbar_friend_color_selected_cmp = ({tabbarFriendFillColorSe
 
 export const Target_Tabbar_chat_color_selected_cmp = ({tabbarChatFillColorSelected,tabbarChatStrokeColorSelected}) => {
     return (
-        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask id="path-1-outside-1_949_555" maskUnits="userSpaceOnUse" x="8.30627" y="11.0596" width="31" height="27" fill="black">
                 <rect fill="white" x="8.30627" y="11.0596" width="31" height="27"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M37.528 13.0596H10.3063V30.6859H20.528L24.2065 35.3865L27.8851 30.6859H37.528V13.0596Z"/>
@@ -126,7 +126,7 @@ export const Target_Tabbar_chat_color_selected_cmp = ({tabbarChatFillColorSelect
 
 export const Target_Tabbar_openchat_color_selected_cmp = ({tabbarOpenchatFillColorSelected,tabbarOpenchatStrokeColorSelected}) => {
     return (
-        <svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="114" height="114" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="9.48071" y="12.7285" width="29.9752" height="22.5628" fill={tabbarOpenchatFillColorSelected} stroke={tabbarOpenchatStrokeColorSelected} stroke-width="1.5"/>
             <path d="M12.6038 17.6895L24.4716 25.5078" stroke={tabbarOpenchatStrokeColorSelected} stroke-width="1.5" stroke-linecap="round"/>
             <path d="M24.4684 25.5078L36.3363 17.6895" stroke={tabbarOpenchatStrokeColorSelected} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -137,7 +137,7 @@ export const Target_Tabbar_openchat_color_selected_cmp = ({tabbarOpenchatFillCol
 
 export const Target_Tabbar_shop_color_selected_cmp = ({tabbarShopFillColorSelected,tabbarShopStrokeColorSelected}) => {
     return (
-        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="11.9821" y="12.9678" width="23.7436" height="21.6691" fill={tabbarShopFillColorSelected} stroke={tabbarShopStrokeColorSelected} stroke-width="1.5"/>
             <mask id="path-2-inside-1_949_577" fill="white">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M19.6466 12.2188H11.2321V22.2495C11.232 22.2595 11.2319 22.2696 11.2319 22.2796C11.2319 22.2896 11.232 22.2996 11.2321 22.3097V22.5839H11.2442C11.4091 24.6305 13.2243 26.2427 15.4392 26.2427C17.6541 26.2427 19.4693 24.6305 19.6343 22.5839H19.6466V12.2188Z"/>
@@ -157,19 +157,107 @@ export const Target_Tabbar_shop_color_selected_cmp = ({tabbarShopFillColorSelect
             <line x1="31.816" y1="27.4609" x2="31.816" y2="32.3386" stroke={tabbarShopStrokeColorSelected} stroke-width="1.5"/>
             <line x1="31.816" y1="27.4609" x2="31.816" y2="32.3386" stroke={tabbarShopStrokeColorSelected} stroke-width="1.5"/>
         </svg>
-
     );
 };
 
 export const Target_Tabbar_setting_color_selected_cmp = ({tabbarSettingFillColorSelected,tabbarSettingStrokeColorSelected}) => {
     return (
-        <svg width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24.0298 14.7432L24.0298 33.2785" stroke={tabbarSettingFillColorSelected} stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M33.1656 24.0107L14.8941 24.0107" stroke={tabbarSettingFillColorSelected} stroke-width="1.5" stroke-linecap="round"/>
+        <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.0298 14.7432L24.0298 33.2785" stroke={tabbarSettingStrokeColorSelected} stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M33.1656 24.0107L14.8941 24.0107" stroke={tabbarSettingStrokeColorSelected} stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+    );
+};
+
+
+//비밀번호
+export const Target_Password_bg_color_cmp = ({passwordBgColor}) => {
+    return (
+        <svg width="1125" height="2250" viewBox="0 0 1125 2250" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="1125" height="2250" fill={passwordBgColor}/>
+        </svg>
+    );
+};
+
+
+//친구목록
+export const Target_Friendlist_bg_color_cmp = ({friendlistBgColor}) => {
+    return (
+        <svg width="1125" height="2250" viewBox="0 0 1125 2250" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="1125" height="2250" fill={friendlistBgColor}/>
+        </svg>
+    );
+};
+
+
+export const Target_Friendlist_profile_color_cmp = ({friendlistProfileColor}) => {
+    return (
+        <svg width="360" height="360" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.0964355" width="359.855" height="359.994" fill="white"/>
+            <ellipse cx="179.981" cy="125.867" rx="66.2891" ry="66.3147" fill={friendlistProfileColor}/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M357.922 309.79C367.212 336.304 343.947 360 315.853 360H44.1462C16.0513 360 -7.2128 336.304 2.07726 309.79C26.5482 239.948 96.9575 189.492 179.999 189.492C263.041 189.492 333.451 239.948 357.922 309.79Z" fill={friendlistProfileColor}/>
+        </svg>
+
+    );
+};
+
+
+
+//채팅방
+export const Target_Chatroom_receive_bg1_color_cmp = ({chatroomReceiveBg1Color}) => {
+    return (
+        <svg width="121" height="105" viewBox="0 0 121 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="42.5" cy="42.5" r="42.5" transform="matrix(-1 0 0 1 106.288 10)" fill={chatroomReceiveBg1Color}/>
+            <path d="M32.2476 34.3193C33.2461 31.4065 30.7169 28.5051 27.6951 29.0967L14.2077 31.7376C11.1859 32.3292 9.93773 35.9702 11.961 38.2914L20.9918 48.6514C23.0151 50.9726 26.7924 50.233 27.7909 47.3202L32.2476 34.3193Z" fill={chatroomReceiveBg1Color}/>
         </svg>
 
 
     );
 };
+
+
+
+export const Target_Chatroom_receive_bg2_color_cmp = ({chatroomReceiveBg2Color}) => {
+    return (
+        <svg width="120" height="105" viewBox="0 0 120 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="42.5" cy="42.5" r="42.5" transform="matrix(-1 0 0 1 106 10)" fill={chatroomReceiveBg2Color}/>
+        </svg>
+
+    );
+};
+
+
+
+export const Target_Chatroom_send_bg1_color_cmp = ({chatroomSendBg1Color}) => {
+    return (
+        <svg width="121" height="105" viewBox="0 0 121 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="56.5" cy="52.5" r="42.5" fill={chatroomSendBg1Color}/>
+            <path d="M88.0405 34.3193C87.042 31.4065 89.5711 28.5051 92.593 29.0967L106.08 31.7376C109.102 32.3292 110.35 35.9702 108.327 38.2914L99.2963 48.6514C97.273 50.9726 93.4957 50.233 92.4972 47.3202L88.0405 34.3193Z" fill={chatroomSendBg1Color}/>
+        </svg>
+
+    );
+};
+
+
+
+export const Target_Chatroom_send_bg2_color_cmp = ({chatroomSendBg2Color}) => {
+    return (
+        <svg width="120" height="105" viewBox="0 0 120 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="56.5" cy="52.5" r="42.5" fill={chatroomSendBg2Color}/>
+        </svg>
+
+    );
+};
+
+
+
+export const Target_Chatroom_bg_color_cmp = ({chatroomBgColor}) => {
+    return (
+        <svg width="1125" height="2250" viewBox="0 0 1125 2250" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="1125" height="2250" fill={chatroomBgColor}/>
+        </svg>
+    );
+};
+
 
 
