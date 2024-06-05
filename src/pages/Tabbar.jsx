@@ -16,6 +16,23 @@ import {
 } from '../icons/TabbarIcon.jsx';
 import {SketchPicker} from "react-color";
 
+import { convertSvgToPng } from '../function/convertSvgToPng';
+import {
+    Target_Tabbar_bg_color_cmp,
+    Target_Tabbar_friend_color_cmp,
+    Target_Tabbar_chat_color_cmp,
+    Target_Tabbar_openchat_color_cmp,
+    Target_Tabbar_shop_color_cmp,
+    Target_Tabbar_setting_color_cmp,
+    Target_Tabbar_friend_color_selected_cmp,
+    Target_Tabbar_chat_color_selected_cmp,
+    Target_Tabbar_openchat_color_selected_cmp,
+    Target_Tabbar_shop_color_selected_cmp,
+    Target_Tabbar_setting_color_selected_cmp,
+} from '../icons/TargetIcon.jsx';
+
+
+
 function Tabbar() {
 
     const [tabbarBgColor, setTabbarBgColor] = useState(localStorage.getItem("tabbarBgColor"));
@@ -119,7 +136,7 @@ function Tabbar() {
     }
 
     const handleChangeTabbarFriendStrokeColorSelected = (color) => {
-        setTabbarFriendFillColorSelected(color.hex);
+        setTabbarFriendStrokeColorSelected(color.hex);
     }
 
 
@@ -154,22 +171,39 @@ function Tabbar() {
     const  handleChangeTabbarSettingStrokeColorSelected = (color) => {
         setTabbarSettingStrokeColorSelected(color.hex);
     }
-
-
-    const handleTabberButton = () => {
+    const handleTabberButton = async () => {
+        // 색상 저장
         localStorage.setItem("tabbarBgColor", tabbarBgColor);
-        const themeType = localStorage.getItem("themeType");
-        switch (themeType) {
-            case "1":
-                window.location.href = "/step2/Chatroom";
-                break;
-            case "2":
-                window.location.href = "/step2/CharacterChatroom";
-                break;
-            default:
-                // Handle the case where themeType is missing or invalid
-                console.warn("오류 발생! 처음부터 다시 시작해주세요.");
-                break;
+        // 이미지 저장
+        try {
+            await convertSvgToPng(Target_Tabbar_bg_color_cmp, { tabbarBgColor }, 'maintabBgImage@3x.png');
+            await convertSvgToPng(Target_Tabbar_friend_color_cmp, { tabbarFriendFillColor, tabbarFriendStrokeColor }, 'maintabIcoFriends@3x.png');
+            await convertSvgToPng(Target_Tabbar_chat_color_cmp, { tabbarChatFillColor, tabbarChatStrokeColor }, 'maintabIcoChats@3x.png');
+            await convertSvgToPng(Target_Tabbar_openchat_color_cmp, { tabbarOpenchatFillColor, tabbarOpenchatStrokeColor }, 'maintabIcoBrowse@3x.png');
+            await convertSvgToPng(Target_Tabbar_shop_color_cmp, { tabbarShopFillColor, tabbarShopStrokeColor }, 'maintabIcoShopping@3x.png');
+            await convertSvgToPng(Target_Tabbar_setting_color_cmp, { tabbarSettingFillColor, tabbarSettingStrokeColor }, 'maintabIcoMore@3x.png');
+            await convertSvgToPng(Target_Tabbar_friend_color_selected_cmp, { tabbarFriendFillColorSelected, tabbarFriendStrokeColorSelected }, 'maintabIcoFriendsSelected@3x.png');
+            await convertSvgToPng(Target_Tabbar_chat_color_selected_cmp, { tabbarChatFillColorSelected, tabbarChatStrokeColorSelected }, 'maintabIcoChatsSelected@3x.png');
+            await convertSvgToPng(Target_Tabbar_openchat_color_selected_cmp, { tabbarOpenchatFillColorSelected, tabbarOpenchatStrokeColorSelected }, 'maintabIcoBrowseSelected@3x.png');
+            await convertSvgToPng(Target_Tabbar_shop_color_selected_cmp, { tabbarShopFillColorSelected, tabbarShopStrokeColorSelected }, 'maintabIcoShoppingSelected@3x.png');
+            await convertSvgToPng(Target_Tabbar_setting_color_selected_cmp, { tabbarSettingFillColorSelected, tabbarSettingStrokeColorSelected }, 'maintabIcoMoreSelected@3x.png');
+
+            // 페이지 넘어가기
+            const themeType = localStorage.getItem("themeType");
+            switch (themeType) {
+                case "1":
+                    window.location.href = "/step2/Chatroom";
+                    break;
+                case "2":
+                    window.location.href = "/step2/CharacterChatroom";
+                    break;
+                default:
+                    // Handle the case where themeType is missing or invalid
+                    console.warn("오류 발생! 처음부터 다시 시작해주세요.");
+                    break;
+            }
+        } catch (error) {
+            console.error('Error converting SVG to PNG:', error);
         }
     };
 

@@ -4,6 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
 const archiver = require('archiver');
+const multer = require('multer');
+const sharp = require('sharp');
+
 
 const app = express();
 const port = 5000;
@@ -12,6 +15,8 @@ app.use(bodyParser.json({ limit: '10mb' }));
 
 // Enable CORS
 app.use(cors());
+
+
 
 // 이미지 업로드 엔드포인트
 app.post('/upload', (req, res) => {
@@ -61,6 +66,29 @@ app.post('/upload', (req, res) => {
             res.status(500).send('Error saving the images');
         });
 });
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const dir = path.join(__dirname, '/ktheme/Images');
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
+        cb(null, dir);
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
+
+app.post('/tabbar', upload.single('file'), (req, res) => {
+    try {
+        res.status(200).send('File uploaded successfully');
+    } catch (error) {
+        res.status(500).send('Error uploading file');
+    }
+});
+
 
 app.get('/Step3', (req, res) => {
     // 로컬스토리지에서 변수를 읽어오는 예시입니다.
