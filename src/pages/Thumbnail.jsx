@@ -6,6 +6,10 @@ import CanvasComponent from '../components/CanvasComponent.jsx';
 
 function Thumbnail() {
 
+    const handleThumbnailPreviousButton = () => {
+        window.location.href = "/step1";
+    }
+
     const handleThumbnailButton = () => {
         window.location.href = "/step2/Password";
     };
@@ -21,6 +25,7 @@ function Thumbnail() {
             <CanvasComponent />
 
             <div className='footer'>
+                <div className='step1-previous-button' onClick={handleThumbnailPreviousButton}>이전</div>
                 <div className='step1-button' onClick={handleThumbnailButton}>다음</div>
             </div>
 

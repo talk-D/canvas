@@ -12,6 +12,11 @@ function Step1() {
     const [themeNameKorean, setThemeNameKorean] = useState("");
     const [themeNameEnglish, setThemeNameEnglish] = useState("");
 
+    const handleStep1PreviousButton = () => {
+        window.location.href = "/";
+    }
+
+
     // 테마 정보를 로컬 스토리지에 저장
     const handleStep1Button = () => {
         localStorage.setItem("themeVersion", themeVersion);
@@ -48,6 +53,7 @@ function Step1() {
               </div>
           </div>
               <div className='footer'>
+                  <div className='step1-previous-button' onClick={handleStep1PreviousButton}>이전</div>
                   <div className='step1-button' onClick={handleStep1Button}>다음</div>
               </div>
           </div>

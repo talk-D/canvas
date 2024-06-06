@@ -154,6 +154,12 @@ function Password() {
         localStorage.setItem("passwordTitleColor", color.hex);
         localStorage.setItem("passwordSecondTitleColor", addColor(color.hex, "#191301"));
     };
+
+    const handlePasswordPreviousButton = () => {
+        window.location.href = "/step2/Thumbnail";
+    }
+
+
     const handlePasswordButton = async () => {
         try {
             // Capture the unlock icon
@@ -315,6 +321,7 @@ function Password() {
             </div>
 
             <div className='footer'>
+                <div className='step1-previous-button' onClick={handlePasswordPreviousButton}>이전</div>
                 <div className='step1-button' onClick={handlePasswordButton}>다음</div>
             </div>
         </div>

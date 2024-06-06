@@ -3,7 +3,7 @@ import React from 'react';
 /*로고 이미지를 클릭하면 웰컴 페이지로 이동*/
 export function Logo(){
     const handleclicklogo = () => {
-        window.location.href = "";  
+        window.location.href = "/";
     };
 
 

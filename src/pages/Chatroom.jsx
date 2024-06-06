@@ -121,7 +121,9 @@ function Chatroom() {
         setChatroomInputIconColor(color.hex);
     }
 
-
+    const handleChatroomPreviousButton = () => {
+        window.location.href = "/step2/tabbar";
+    }
 
     const handleChatroomButton= async () => {
 
@@ -306,6 +308,7 @@ function Chatroom() {
 
             </div>
             <div className='footer'>
+                <div className='step1-previous-button' onClick={handleChatroomPreviousButton}>이전</div>
                 <div className='step1-button' onClick={handleChatroomButton}>다음</div>
             </div>
 

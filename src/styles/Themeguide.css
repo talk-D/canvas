@@ -7,7 +7,9 @@
 .step3 {
     flex-grow: 1;
     text-align: center;
-    width: 100px;
+    align-items: center;
+    align-content: center;
+    width: 150px;
     height: 25px;
     color: #ffffff;
     background-color: #FFBB6D;

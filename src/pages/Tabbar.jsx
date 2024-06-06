@@ -171,6 +171,11 @@ function Tabbar() {
     const  handleChangeTabbarSettingStrokeColorSelected = (color) => {
         setTabbarSettingStrokeColorSelected(color.hex);
     }
+
+    const handleTabbarPreviousButton = () => {
+        window.location.href = "/step2/Friendlist";
+    }
+
     const handleTabberButton = async () => {
         // 색상 저장
         localStorage.setItem("tabbarBgColor", tabbarBgColor);
@@ -381,6 +386,7 @@ function Tabbar() {
             </div>
 
             <div className='footer'>
+                <div className='step1-previous-button' onClick={handleTabbarPreviousButton}>이전</div>
                 <div className='step1-button' onClick={handleTabberButton}>다음</div>
             </div>
         </div>

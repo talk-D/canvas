@@ -75,6 +75,10 @@ function Friendlist() {
         setFriendlistProfileColor(color.hex);
     }
 
+
+    const handleFriendlistPreviousButton = () => {
+        window.location.href = "/step2/password";
+    }
     const handleFriendlistButton = async () => {
 
 
@@ -170,6 +174,7 @@ function Friendlist() {
             </div>
 
             <div className='footer'>
+                <div className='step1-previous-button' onClick={handleFriendlistPreviousButton}>이전</div>
                 <div className='step1-button' onClick={handleFriendlistButton}>다음</div>
             </div>
         </div>

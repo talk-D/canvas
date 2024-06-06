@@ -69,6 +69,11 @@ function Notification() {
         setNotificationMessageColor(color.hex);
     }
 
+
+    const handleNotificationPreviousButton = () => {
+        window.location.href = "/step2/Chatroom";
+    }
+
     const handleNotificationButton = async () => {
         // 로컬스토리지에 색상값 저장
         localStorage.setItem("notificationBgColor", notificationBgColor);
@@ -143,6 +148,7 @@ function Notification() {
             </div>
 
             <div className='footer'>
+                <div className='step1-previous-button' onClick={handleNotificationPreviousButton}>이전</div>
                 <div className='step1-button' onClick={handleNotificationButton}>다음</div>
             </div>
 

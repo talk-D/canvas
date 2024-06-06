@@ -59,7 +59,7 @@ export function Themeguide() {
     };
 
     const handleStep3 = () => {
-        window.location.href = "/step3/thememaking";
+
     };
 
     return (

@@ -85,17 +85,32 @@
 }
 
 .footer{
-
-    width: 92vw;
-    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    height: 10vh; /* Footer height */
 }
-.step1-button{
-    width: 6vw;
+
+
+.step1-previous-button, .step1-button {
+    width: 200px; /* Adjusted width for better fitting */
     height: 5vh;
+    display: flex;
+    justify-content: center;
     align-items: center;
     background-color: #FFBB6D;
     color: #FFFFFF;
     border-radius: 45vh;
-    padding: 10px 0 2px 0;
-    margin : 0 25vw 0 75vw;
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor for buttons */
+}
+
+.step1-previous-button {
+    text-align: left;
+    margin-left: 50px;
+}
+
+.step1-button {
+    text-align: right;
+    margin-right: 50px;
 }
