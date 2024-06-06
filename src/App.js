@@ -10,7 +10,7 @@ import Tabbar from './pages/Tabbar';
 import Chatroom from './pages/Chatroom';
 import CharacterChatroom from "./pages/CharacterChatroom";
 import Notification from './pages/Notification';
-import Thememaking from './pages/Thememaking';
+import Step3 from './pages/Step3';
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
            <Route path='step2/chatroom' element={<Chatroom />} />
             <Route path='step2/characterchatroom' element={<CharacterChatroom />} />
            <Route path='/step2/notification' element={<Notification />} />
-           <Route path='/step3/thememaking' element={<Thememaking />} />
+           <Route path='/step3' element={<Step3 />} />
           <Route path='/theme' element={<Theme />} />
         </Routes>
       </BrowserRouter>
