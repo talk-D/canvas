@@ -150,6 +150,10 @@ function Chatroom() {
         localStorage.setItem("chatroomSendUnreadTextColor", chatroomSendUnreadTextColor);
         localStorage.setItem("chatroomInputBgColor", chatroomInputBgColor);
         localStorage.setItem("chatroomInputIconColor", chatroomInputIconColor);
+        localStorage.setItem("chatroomReceiveBg1Color", chatroomReceiveBg1Color);
+        localStorage.setItem("chatroomReceiveBg2Color", chatroomReceiveBg2Color);
+        localStorage.setItem("chatroomSendBg1Color", chatroomSendBg1Color);
+        localStorage.setItem("chatroomSendBg2Color", chatroomSendBg2Color);
         window.location.href = "/step2/Notification";
     };
 

@@ -17,6 +17,24 @@ function Notification() {
     const [notificationNameColor, setNotificationNameColor] = useState(localStorage.getItem("notificationNameColor"));
     const [notificationMessageColor, setNotificationMessageColor] = useState(localStorage.getItem("notificationMessageColor"));
 
+
+    //이전 테마 디자인 기록
+    const [chatroomBgColor, setChatroomBgColor] = useState(localStorage.getItem("chatroomBgColor"));
+    const [chatroomTitleColor, setChatroomTitleColor] = useState(localStorage.getItem("chatroomTitleColor"));
+    const [chatroomNameColor, setChatroomNameColor] = useState(localStorage.getItem("chatroomNameColor"));
+    const [chatroomReceiveBg1Color, setChatroomReceiveBg1Color] = useState(localStorage.getItem("chatroomReceiveBg1Color"));
+    const [chatroomReceiveBg2Color, setChatroomReceiveBg2Color] = useState(localStorage.getItem("chatroomReceiveBg2Color"));
+    const [chatroomReceiveTextColor, setChatroomReceiveTextColor] = useState(localStorage.getItem("chatroomReceiveTextColor"));
+    const [chatroomReceiveUnreadTextColor, setChatroomReceiveUnreadTextColor] = useState(localStorage.getItem("chatroomReceiveUnreadTextColor"));
+    const [chatroomSendBg1Color, setChatroomSendBg1Color] = useState(localStorage.getItem("chatroomSendBg1Color"));
+    const [chatroomSendBg2Color, setChatroomSendBg2Color] = useState(localStorage.getItem("chatroomSendBg2Color"));
+    const [chatroomSendTextColor, setChatroomSendTextColor] = useState(localStorage.getItem("chatroomSendTextColor"));
+    const [chatroomSendUnreadTextColor, setChatroomSendUnreadTextColor] = useState(localStorage.getItem("chatroomSendUnreadTextColor"));
+    const [chatroomInputBgColor, setChatroomInputBgColor] = useState(localStorage.getItem("chatroomInputBgColor"));
+    const [chatroomInputIconColor, setChatroomInputIconColor] = useState(localStorage.getItem("chatroomInputIconColor"));
+    const [friendlistProfileColor, setFriendlistProfileColor] = useState(localStorage.getItem("friendlistProfileColor"));
+
+
     const toggleMenu = (event, buttonId) => {
         setIsOpen(!isOpen);
         setActiveButton(isOpen ? null : buttonId);
@@ -89,13 +107,26 @@ function Notification() {
                                     <Notification_bg_color_cmp
                                         notificationBgColor={notificationBgColor}
                                         notificationNameColor={notificationNameColor}
-                                        notificationMessageColor={notificationMessageColor}/>
+                                        notificationMessageColor={notificationMessageColor}
+                                        chatroomBgColor={chatroomBgColor}
+                                        chatroomTitleColor={chatroomTitleColor}
+                                        chatroomNameColor={chatroomNameColor}
+                                        chatroomReceiveBg1Color={chatroomReceiveBg1Color}
+                                        chatroomReceiveBg2Color={chatroomReceiveBg2Color}
+                                        chatroomReceiveTextColor={chatroomReceiveTextColor}
+                                        chatroomReceiveUnreadTextColor={chatroomReceiveUnreadTextColor}
+                                        chatroomSendBg1Color={chatroomSendBg1Color}
+                                        chatroomSendBg2Color={chatroomSendBg2Color}
+                                        chatroomSendTextColor={chatroomSendTextColor}
+                                        chatroomSendUnreadTextColor={chatroomSendUnreadTextColor}
+                                        chatroomInputBgColor={chatroomInputBgColor}
+                                        chatroomInputIconColor={chatroomInputIconColor}
+                                        friendlistProfileColor={friendlistProfileColor}
+                                    />
                                 </div>
                             </div>
 
-
-
-                <div className='notification_setting_zone'>
+                    <div className='notification_setting_zone'>
                     <div className='notification_bg_color_set'>
                         <img onClick={(event) => toggleMenu(event, 'notification_bg_color_set')} alt='알림창 색상 버튼 미선택' src={activeButton === 'notification_bg_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
                     </div>
