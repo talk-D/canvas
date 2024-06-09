@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Target_Tabbar_bg_color_cmp = ({tabbarBgColor}) => {
+export const Target_tabbar_bg_color_cmp = ({tabbarBgColor}) => {
     return (
         <svg width="1410" height="147" viewBox="0 0 1410 147" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="1410" height="147" fill={tabbarBgColor}/>
@@ -8,7 +8,7 @@ export const Target_Tabbar_bg_color_cmp = ({tabbarBgColor}) => {
     );
 }
 
-export const Target_Tabbar_friend_color_cmp = ({tabbarFriendFillColor,tabbarFriendStrokeColor}) => {
+export const Target_tabbar_friend_color_cmp = ({tabbarFriendFillColor,tabbarFriendStrokeColor}) => {
     return (
         <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask id="path-1-outside-1_956_539" maskUnits="userSpaceOnUse" x="8.79724" y="11.2998" width="30" height="26" fill="black">
@@ -22,7 +22,7 @@ export const Target_Tabbar_friend_color_cmp = ({tabbarFriendFillColor,tabbarFrie
 };
 
 
-export const Target_Tabbar_chat_color_cmp = ({tabbarChatFillColor,tabbarChatStrokeColor}) => {
+export const Target_tabbar_chat_color_cmp = ({tabbarChatFillColor,tabbarChatStrokeColor}) => {
     return (
         <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask id="path-1-outside-1_956_502" maskUnits="userSpaceOnUse" x="8.30627" y="11.2998" width="31" height="27" fill="black">
@@ -42,7 +42,7 @@ export const Target_Tabbar_chat_color_cmp = ({tabbarChatFillColor,tabbarChatStro
 };
 
 
-export const Target_Tabbar_openchat_color_cmp = ({tabbarOpenchatFillColor,tabbarOpenchatStrokeColor}) => {
+export const Target_tabbar_openchat_color_cmp = ({tabbarOpenchatFillColor,tabbarOpenchatStrokeColor}) => {
     return (
         <svg width="114" height="114" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="9.48083" y="12.9717" width="29.9752" height="22.5628" fill={tabbarOpenchatFillColor} stroke={tabbarOpenchatStrokeColor} stroke-width="1.5"/>
@@ -53,7 +53,7 @@ export const Target_Tabbar_openchat_color_cmp = ({tabbarOpenchatFillColor,tabbar
 };
 
 
-export const Target_Tabbar_shop_color_cmp = ({tabbarShopFillColor,tabbarShopStrokeColor}) => {
+export const Target_tabbar_shop_color_cmp = ({tabbarShopFillColor,tabbarShopStrokeColor}) => {
     return (
         <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="11.9819" y="13.207" width="23.7436" height="21.6691" fill={tabbarShopFillColor} stroke={tabbarShopStrokeColor} stroke-width="1.5"/>
@@ -81,7 +81,7 @@ export const Target_Tabbar_shop_color_cmp = ({tabbarShopFillColor,tabbarShopStro
 };
 
 
-export const Target_Tabbar_setting_color_cmp = ({tabbarSettingFillColor,tabbarSettingStrokeColor}) => {
+export const Target_tabbar_setting_color_cmp = ({tabbarSettingFillColor,tabbarSettingStrokeColor}) => {
     return (
         <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M24.0299 14.9854L24.0299 33.5207" stroke={tabbarSettingStrokeColor} stroke-width="1.5" stroke-linecap="round"/>
@@ -91,7 +91,7 @@ export const Target_Tabbar_setting_color_cmp = ({tabbarSettingFillColor,tabbarSe
     );
 };
 
-export const Target_Tabbar_friend_color_selected_cmp = ({tabbarFriendFillColorSelected,tabbarFriendStrokeColorSelected}) => {
+export const Target_tabbar_friend_color_selected_cmp = ({tabbarFriendFillColorSelected,tabbarFriendStrokeColorSelected}) => {
     return (
         <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask id="path-1-outside-1_949_592" maskUnits="userSpaceOnUse" x="8.797" y="11.0596" width="30" height="26" fill="black">
@@ -107,7 +107,7 @@ export const Target_Tabbar_friend_color_selected_cmp = ({tabbarFriendFillColorSe
     );
 };
 
-export const Target_Tabbar_chat_color_selected_cmp = ({tabbarChatFillColorSelected,tabbarChatStrokeColorSelected}) => {
+export const Target_tabbar_chat_color_selected_cmp = ({tabbarChatFillColorSelected,tabbarChatStrokeColorSelected}) => {
     return (
         <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask id="path-1-outside-1_949_555" maskUnits="userSpaceOnUse" x="8.30627" y="11.0596" width="31" height="27" fill="black">
@@ -124,7 +124,7 @@ export const Target_Tabbar_chat_color_selected_cmp = ({tabbarChatFillColorSelect
     );
 };
 
-export const Target_Tabbar_openchat_color_selected_cmp = ({tabbarOpenchatFillColorSelected,tabbarOpenchatStrokeColorSelected}) => {
+export const Target_tabbar_openchat_color_selected_cmp = ({tabbarOpenchatFillColorSelected,tabbarOpenchatStrokeColorSelected}) => {
     return (
         <svg width="114" height="114" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="9.48071" y="12.7285" width="29.9752" height="22.5628" fill={tabbarOpenchatFillColorSelected} stroke={tabbarOpenchatStrokeColorSelected} stroke-width="1.5"/>
@@ -135,7 +135,7 @@ export const Target_Tabbar_openchat_color_selected_cmp = ({tabbarOpenchatFillCol
     );
 };
 
-export const Target_Tabbar_shop_color_selected_cmp = ({tabbarShopFillColorSelected,tabbarShopStrokeColorSelected}) => {
+export const Target_tabbar_shop_color_selected_cmp = ({tabbarShopFillColorSelected,tabbarShopStrokeColorSelected}) => {
     return (
         <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="11.9821" y="12.9678" width="23.7436" height="21.6691" fill={tabbarShopFillColorSelected} stroke={tabbarShopStrokeColorSelected} stroke-width="1.5"/>
@@ -160,7 +160,7 @@ export const Target_Tabbar_shop_color_selected_cmp = ({tabbarShopFillColorSelect
     );
 };
 
-export const Target_Tabbar_setting_color_selected_cmp = ({tabbarSettingFillColorSelected,tabbarSettingStrokeColorSelected}) => {
+export const Target_tabbar_setting_color_selected_cmp = ({tabbarSettingFillColorSelected,tabbarSettingStrokeColorSelected}) => {
     return (
         <svg width="114" height="114" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M24.0298 14.7432L24.0298 33.2785" stroke={tabbarSettingStrokeColorSelected} stroke-width="1.5" stroke-linecap="round"/>
@@ -171,7 +171,7 @@ export const Target_Tabbar_setting_color_selected_cmp = ({tabbarSettingFillColor
 
 
 //비밀번호
-export const Target_Password_bg_color_cmp = ({passwordBgColor}) => {
+export const Target_password_bg_color_cmp = ({passwordBgColor}) => {
     return (
         <svg width="1125" height="2250" viewBox="0 0 1125 2250" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="1125" height="2250" fill={passwordBgColor}/>
@@ -181,7 +181,7 @@ export const Target_Password_bg_color_cmp = ({passwordBgColor}) => {
 
 
 //친구목록
-export const Target_Friendlist_bg_color_cmp = ({friendlistBgColor}) => {
+export const Target_friendlist_bg_color_cmp = ({friendlistBgColor}) => {
     return (
         <svg width="1125" height="2250" viewBox="0 0 1125 2250" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="1125" height="2250" fill={friendlistBgColor}/>
@@ -190,7 +190,7 @@ export const Target_Friendlist_bg_color_cmp = ({friendlistBgColor}) => {
 };
 
 
-export const Target_Friendlist_profile_color_cmp = ({friendlistProfileColor}) => {
+export const Target_friendlist_profile_color_cmp = ({friendlistProfileColor}) => {
     return (
         <svg width="360" height="360" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.0964355" width="359.855" height="359.994" fill="white"/>
@@ -204,7 +204,7 @@ export const Target_Friendlist_profile_color_cmp = ({friendlistProfileColor}) =>
 
 
 //채팅방
-export const Target_Chatroom_receive_bg1_color_cmp = ({chatroomReceiveBg1Color}) => {
+export const Target_chatroom_receive_bg1_color_cmp = ({chatroomReceiveBg1Color}) => {
     return (
         <svg width="121" height="105" viewBox="0 0 121 105" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="42.5" cy="42.5" r="42.5" transform="matrix(-1 0 0 1 106.288 10)" fill={chatroomReceiveBg1Color}/>
@@ -217,7 +217,7 @@ export const Target_Chatroom_receive_bg1_color_cmp = ({chatroomReceiveBg1Color})
 
 
 
-export const Target_Chatroom_receive_bg2_color_cmp = ({chatroomReceiveBg2Color}) => {
+export const Target_chatroom_receive_bg2_color_cmp = ({chatroomReceiveBg2Color}) => {
     return (
         <svg width="120" height="105" viewBox="0 0 120 105" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="42.5" cy="42.5" r="42.5" transform="matrix(-1 0 0 1 106 10)" fill={chatroomReceiveBg2Color}/>
@@ -228,7 +228,7 @@ export const Target_Chatroom_receive_bg2_color_cmp = ({chatroomReceiveBg2Color})
 
 
 
-export const Target_Chatroom_send_bg1_color_cmp = ({chatroomSendBg1Color}) => {
+export const Target_chatroom_send_bg1_color_cmp = ({chatroomSendBg1Color}) => {
     return (
         <svg width="121" height="105" viewBox="0 0 121 105" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="56.5" cy="52.5" r="42.5" fill={chatroomSendBg1Color}/>
@@ -240,7 +240,7 @@ export const Target_Chatroom_send_bg1_color_cmp = ({chatroomSendBg1Color}) => {
 
 
 
-export const Target_Chatroom_send_bg2_color_cmp = ({chatroomSendBg2Color}) => {
+export const Target_chatroom_send_bg2_color_cmp = ({chatroomSendBg2Color}) => {
     return (
         <svg width="120" height="105" viewBox="0 0 120 105" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="56.5" cy="52.5" r="42.5" fill={chatroomSendBg2Color}/>
@@ -251,7 +251,7 @@ export const Target_Chatroom_send_bg2_color_cmp = ({chatroomSendBg2Color}) => {
 
 
 
-export const Target_Chatroom_bg_color_cmp = ({chatroomBgColor}) => {
+export const Target_chatroom_bg_color_cmp = ({chatroomBgColor}) => {
     return (
         <svg width="1125" height="2250" viewBox="0 0 1125 2250" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="1125" height="2250" fill={chatroomBgColor}/>
@@ -259,5 +259,58 @@ export const Target_Chatroom_bg_color_cmp = ({chatroomBgColor}) => {
     );
 };
 
+
+
+// CharacterChatroom
+
+export const Target_character_chatroom_bg_color_cmp = ({characterChatroomBgColor}) => {
+    return (
+        <svg width="1125" height="2250" viewBox="0 0 1125 2250" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="1125" height="2250" fill={characterChatroomBgColor}/>
+        </svg>
+
+    );
+};
+
+
+export const Target_character_chatroom_receive_bg1_color_cmp = ({characterChatroomReceiveBg1Color}) => {
+    return (
+        <svg width="210" height="195" viewBox="0 0 210 195" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="38.0422" cy="38.0422" r="38.0422" transform="matrix(-0.818072 0.575116 0.575116 0.818072 162.423 86)" fill={characterChatroomReceiveBg1Color}/>
+            <path d="M108.759 120.955C105.781 121.739 104.769 125.452 106.936 127.639L115.988 136.769C118.156 138.956 121.878 137.976 122.688 135.005L126.069 122.601C126.879 119.631 124.169 116.897 121.191 117.681L108.759 120.955Z" fill={characterChatroomReceiveBg1Color}/>
+        </svg>
+
+    );
+};
+
+export const Target_character_chatroom_receive_bg2_color_cmp = ({characterChatroomReceiveBg2Color}) => {
+    return (
+        <svg width="215" height="105" viewBox="0 0 215 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="43.5" cy="43.5" r="43.5" transform="matrix(-1 0 0 1 207 9)" fill={characterChatroomReceiveBg2Color}/>
+        </svg>
+
+
+    );
+};
+export const Target_character_chatroom_send_bg1_color_cmp = ({characterChatroomSendBg1Color}) => {
+    return (
+        <svg width="290" height="275" viewBox="0 0 290 275" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="96.8192" cy="179" r="38.0422" transform="rotate(35.1078 96.8192 179)" fill={characterChatroomSendBg1Color}/>
+            <path d="M141.241 160.955C144.219 161.739 145.231 165.452 143.064 167.639L134.012 176.769C131.844 178.956 128.122 177.976 127.312 175.005L123.931 162.601C123.121 159.631 125.831 156.897 128.809 157.681L141.241 160.955Z" fill={characterChatroomSendBg1Color}/>
+        </svg>
+
+
+    );
+};
+
+export const Target_character_chatroom_send_bg2_color_cmp = ({characterChatroomSendBg2Color}) => {
+    return (
+        <svg width="215" height="105" viewBox="0 0 215 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="51.5" cy="52.5" r="43.5" fill={characterChatroomSendBg2Color}/>
+        </svg>
+
+
+    );
+};
 
 

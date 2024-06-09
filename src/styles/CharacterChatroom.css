@@ -1,0 +1,170 @@
+
+.background{
+    background-color: #FFF5DC;
+    height: 75vh;
+    width: 92vw;
+    margin: 0 auto;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+
+.character-chatroom-zone {
+    position: absolute;
+    top: 553.2px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 472px;
+    width: 430px;
+}
+
+.character_chatroom_bg_color{
+    height: 472px;
+    overflow: hidden;
+}
+
+.character_chatroom_title_color{
+    position: absolute;
+    left: 52.6px;
+    top: 51.9px;
+}
+
+
+.character_chatroom_name_color{
+    position: absolute;
+    left: 112px;
+    top: 248px;
+}
+
+.character_chatroom_receive_bg1_color{
+    position: absolute;
+    left: 145px;
+    top: 305px;
+}
+
+.character_chatroom_receive_bg2_color{
+    position: absolute;
+    left: 153px;
+    top: 351.4px;
+}
+
+.character_chatroom_receive_unread_text_color{
+    position: absolute;
+    left: 270px;
+    top: 330px;
+}
+
+.character_chatroom_send_bg1_color{
+    position: absolute;
+    left: 222px;
+    top: 136.4px;
+}
+
+.character_chatroom_send_bg2_color{
+    position: absolute;
+    left: 145px;
+    top: 181px;
+}
+
+.character_chatroom_send_unread_text_color{
+    position: absolute;
+    left: 134px;
+    top: 198px;
+}
+
+.character_chatroom_input_bg_color{
+    position: absolute;
+    left: 28px;
+    top: 416.3px;
+}
+
+.character_chatroom_set_profile_color{
+    position: absolute;
+    left: 48px;
+    top: 240px;
+}
+
+.character_chatroom_setting_zone{
+    position: absolute;
+    top: 553.2px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 472px;
+    width: 430px;
+}
+
+.character_chatroom_bg_color_set{
+    position: absolute;
+    left: 55px;
+    top: 100px;
+}
+
+.character_chatroom_title_color_set{
+    position: absolute;
+    left: 203px;
+    top: 20px;
+}
+
+.character_chatroom_name_color_set{
+    position: absolute;
+    left: 145px;
+    top: 224px;
+}
+
+.character_chatroom_receive_bg1_color_set{
+    position: absolute;
+    left: 242px;
+    top: 285px;
+}
+
+.character_chatroom_receive_bg2_color_set{
+    position: absolute;
+    left: 320px;
+    top: 333px;
+}
+
+
+.character_chatroom_send_bg1_color_set{
+    position: absolute;
+    left: 208px;
+    top: 117px;
+}
+
+.character_chatroom_send_bg2_color_set{
+    position: absolute;
+    left: 128px;
+    top: 162px;
+}
+
+.character_chatroom_input_bg_color_set{
+    position: absolute;
+    left: 30px;
+    top: 395px;
+}
+
+
+/* 말풍선 이미지 관련 */
+.character_chatroom_receive_img{
+    position: absolute;
+    left: 105px;
+    top: 273.5px;
+}
+
+.character_chatroom_send_img{
+    position: absolute;
+    left: 340.5px;
+    top: 101.5px;
+}
+
+.character_chatroom_receive_img_set{
+    position: absolute;
+    left: 78px;
+    top: 305px;
+}
+
+.character_chatroom_send_img_set{
+    position: absolute;
+    left: 365px;
+    top: 82px;
+}

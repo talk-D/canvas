@@ -71,7 +71,11 @@ function Notification() {
 
 
     const handleNotificationPreviousButton = () => {
-        window.location.href = "/step2/Chatroom";
+        if (localStorage.getItem("themeType") == 1) {
+            window.location.href = "/step2/Chatroom";
+        } else if (localStorage.getItem("themeType") == 2) {
+            window.location.href = "/step2/CharacterChatroom";
+        }
     }
 
     const handleNotificationButton = async () => {

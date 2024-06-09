@@ -7,9 +7,10 @@ import {
 import '../styles/FriendList.css';
 import {convertSvgToPng} from "../function/convertSvgToPng";
 import {
-    Target_Chatroom_set_profile_color_cmp,
-    Target_Friendlist_bg_color_cmp, Target_Friendlist_profile_color_cmp,
-    Target_Password_bg_color_cmp
+    Target_chatroom_set_profile_color_cmp,
+    Target_friendlist_bg_color_cmp,
+    Target_friendlist_profile_color_cmp,
+    Target_password_bg_color_cmp
 } from "../icons/TargetIcon";
 
 
@@ -82,8 +83,8 @@ function Friendlist() {
     const handleFriendlistButton = async () => {
 
 
-        await convertSvgToPng(Target_Friendlist_bg_color_cmp, { friendlistBgColor }, 'mainBgImage@3x.png');
-        await convertSvgToPng(Target_Friendlist_profile_color_cmp, { friendlistProfileColor }, 'profileImg01@3x.png');
+        await convertSvgToPng(Target_friendlist_bg_color_cmp, { friendlistBgColor }, 'mainBgImage@3x.png');
+        await convertSvgToPng(Target_friendlist_profile_color_cmp, { friendlistProfileColor }, 'profileImg01@3x.png');
 
 
         localStorage.setItem("friendlistBgColor", friendlistBgColor);

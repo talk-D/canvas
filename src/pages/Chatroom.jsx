@@ -17,11 +17,11 @@ import {
 import {SketchPicker} from "react-color";
 import {convertSvgToPng} from "../function/convertSvgToPng";
 import {
-    Target_Chatroom_bg_color_cmp,
-    Target_Chatroom_receive_bg1_color_cmp,
-    Target_Chatroom_receive_bg2_color_cmp,
-    Target_Chatroom_send_bg1_color_cmp,
-    Target_Chatroom_send_bg2_color_cmp
+    Target_chatroom_bg_color_cmp,
+    Target_chatroom_receive_bg1_color_cmp,
+    Target_chatroom_receive_bg2_color_cmp,
+    Target_chatroom_send_bg1_color_cmp,
+    Target_chatroom_send_bg2_color_cmp
 } from "../icons/TargetIcon";
 
 
@@ -127,19 +127,19 @@ function Chatroom() {
 
     const handleChatroomButton= async () => {
 
-        await convertSvgToPng(Target_Chatroom_receive_bg1_color_cmp, { chatroomReceiveBg1Color }, 'chatroomBubbleReceive01@3x.png');
-        await convertSvgToPng(Target_Chatroom_receive_bg1_color_cmp, { chatroomReceiveBg1Color }, 'chatroomBubbleReceive01Selected@3x.png');
+        await convertSvgToPng(Target_chatroom_receive_bg1_color_cmp, { chatroomReceiveBg1Color }, 'chatroomBubbleReceive01@3x.png');
+        await convertSvgToPng(Target_chatroom_receive_bg1_color_cmp, { chatroomReceiveBg1Color }, 'chatroomBubbleReceive01Selected@3x.png');
 
-        await convertSvgToPng(Target_Chatroom_receive_bg2_color_cmp, { chatroomReceiveBg2Color }, 'chatroomBubbleReceive02@3x.png');
-        await convertSvgToPng(Target_Chatroom_receive_bg2_color_cmp, { chatroomReceiveBg2Color }, 'chatroomBubbleReceive02Selected@3x.png');
+        await convertSvgToPng(Target_chatroom_receive_bg2_color_cmp, { chatroomReceiveBg2Color }, 'chatroomBubbleReceive02@3x.png');
+        await convertSvgToPng(Target_chatroom_receive_bg2_color_cmp, { chatroomReceiveBg2Color }, 'chatroomBubbleReceive02Selected@3x.png');
 
-        await convertSvgToPng(Target_Chatroom_send_bg1_color_cmp, { chatroomSendBg1Color }, 'chatroomBubbleSend01@3x.png');
-        await convertSvgToPng(Target_Chatroom_send_bg1_color_cmp, { chatroomSendBg1Color }, 'chatroomBubbleSend01Selected@3x.png');
+        await convertSvgToPng(Target_chatroom_send_bg1_color_cmp, { chatroomSendBg1Color }, 'chatroomBubbleSend01@3x.png');
+        await convertSvgToPng(Target_chatroom_send_bg1_color_cmp, { chatroomSendBg1Color }, 'chatroomBubbleSend01Selected@3x.png');
 
-        await convertSvgToPng(Target_Chatroom_send_bg2_color_cmp, { chatroomSendBg2Color }, 'chatroomBubbleSend02@3x.png');
-        await convertSvgToPng(Target_Chatroom_send_bg2_color_cmp, { chatroomSendBg2Color }, 'chatroomBubbleSend02Selected@3x.png');
+        await convertSvgToPng(Target_chatroom_send_bg2_color_cmp, { chatroomSendBg2Color }, 'chatroomBubbleSend02@3x.png');
+        await convertSvgToPng(Target_chatroom_send_bg2_color_cmp, { chatroomSendBg2Color }, 'chatroomBubbleSend02Selected@3x.png');
 
-        await convertSvgToPng(Target_Chatroom_bg_color_cmp, { chatroomBgColor }, 'chatroomBgImage@3x.png');
+        await convertSvgToPng(Target_chatroom_bg_color_cmp, { chatroomBgColor }, 'chatroomBgImage@3x.png');
 
 
 

@@ -18,17 +18,17 @@ import {SketchPicker} from "react-color";
 
 import { convertSvgToPng } from '../function/convertSvgToPng';
 import {
-    Target_Tabbar_bg_color_cmp,
-    Target_Tabbar_friend_color_cmp,
-    Target_Tabbar_chat_color_cmp,
-    Target_Tabbar_openchat_color_cmp,
-    Target_Tabbar_shop_color_cmp,
-    Target_Tabbar_setting_color_cmp,
-    Target_Tabbar_friend_color_selected_cmp,
-    Target_Tabbar_chat_color_selected_cmp,
-    Target_Tabbar_openchat_color_selected_cmp,
-    Target_Tabbar_shop_color_selected_cmp,
-    Target_Tabbar_setting_color_selected_cmp,
+    Target_tabbar_bg_color_cmp,
+    Target_tabbar_friend_color_cmp,
+    Target_tabbar_chat_color_cmp,
+    Target_tabbar_openchat_color_cmp,
+    Target_tabbar_shop_color_cmp,
+    Target_tabbar_setting_color_cmp,
+    Target_tabbar_friend_color_selected_cmp,
+    Target_tabbar_chat_color_selected_cmp,
+    Target_tabbar_openchat_color_selected_cmp,
+    Target_tabbar_shop_color_selected_cmp,
+    Target_tabbar_setting_color_selected_cmp,
 } from '../icons/TargetIcon.jsx';
 
 
@@ -181,17 +181,17 @@ function Tabbar() {
         localStorage.setItem("tabbarBgColor", tabbarBgColor);
         // 이미지 저장
         try {
-            await convertSvgToPng(Target_Tabbar_bg_color_cmp, { tabbarBgColor }, 'maintabBgImage@3x.png');
-            await convertSvgToPng(Target_Tabbar_friend_color_cmp, { tabbarFriendFillColor, tabbarFriendStrokeColor }, 'maintabIcoFriends@3x.png');
-            await convertSvgToPng(Target_Tabbar_chat_color_cmp, { tabbarChatFillColor, tabbarChatStrokeColor }, 'maintabIcoChats@3x.png');
-            await convertSvgToPng(Target_Tabbar_openchat_color_cmp, { tabbarOpenchatFillColor, tabbarOpenchatStrokeColor }, 'maintabIcoView@3x.png');
-            await convertSvgToPng(Target_Tabbar_shop_color_cmp, { tabbarShopFillColor, tabbarShopStrokeColor }, 'maintabIcoShopping@3x.png');
-            await convertSvgToPng(Target_Tabbar_setting_color_cmp, { tabbarSettingFillColor, tabbarSettingStrokeColor }, 'maintabIcoMore@3x.png');
-            await convertSvgToPng(Target_Tabbar_friend_color_selected_cmp, { tabbarFriendFillColorSelected, tabbarFriendStrokeColorSelected }, 'maintabIcoFriendsSelected@3x.png');
-            await convertSvgToPng(Target_Tabbar_chat_color_selected_cmp, { tabbarChatFillColorSelected, tabbarChatStrokeColorSelected }, 'maintabIcoChatsSelected@3x.png');
-            await convertSvgToPng(Target_Tabbar_openchat_color_selected_cmp, { tabbarOpenchatFillColorSelected, tabbarOpenchatStrokeColorSelected }, 'maintabIcoViewSelected@3x.png');
-            await convertSvgToPng(Target_Tabbar_shop_color_selected_cmp, { tabbarShopFillColorSelected, tabbarShopStrokeColorSelected }, 'maintabIcoShoppingSelected@3x.png');
-            await convertSvgToPng(Target_Tabbar_setting_color_selected_cmp, { tabbarSettingFillColorSelected, tabbarSettingStrokeColorSelected }, 'maintabIcoMoreSelected@3x.png');
+            await convertSvgToPng(Target_tabbar_bg_color_cmp, { tabbarBgColor }, 'maintabBgImage@3x.png');
+            await convertSvgToPng(Target_tabbar_friend_color_cmp, { tabbarFriendFillColor, tabbarFriendStrokeColor }, 'maintabIcoFriends@3x.png');
+            await convertSvgToPng(Target_tabbar_chat_color_cmp, { tabbarChatFillColor, tabbarChatStrokeColor }, 'maintabIcoChats@3x.png');
+            await convertSvgToPng(Target_tabbar_openchat_color_cmp, { tabbarOpenchatFillColor, tabbarOpenchatStrokeColor }, 'maintabIcoView@3x.png');
+            await convertSvgToPng(Target_tabbar_shop_color_cmp, { tabbarShopFillColor, tabbarShopStrokeColor }, 'maintabIcoShopping@3x.png');
+            await convertSvgToPng(Target_tabbar_setting_color_cmp, { tabbarSettingFillColor, tabbarSettingStrokeColor }, 'maintabIcoMore@3x.png');
+            await convertSvgToPng(Target_tabbar_friend_color_selected_cmp, { tabbarFriendFillColorSelected, tabbarFriendStrokeColorSelected }, 'maintabIcoFriendsSelected@3x.png');
+            await convertSvgToPng(Target_tabbar_chat_color_selected_cmp, { tabbarChatFillColorSelected, tabbarChatStrokeColorSelected }, 'maintabIcoChatsSelected@3x.png');
+            await convertSvgToPng(Target_tabbar_openchat_color_selected_cmp, { tabbarOpenchatFillColorSelected, tabbarOpenchatStrokeColorSelected }, 'maintabIcoViewSelected@3x.png');
+            await convertSvgToPng(Target_tabbar_shop_color_selected_cmp, { tabbarShopFillColorSelected, tabbarShopStrokeColorSelected }, 'maintabIcoShoppingSelected@3x.png');
+            await convertSvgToPng(Target_tabbar_setting_color_selected_cmp, { tabbarSettingFillColorSelected, tabbarSettingStrokeColorSelected }, 'maintabIcoMoreSelected@3x.png');
 
             // 페이지 넘어가기
             const themeType = localStorage.getItem("themeType");

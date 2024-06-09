@@ -16,10 +16,10 @@ import {
 import { addColor } from '../function/ColorUtils.jsx';
 import {convertSvgToPng} from "../function/convertSvgToPng";
 import {
-    Target_Chatroom_set_profile_color_cmp, Target_Password_bg_color_cmp,
-    Target_Tabbar_bg_color_cmp,
-    Target_Tabbar_chat_color_cmp,
-    Target_Tabbar_friend_color_cmp
+    Target_chatroom_set_profile_color_cmp, Target_password_bg_color_cmp,
+    Target_tabbar_bg_color_cmp,
+    Target_tabbar_chat_color_cmp,
+    Target_tabbar_friend_color_cmp
 } from "../icons/TargetIcon";
 
 function Password() {
@@ -195,7 +195,7 @@ function Password() {
             if (response.ok) {
                 console.log('Images uploaded successfully');
 
-                await convertSvgToPng(Target_Password_bg_color_cmp, { passwordBgColor }, 'passcodeBgImage@3x.png');
+                await convertSvgToPng(Target_password_bg_color_cmp, { passwordBgColor }, 'passcodeBgImage@3x.png');
 
 
 
