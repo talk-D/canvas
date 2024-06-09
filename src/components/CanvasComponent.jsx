@@ -8,7 +8,6 @@ import Bubble2 from '../icons/Bubble2'
 import Heart1 from '../icons/Heart1'
 import Heart2 from '../icons/Heart2'
 import Heart3 from '../icons/Heart3'
-import { SketchPicker } from 'react-color';
 import PixelHeart from '../icons/PixelHeart';
 import Bone from '../icons/Bone';
 import Bubble3 from '../icons/Bubble3';
@@ -16,6 +15,14 @@ import Bubble4 from '../icons/Bubble4';
 import Triangle1 from '../icons/Triangle1';
 import Polygon from '../icons/Polygon';
 import ReactDOMServer from 'react-dom/server';
+import Star2 from '../icons/Star2';
+import Rect from '../icons/Rect';
+import Apple from '../icons/Apple';
+import Arrow from '../icons/Arrow';
+import Avocado from '../icons/Avocado';
+import Cloud from '../icons/Cloud';
+import Medal from '../icons/Medal';
+import Arrow2 from '../icons/Arrow2';
 
 const CanvasComponent = () => {
   const canvasRef = useRef(null);
@@ -54,12 +61,18 @@ const CanvasComponent = () => {
     setShowImageUploader(!showImageUploader);
   };
 
-  const handleSaveText = (text) => {
+  const handleSaveText = (content) => {
     const newText = {
       id: texts.length,
-      content: text,
+      content: content.text,
       top: 50,
       left: 50,
+      fontSize: content.fontSize,
+      fontFamily: content.fontFamily,
+      fontWeight: content.fontWeight,
+      fontStyle: content.fontStyle,
+      textDecoration: content.textDecoration,
+      color: content.color,
     };
     setTexts([...texts, newText]);
     setShowTextEditor(false);
@@ -193,17 +206,6 @@ const CanvasComponent = () => {
         context.beginPath();
         context.ellipse(shape.x + shape.width / 2, shape.y + shape.height / 2, shape.width / 2, shape.height / 2, 0, 0, 2 * Math.PI);
         context.fill();
-      } else if (shape.type === 'polygon' || shape.type === 'star' || shape.type === 'triangle') {
-        context.beginPath();
-        shape.points.forEach((point, index) => {
-          if (index === 0) {
-            context.moveTo(point.x, point.y);
-          } else {
-            context.lineTo(point.x, point.y);
-          }
-        });
-        context.closePath();
-        context.fill();
       } else if (shape.type === 'svg') {
         const img = new Image();
         img.src = shape.src;
@@ -295,18 +297,6 @@ const CanvasComponent = () => {
     return path;
   };
 
-  const calculateStarPoints = (centerX, centerY, arms, outerRadius, innerRadius) => {
-    const points = [];
-    const angle = Math.PI / arms;
-    for (let i = 0; i < 2 * arms; i++) {
-      const radius = i % 2 === 0 ? outerRadius : innerRadius;
-      const pointX = centerX + Math.cos(i * angle) * radius;
-      const pointY = centerY + Math.sin(i * angle) * radius;
-      points.push({ x: pointX, y: pointY });
-    }
-    return points;
-  };
-
   const handleClick = (e) => {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
@@ -396,13 +386,7 @@ const CanvasComponent = () => {
       if (clickedShape) {
         setSelectedShape(clickedShape);
         setDragging(true);
-        if (clickedShape.type === 'polygon' || clickedShape.type === 'star' || clickedShape.type === 'triangle') {
-          const offsetX = x - clickedShape.points[0].x;
-          const offsetY = y - clickedShape.points[0].y;
-          setDragOffset({ x: offsetX, y: offsetY });
-        } else {
-          setDragOffset({ x: x - clickedShape.x, y: y - clickedShape.y });
-        }
+        setDragOffset({ x: x - clickedShape.x, y: y - clickedShape.y });     
       }
     }
   };
@@ -481,9 +465,9 @@ const CanvasComponent = () => {
     setShapes([]);
     setSelectedShape(null);
     setFrameColor("#ffffff")
-    setTexts(prevTexts => prevTexts.filter(text => text.id !== selectedTextId));
+    setTexts([]);
     setSelectedTextId(null);
-    
+    // 이미지 초기화
 
   };
 
@@ -557,8 +541,11 @@ const CanvasComponent = () => {
       height: 50,
       src: `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`
     };
+    setSelectedColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
     setShapes(prevShapes => [...prevShapes, newSvg]);
   };
+
+
   
   
   return (
@@ -579,7 +566,7 @@ const CanvasComponent = () => {
       </div>
       { selectedFigureIcon && (
         <div className='left-drawer'>
-          <div onClick={addRectangle} className='drawer-icon'>
+          <div onClick={() => handleIconClick(<Rect color={selectedColor}/>)} className='drawer-icon'>
               Rectangle
             </div>
             <div onClick={addEllipse} className='drawer-icon'>
@@ -627,8 +614,23 @@ const CanvasComponent = () => {
               <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble4 color={selectedColor}/>)}>
                 <Bubble4 />
               </div>
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble4 color={selectedColor}/>)}>
-                <Triangle1 />
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Star2 color={selectedColor}/>)}>
+                <Star2 />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Arrow color={selectedColor}/>)}>
+                <Arrow />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Avocado color={selectedColor}/>)}>
+                <Avocado />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Cloud color={selectedColor}/>)}>
+                <Cloud />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Medal color={selectedColor}/>)}>
+                <Medal />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Arrow2 color={selectedColor}/>)}>
+                <Arrow2 />
               </div>
             </div>
           </div>
@@ -675,6 +677,12 @@ const CanvasComponent = () => {
         cursor: 'move',
         outline: selectedTextId === text.id ? '2px solid #FFBB6D' : 'none', // 선택된 텍스트의 윤곽선 노란색으로 변경
         whiteSpace: 'nowrap', // 텍스트를 한 줄로 고정
+        fontSize: text.fontSize,
+        fontFamily: text.fontFamily,
+        fontWeight: text.fontWeight,
+        fontStyle: text.fontStyle,
+        textDecoration: text.textDecoration,
+        color: text.color,
       }}
     >
       <div dangerouslySetInnerHTML={{ __html: text.content }} />
