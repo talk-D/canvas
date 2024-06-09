@@ -1,59 +1,240 @@
 @font-face {
-    font-family: 'ChosunGs';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGs.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  .editor-wrapper {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    background-color: #fff;
-    margin-top: 20px;
-  }
-  
-  .editor-container {
-    display: flex;
-    flex-direction: column;
-    height: 200px; /* left-drawer에 맞게 높이 조정 */
-  }
-  
-  .custom-toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    border: 1px solid black;
-    cursor: pointer;
-    margin-bottom: 10px;
-  }
-  
-  .ql-toolbar {
-    border-bottom: 1px solid #FFBB6D;
-  }
-  
-  .ql-container {
-    border: 1px solid #FFBB6D;
-    border-top: none;
-    flex-grow: 1;
-    font-family: 'ChosunGs', 'Roboto', 'Open Sans', sans-serif;
-  }
-  
-  /* 반응형 웹 디자인 */
-  @media (max-width: 768px) {
-    .editor-wrapper {
-        padding: 5px;
-        margin-top: 10px;
-    }
-  
-    .editor-container {
-        height: 150px; /* 작은 화면에 맞게 높이 조정 */
-    }
-  
-    .custom-toolbar {
-        padding: 5px;
-        margin-bottom: 5px;
-    }
-  }
+  font-family: 'Noto Sans KR Bold';
+  src: url('../fonts/NotoSansKR-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans KR Black';
+  src: url('../fonts/NotoSansKR-Black.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans KR ExtraBold';
+  src: url('../fonts/NotoSansKR-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans KR ExtraLight';
+  src: url('../fonts/NotoSansKR-ExtraLight.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans KR Light';
+  src: url('../fonts/NotoSansKR-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans KR Medium';
+  src: url('../fonts/NotoSansKR-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans KR Regular';
+  src: url('../fonts/NotoSansKR-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans KR SemiBold';
+  src: url('../fonts/NotoSansKR-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans KR Thin';
+  src: url('../fonts/NotoSansKR-Thin.ttf') format('truetype');
+}
+@font-face {
+  font-family: '60s STRIPE';
+  src: url('../fonts/60sSTRIPE.ttf') format('truetype');
+}
+@font-face {
+  font-family: '1984대화나눔_소곤소곤';
+  src: url('../fonts/1984대화나눔_소곤소곤.ttf') format('truetype');
+}
+@font-face {
+  font-family: '1984대화나눔_웅성웅성';
+  src: url('../fonts/1984대화나눔_웅성웅성.ttf') format('truetype');
+}
+@font-face {
+  font-family: '나눔손글씨붓';
+  src: url('../fonts/나눔손글씨붓.ttf') format('truetype');
+}
+@font-face {
+  font-family: '야놀자 야체 Bold';
+  src: url('../fonts/야놀자 야체 Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: '야놀자 야체 Regular';
+  src: url('../fonts/야놀자 야체 Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: '온글잎 류류체';
+  src: url('../fonts/온글잎 류류체.ttf') format('truetype');
+}
+@font-face {
+  font-family: '유앤피플 고딕 KS';
+  src: url('../fonts/유앤피플 고딕 KS.ttf') format('truetype');
+}
+@font-face {
+  font-family: '유앤피플 고딕 UNI';
+  src: url('../fonts/유앤피플 고딕 UNI.ttf') format('truetype');
+}
+@font-face {
+  font-family: '중나좋체 Light';
+  src: url('../fonts/중나좋체 Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: '중나좋체 Medium';
+  src: url('../fonts/중나좋체 Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Adultkid';
+  src: url('../fonts/Adultkid.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'BagelFatOne-Regular';
+  src: url('../fonts/BagelFatOne-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MoiraiOne-Regular';
+  src: url('../fonts/MoiraiOne-Regular.ttf') format('truetype');
+}
+
+.editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.save-button {
+  font-size: 20px;
+  padding: 10px 20px;
+  background-color: #FFBB6D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.save-button:hover {
+  background-color: #0056b3;
+}
+
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+.font-family-select {
+  width: 200px;
+  font-size: 16px;
+  padding: 5px;
+}
+
+.editor-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: center;
+  gap: 5px; /* 아이콘 간격 조정 */
+}
+
+.font-size-control {
+  display: flex;
+  align-items: center;
+  margin-left: 5px; /* 간격 조정 */
+}
+
+.font-size-control button {
+  font-size: 16px;
+  padding: 5px 8px; /* 버튼 크기 조정 */
+  margin: 0 3px; /* 간격 조정 */
+  cursor: pointer;
+}
+
+.font-size-control span {
+  font-size: 16px;
+  margin: 0 5px; /* 간격 조정 */
+}
+
+.format-button {
+  font-size: 20px;
+  padding: 5px 8px; /* 버튼 크기 조정 */
+  cursor: pointer;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 5px; /* 간격 조정 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.format-button.active {
+  background-color: #ddd;
+}
+
+
+.color-picker-label {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.color-picker {
+  font-weight: bold;
+  font-size: 16px;
+  color: red; /* 아이콘의 글자 색상 설정 */
+  border: 1px solid #ccc; /* 테두리 설정 */
+  width: 30px; /* 정사각형을 위한 너비 설정 */
+  height: 30px; /* 정사각형을 위한 높이 설정 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+.color-picker-input {
+  display: none; /* input 요소 숨기기 */
+}
+
+
+.text-editor {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 16px;
+  resize: none;
+  overflow: auto;
+  direction: ltr;  /* 왼쪽에서 오른쪽으로 입력되도록 설정 */
+  text-align: left;
+}
+
+/* Align Icon Styles */
+.align-left-icon, .align-center-icon, .align-right-icon, .align-justify-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.align-left-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h18v2H3V3zm0 4h12v2H3V7zm0 4h18v2H3v-2zm0 4h12v2H3v-2zm0 4h18v2H3v-2z"/></svg>');
+}
+
+.align-center-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 3h12v2H6V3zm-3 4h18v2H3V7zm3 4h12v2H6v-2zm-3 4h18v2H3v-2zm3 4h12v2H6v-2z"/></svg>');
+}
+
+.align-right-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h18v2H3V3zm6 4h12v2H9V7zm-6 4h18v2H3v-2zm6 4h12v2H9v-2zm-6 4h18v2H3v-2z"/></svg>');
+}
+
+.align-justify-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h18v2H3V3zm0 4h18v2H3V7zm0 4h18v2H3v-2zm0 4h18v2H3v-2zm0 4h18v2H3v-2z"/></svg>');
+}
+
   
