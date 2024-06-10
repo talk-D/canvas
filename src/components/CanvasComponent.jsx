@@ -17,7 +17,6 @@ import Polygon from '../icons/Polygon';
 import ReactDOMServer from 'react-dom/server';
 import Star2 from '../icons/Star2';
 import Rect from '../icons/Rect';
-import Apple from '../icons/Apple';
 import Arrow from '../icons/Arrow';
 import Avocado from '../icons/Avocado';
 import Cloud from '../icons/Cloud';
@@ -44,8 +43,9 @@ const CanvasComponent = () => {
   const [draggingImage, setDraggingImage] = useState(null);
   const [resizingImage, setResizingImage] = useState(null);
   const [selectedFigureId, setSelectedFigureId] = useState(-1);
-  const [selectedTextId, setSelectedTextId] = useState(null); // 추가된 상태
-  const [selectedShapeId, setSelectedShapeId] = useState(null);
+  const [selectedTextId, setSelectedTextId] = useState(null);
+  const outlineCanvasRef = useRef(null);
+  const [selectedImageId, setSelectedImageId] = useState(null);
   
   const handleTextIconClick = () => {
     setSelectedFigureIcon(false);
@@ -78,76 +78,6 @@ const CanvasComponent = () => {
     setShowTextEditor(false);
   };
 
-  const handleMouseDown2 = (e, id, type) => {
-    if (type === 'text') {
-      setDraggingText(id);
-      //setSelectedTextId(id); // 텍스트 선택 시 ID 저장
-      setSelectedTextId(prevSelectedTextId => (prevSelectedTextId === id ? null : id)); // 선택된 텍스트를 다시 누르면 윤곽선 제거
-    } else if (type === 'image') {
-      setDraggingImage(id);
-    }
-  };
-
-  const handleMouseMove2 = (e) => {
-    if (draggingText !== null) {
-      const updatedTexts = texts.map((text) => {
-        if (text.id === draggingText) {
-          const newTop = e.clientY - canvasRef.current.getBoundingClientRect().top;
-          const newLeft = e.clientX - canvasRef.current.getBoundingClientRect().left;
-
-          // 텍스트의 폭과 높이를 계산
-          const textElement = document.getElementById(`text-${text.id}`);
-          const textWidth = textElement.offsetWidth;
-          const textHeight = textElement.offsetHeight;
-
-
-          // 캔버스 영역 밖으로 나가지 않도록 제한
-          const boundedTop = Math.max(0, Math.min(newTop, canvasRef.current.height - textHeight)); // 20은 텍스트 높이의 대략적인 값
-          const boundedLeft = Math.max(0, Math.min(newLeft, canvasRef.current.width  - textWidth)); // 20은 텍스트 폭의 대략적인 값
-  
-          return {
-            ...text,
-            top: boundedTop,
-            left: boundedLeft,
-          };
-        }
-        return text;
-      });
-      setTexts(updatedTexts);
-    } else if (draggingImage !== null) {
-      const updatedImages = images.map((image) => {
-        if (image.id === draggingImage) {
-          const newTop = e.clientY - canvasRef.current.getBoundingClientRect().top;
-          const newLeft = e.clientX - canvasRef.current.getBoundingClientRect().left;
-  
-          // 캔버스 영역 밖으로 나가지 않도록 제한
-          const boundedTop = Math.max(0, Math.min(newTop, canvasRef.current.height - image.height));
-          const boundedLeft = Math.max(0, Math.min(newLeft, canvasRef.current.width - image.width));
-  
-          return {
-            ...image,
-            top: boundedTop,
-            left: boundedLeft,
-          };
-        }
-        return image;
-      });
-      setImages(updatedImages);
-    } else if (resizingImage !== null) {
-      const updatedImages = images.map((image) => {
-        if (image.id === resizingImage) {
-          return {
-            ...image,
-            width: Math.max(50, e.clientX - canvasRef.current.getBoundingClientRect().left - image.left),
-            height: Math.max(50, e.clientY - canvasRef.current.getBoundingClientRect().top - image.top),
-          };
-        }
-        return image;
-      });
-      setImages(updatedImages);
-    }
-  };
-  
   const handleMouseUp2 = () => {
     setDraggingText(null);
     setDraggingImage(null);
@@ -181,68 +111,69 @@ const CanvasComponent = () => {
     }
   };
 
-  const handleFrameClick = (e) => {
-    if (e.target.classList.contains('frame')) {
-      if (canvasRef.current) {
-        canvasRef.current.style.border = '3px solid #FF9900';
-      }
-      setSelectedFigureId(-1);
-    }
-  };
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
-    
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.fillStyle = frameColor;
-    context.fillRect(0, 0, canvas.width, canvas.height);
+  const canvas = canvasRef.current;
+  const context = canvas.getContext('2d');
+  const outlineCanvas = outlineCanvasRef.current;
+  const outlineContext = outlineCanvas.getContext('2d');
 
-    shapes.forEach(shape => {
-      context.fillStyle = shape.color;
-      if (shape.type === 'rectangle') {
-        context.fillRect(shape.x, shape.y, shape.width, shape.height);
-      } else if (shape.type === 'ellipse') {
-        context.beginPath();
-        context.ellipse(shape.x + shape.width / 2, shape.y + shape.height / 2, shape.width / 2, shape.height / 2, 0, 0, 2 * Math.PI);
-        context.fill();
-      } else if (shape.type === 'svg') {
-        const img = new Image();
-        img.src = shape.src;
-        img.onload = () => {
-          context.drawImage(img, shape.x, shape.y, shape.width, shape.height);
-        };
-      }
+  // Clear both canvases
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  outlineContext.clearRect(0, 0, outlineCanvas.width, outlineCanvas.height);
 
-      if (shape === selectedShape) {
-        context.strokeStyle = '#FF9900';
-        context.lineWidth = 3;
-        if (shape.type === 'rectangle') {
-          context.strokeRect(shape.x, shape.y, shape.width, shape.height);
-        } else if (shape.type === 'ellipse') {
-          context.beginPath();
-          context.ellipse(shape.x + shape.width / 2, shape.y + shape.height / 2, shape.width / 2, shape.height / 2, 0, 0, 2 * Math.PI);
-          context.stroke();
-        } else if (shape.type === 'polygon' || shape.type === 'star' || shape.type === 'triangle') {
-          context.beginPath();
-          shape.points.forEach((point, index) => {
-            if (index === 0) {
-              context.moveTo(point.x, point.y);
-            } else {
-              context.lineTo(point.x, point.y);
-            }
-          });
-          context.closePath();
-          context.stroke();
-        } else if (shape.type === 'svg') {
-          context.strokeRect(shape.x, shape.y, shape.width, shape.height);
+  // Fill background
+  context.fillStyle = frameColor;
+  context.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Draw shapes
+  shapes.forEach((shape) => {
+    context.fillStyle = shape.color;
+    if (shape.type === 'rectangle') {
+      context.fillRect(shape.x, shape.y, shape.width, shape.height);
+    } else if (shape.type === 'ellipse') {
+      context.beginPath();
+      context.ellipse(shape.x + shape.width / 2, shape.y + shape.height / 2, shape.width / 2, shape.height / 2, 0, 0, 2 * Math.PI);
+      context.fill();
+    } else if (shape.type === 'svg') {
+      const img = new Image();
+      img.src = shape.src;
+      img.onload = () => {
+        context.drawImage(img, shape.x, shape.y, shape.width, shape.height);
+      };
+    }
+  });
+
+  // Draw selected shape outline
+  if (selectedShape) {
+    outlineContext.strokeStyle = '#FF9900';
+    outlineContext.lineWidth = 3;
+    if (selectedShape.type === 'rectangle') {
+      outlineContext.strokeRect(selectedShape.x, selectedShape.y, selectedShape.width, selectedShape.height);
+    } else if (selectedShape.type === 'ellipse') {
+      outlineContext.beginPath();
+      outlineContext.ellipse(selectedShape.x + selectedShape.width / 2, selectedShape.y + selectedShape.height / 2, selectedShape.width / 2, selectedShape.height / 2, 0, 0, 2 * Math.PI);
+      outlineContext.stroke();
+    } else if (selectedShape.type === 'polygon' || selectedShape.type === 'star' || selectedShape.type === 'triangle') {
+      outlineContext.beginPath();
+      selectedShape.points.forEach((point, index) => {
+        if (index === 0) {
+          outlineContext.moveTo(point.x, point.y);
+        } else {
+          outlineContext.lineTo(point.x, point.y);
         }
+      });
+      outlineContext.closePath();
+      outlineContext.stroke();
+    } else if (selectedShape.type === 'svg') {
+      outlineContext.strokeRect(selectedShape.x, selectedShape.y, selectedShape.width, selectedShape.height);
+    }
 
-        context.fillStyle = '#FF9900';
-        context.fillRect(shape.x + shape.width - 5, shape.y + shape.height - 5, 10, 10);
-      }
-    });
-  }, [shapes, selectedShape, frameColor]);
+    outlineContext.fillStyle = '#FF9900';
+    outlineContext.fillRect(selectedShape.x + selectedShape.width - 5, selectedShape.y + selectedShape.height - 5, 10, 10);
+  }
+}, [shapes, selectedShape, frameColor]);
+  
 
   const handleFocus = () => {
     if (canvasRef.current) {
@@ -304,6 +235,8 @@ const CanvasComponent = () => {
     const y = e.clientY - rect.top;
     const context = canvas.getContext('2d');
     setSelectedTextId(null);
+    setSelectedImageId(null);
+    
 
     const clickedShape = shapes.slice().reverse().find(
       shape => shape.type === 'rectangle'
@@ -362,8 +295,10 @@ const CanvasComponent = () => {
 
     if (type === 'text') {
       setDraggingText(id);
+      setSelectedTextId(prevSelectedTextId => (prevSelectedTextId === id ? null : id));
     } else if (type === 'image') {
       setDraggingImage(id);
+      setSelectedImageId(prevSelectedImageId => (prevSelectedImageId === id ? null : id));
     }
 
     const resizeHandleClicked = (shape) => {
@@ -397,12 +332,8 @@ const CanvasComponent = () => {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-
-      if (selectedShape.type === 'polygon' || selectedShape.type === 'star' || selectedShape.type === 'triangle') {
-        moveSelectedShape(x - selectedShape.points[0].x - dragOffset.x, y - selectedShape.points[0].y - dragOffset.y);
-      } else {
-        moveSelectedShape(x - selectedShape.x - dragOffset.x, y - selectedShape.y - dragOffset.y);
-      }
+      moveSelectedShape(x - selectedShape.x - dragOffset.x, y - selectedShape.y - dragOffset.y);
+      
     } else if (resizing && selectedShape) {
       const canvas = canvasRef.current;
       const rect = canvas.getBoundingClientRect();
@@ -410,8 +341,62 @@ const CanvasComponent = () => {
       const y = e.clientY - rect.top;
 
       resizeSelectedShape(x - (selectedShape.x + selectedShape.width), y - (selectedShape.y + selectedShape.height));
+
+    }else if(draggingText !== null) {
+      const updatedTexts = texts.map((text) => {
+        if (text.id === draggingText) {
+          const newTop = e.clientY - canvasRef.current.getBoundingClientRect().top;
+          const newLeft = e.clientX - canvasRef.current.getBoundingClientRect().left;
+          // 텍스트의 폭과 높이를 계산
+          const textElement = document.getElementById(`text-${text.id}`);
+          const textWidth = textElement.offsetWidth;
+          const textHeight = textElement.offsetHeight;
+          // 캔버스 영역 밖으로 나가지 않도록 제한
+          const boundedTop = Math.max(0, Math.min(newTop, canvasRef.current.height - textHeight)); // 20은 텍스트 높이의 대략적인 값
+          const boundedLeft = Math.max(0, Math.min(newLeft, canvasRef.current.width  - textWidth)); // 20은 텍스트 폭의 대략적인 값
+          return {
+            ...text,
+            top: boundedTop,
+            left: boundedLeft,
+          };
+        }
+        return text;
+      });
+      setTexts(updatedTexts);
+    }
+    else if (draggingImage !== null) {
+      const updatedImages = images.map((image) => {
+        if (image.id === draggingImage) {
+          const newTop = e.clientY - canvasRef.current.getBoundingClientRect().top;
+          const newLeft = e.clientX - canvasRef.current.getBoundingClientRect().left;  
+          // 캔버스 영역 밖으로 나가지 않도록 제한
+          const boundedTop = Math.max(0, Math.min(newTop, canvasRef.current.height - image.height));
+          const boundedLeft = Math.max(0, Math.min(newLeft, canvasRef.current.width - image.width));
+          return {
+            ...image,
+            top: boundedTop,
+            left: boundedLeft,
+          };
+        }
+        return image;
+      });
+      setImages(updatedImages);
+      
+    } else if (resizingImage !== null) {
+      const updatedImages = images.map((image) => {
+        if (image.id === resizingImage) {
+          return {
+            ...image,
+            width: Math.max(50, e.clientX - canvasRef.current.getBoundingClientRect().left - image.left),
+            height: Math.max(50, e.clientY - canvasRef.current.getBoundingClientRect().top - image.top),
+          };
+        }
+        return image;
+      });
+      setImages(updatedImages);
     }
   };
+
 
   const handleMouseUp = () => {
     setDragging(false);
@@ -467,7 +452,7 @@ const CanvasComponent = () => {
     setFrameColor("#ffffff")
     setTexts([]);
     setSelectedTextId(null);
-    // 이미지 초기화
+    setImages([]); // 이미지 초기화
 
   };
 
@@ -549,8 +534,9 @@ const CanvasComponent = () => {
   
   
   return (
-    <div className='container' onClick={handleContainerClick} onMouseMove={handleMouseMove2} onMouseUp={handleMouseUp2}>
+    <div className='container' onClick={handleContainerClick} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp2}>
       <div className='left-menubar'>
+
         <div className='menu-icon' onClick={handleSelectedFigureIcon}>
           <FigureIcon />
         </div>
@@ -665,11 +651,17 @@ const CanvasComponent = () => {
     onMouseMove={handleMouseMove}
     onMouseUp={handleMouseUp}
   />
+  <canvas
+    ref={outlineCanvasRef}
+    width={300}
+    height={300}
+    style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}
+  />
   {texts.map((text) => (
     <div
       key={text.id}
       id={`text-${text.id}`}
-      onMouseDown={(e) => handleMouseDown2(e, text.id, 'text')}
+      onMouseDown={(e) => handleMouseDown(e, text.id, 'text')}
       style={{
         position: 'absolute',
         top: `${text.top}px`,
@@ -688,22 +680,23 @@ const CanvasComponent = () => {
       <div dangerouslySetInnerHTML={{ __html: text.content }} />
     </div>
   ))}
-  {images.map((image) => (
-    <div
-      key={image.id}
-      style={{
-        position: 'absolute',
-        top: `${image.top}px`,
-        left: `${image.left}px`,
-        width: `${image.width}px`,
-        height: `${image.height}px`,
-        cursor: 'move',
-        border: '1px solid #ccc',
-        zIndex: 10 // z-index 추가하여 캔버스 위에 오버레이
-      }}
-      onMouseDown={(e) => handleMouseDown2(e, image.id, 'image')}
-    >
-      <img src={image.src} alt={`uploaded-${image.id}`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
+{images.map((image) => (
+  <div
+    key={image.id}
+    style={{
+      position: 'absolute',
+      top: `${image.top}px`,
+      left: `${image.left}px`,
+      width: `${image.width}px`,
+      height: `${image.height}px`,
+      cursor: 'move',
+      border: selectedImageId === image.id ? '3px solid #FFBB6D' : '0px solid #ccc',
+      zIndex: 10
+    }}
+    onMouseDown={(e) => handleMouseDown(e, image.id, 'image')}
+  >
+    <img src={image.src} alt={`uploaded-${image.id}`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
+    {selectedImageId === image.id && (
       <div
         style={{
           position: 'absolute',
@@ -711,13 +704,15 @@ const CanvasComponent = () => {
           right: 0,
           width: '10px',
           height: '10px',
-          backgroundColor: 'rgba(255, 255, 255, 0.5)',
+          backgroundColor: '#FFBB6D',
           cursor: 'nwse-resize',
         }}
         onMouseDown={(e) => handleResizeMouseDown(e, image.id)}
       />
-    </div>
-  ))}
+    )}
+  </div>
+))}
+
 </div>
       {selectedShape && (
         <div>
