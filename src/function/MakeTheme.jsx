@@ -3,6 +3,7 @@ import React from 'react';
 const MakeTheme = async () => {
     // 로컬스토리지에서 값을 읽어옵니다.
     const themeSettings = {
+        themeType: localStorage.getItem('themeType') || '',
         themeNameKorean: localStorage.getItem('themeNameKorean') || '',
         themeVersion: localStorage.getItem('themeVersion') || '',
         themeNameEnglish: localStorage.getItem('themeNameEnglish') || '',
@@ -14,10 +15,17 @@ const MakeTheme = async () => {
         chatroomBgColor: localStorage.getItem('chatroomBgColor') || '',
         chatroomInputBgColor: localStorage.getItem('chatroomInputBgColor') || '',
         chatroomInputIconColor: localStorage.getItem('chatroomInputIconColor') || '',
-        chatroomSendTextcolor: localStorage.getItem('chatroomSendTextcolor') || '',
+        chatroomSendTextColor: localStorage.getItem('chatroomSendTextColor') || '',
         chatroomSendUnreadTextColor: localStorage.getItem('chatroomSendUnreadTextColor') || '',
         chatroomReceiveTextColor: localStorage.getItem('chatroomReceiveTextColor') || '',
         chatroomReceiveUnreadTextColor: localStorage.getItem('chatroomReceiveUnreadTextColor') || '',
+        characterChatroomBgColor: localStorage.getItem('characterChatroomBgColor') || '',
+        characterChatroomInputBgColor: localStorage.getItem('characterChatroomInputBgColor') || '',
+        characterChatroomInputIconColor: localStorage.getItem('characterChatroomInputIconColor') || '',
+        characterChatroomSendTextColor: localStorage.getItem('characterChatroomSendTextColor') || '',
+        characterChatroomSendUnreadTextColor: localStorage.getItem('characterChatroomSendUnreadTextColor') || '',
+        characterChatroomReceiveTextColor: localStorage.getItem('characterChatroomReceiveTextColor') || '',
+        characterChatroomReceiveUnreadTextColor: localStorage.getItem('characterChatroomReceiveUnreadTextColor') || '',
         passwordBgColor: localStorage.getItem('passwordBgColor') || '',
         passwordTitleColor: localStorage.getItem('passwordTitleColor') || '',
         passwordKeypadColor: localStorage.getItem('passwordKeypadColor') || '',

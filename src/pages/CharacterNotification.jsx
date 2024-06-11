@@ -7,8 +7,7 @@ import {Character_notification_bg_color_cmp,
 
 import '../styles/CharacterNotification.css';
 import {SketchPicker} from "react-color";
-import MakeCharacterTheme from "../function/MakeCharacterTheme";
-import {Character_chatroom_send_img_cmp} from "../icons/CharacterChatroomIcon";
+import MakeTheme from "../function/MakeTheme";
 
 
 
@@ -92,7 +91,7 @@ function CharacterNotification() {
         localStorage.setItem("notificationMessageColor", notificationMessageColor);
 
 
-        await MakeCharacterTheme();
+        await MakeTheme();
         window.location.href = "/Step3";
     };
 
