@@ -3,7 +3,6 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { svgToPng } from './svgToPng';
 
 export const convertSvgToPng = async (Component, props, filename) => {
-    console.log('convertSvgToPng 실행되었다.');
     const svgString = renderToStaticMarkup(<Component {...props} />);
     const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
     const url = URL.createObjectURL(blob);

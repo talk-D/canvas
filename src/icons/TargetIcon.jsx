@@ -294,11 +294,10 @@ export const Target_character_chatroom_receive_bg2_color_cmp = ({characterChatro
 };
 export const Target_character_chatroom_send_bg1_color_cmp = ({characterChatroomSendBg1Color}) => {
     return (
-        <svg width="290" height="275" viewBox="0 0 290 275" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="96.8192" cy="179" r="38.0422" transform="rotate(35.1078 96.8192 179)" fill={characterChatroomSendBg1Color}/>
-            <path d="M141.241 160.955C144.219 161.739 145.231 165.452 143.064 167.639L134.012 176.769C131.844 178.956 128.122 177.976 127.312 175.005L123.931 162.601C123.121 159.631 125.831 156.897 128.809 157.681L141.241 160.955Z" fill={characterChatroomSendBg1Color}/>
+        <svg width="210" height="195" viewBox="0 0 210 195" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="56.8192" cy="139" r="38.0422" transform="rotate(35.1078 56.8192 139)" fill={characterChatroomSendBg1Color}/>
+            <path d="M101.241 120.955C104.219 121.739 105.231 125.452 103.063 127.639L94.0121 136.769C91.8442 138.956 88.1221 137.976 87.3122 135.005L83.931 122.601C83.1211 119.631 85.831 116.897 88.8087 117.681L101.241 120.955Z" fill={characterChatroomSendBg1Color}/>
         </svg>
-
 
     );
 };

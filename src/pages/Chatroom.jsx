@@ -252,7 +252,7 @@ function Chatroom() {
                     </div>
                     <div className='chatroom_send_bg2_color'>
                         <Chatroom_send_bg2_color_cmp chatroomSendBg2Color={chatroomSendBg2Color}
-                                                     chatroomSendTextcolor={chatroomSendTextColor}/>
+                                                     chatroomSendTextColor={chatroomSendTextColor}/>
                     </div>
                     <div className='chatroom_send_unread_text_color'>
                         <Chatroom_send_unread_text_color_cmp chatroomSendUnreadTextColor={chatroomSendUnreadTextColor}/>

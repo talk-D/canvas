@@ -5,11 +5,11 @@
 
 ManifestStyle
 {
-    -kakaotalk-theme-name: sdfsd;
+    -kakaotalk-theme-name: ddf;
     -kakaotalk-theme-version: 10.3.5; 
     -kakaotalk-theme-url: 'http://www.kakao.com';
     -kakaotalk-author-name: 'talk:D';
-    -kakaotalk-theme-id: 'com.kakao.talk.theme.sdfds';
+    -kakaotalk-theme-id: 'com.kakao.talk.theme.sdf';
 }
 
 
@@ -235,17 +235,17 @@ PasscodeStyle
 
 BackgroundStyle-MessageNotificationBar
 {
-    background-color: #FFECB4;
+    background-color: #efe1b7;
 }
 
 LabelStyle-MessageNotificationBarName
 {
-    -ios-text-color: #3D3D3D;
+    -ios-text-color: #ab2d2d;
 }
 
 LabelStyle-MessageNotificationBarMessage
 {
-    -ios-text-color: #828282;
+    -ios-text-color: #de4141;
 }
 
 
@@ -255,17 +255,17 @@ LabelStyle-MessageNotificationBarMessage
 
 BackgroundStyle-DirectShareBar
 {
-    background-color:  #FFECB4;
+    background-color:  #efe1b7;
 }
 
 LabelStyle-DirectShareBarName
 {
-    -ios-text-color: #3D3D3D;
+    -ios-text-color: #ab2d2d;
 }
 
 LabelStyle-DirectShareBarMessage
 {
-    -ios-text-color: #828282;
+    -ios-text-color: #de4141;
 }
 
 
