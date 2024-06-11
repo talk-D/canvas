@@ -95,17 +95,14 @@ const TextEditor = ({ onSave }) => {
           <option value="Noto Sans KR Regular">Noto Sans KR Regular</option>
           <option value="Noto Sans KR SemiBold">Noto Sans KR SemiBold</option>
           <option value="Noto Sans KR Thin">Noto Sans KR Thin</option>
-          <option value="60s STRIPE">60s STRIPE</option>
-          <option value="1984대화나눔_소곤소곤">1984대화나눔_소곤소곤</option>
-          <option value="1984대화나눔_웅성웅성">1984대화나눔_웅성웅성</option>
-          <option value="나눔손글씨붓">나눔손글씨붓</option>
-          <option value="야놀자 야체 Bold">야놀자 야체 Bold</option>
-          <option value="야놀자 야체 Regular">야놀자 야체 Regular</option>
+          <option value="나눔손글씨붓">나눔손글씨붓</option>
+          <option value="야놀자 야체 Bold">야놀자 야체 Bold</option>
+          <option value="야놀자 야체 Regular">야놀자 야체 Regular</option>
           <option value="온글잎 류류체">온글잎 류류체</option>
-          <option value="유앤피플 고딕 KS">유앤피플 고딕 KS</option>
-          <option value="유앤피플 고딕 UNI">유앤피플 고딕 UNI</option>
-          <option value="중나좋체 Light">중나좋체 Light</option>
-          <option value="중나좋체 Medium">중나좋체 Medium</option>
+          <option value="유앤피플 고딕 KS">유앤피플 고딕 KS</option>
+          <option value="유앤피플 고딕 UNI">유앤피플 고딕 UNI</option>
+          <option value="중나좋체 Light">중나좋체 Light</option>
+          <option value="중나좋체 Medium">중나좋체 Medium</option>
           <option value="Adultkid">Adultkid</option>
           <option value="BagelFatOne-Regular">BagelFatOne-Regular</option>
           <option value="MoiraiOne-Regular">MoiraiOne-Regular</option>
@@ -154,7 +151,6 @@ const TextEditor = ({ onSave }) => {
           direction: 'ltr' // 왼쪽에서 오른쪽으로 입력되도록 설정
         }}
         onInput={handleEditorChange}
-        placeholder="텍스트를 입력하세요..."
       />
     </div>
   );
