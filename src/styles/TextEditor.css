@@ -35,18 +35,6 @@
   src: url('../fonts/NotoSansKR-Thin.ttf') format('truetype');
 }
 @font-face {
-  font-family: '60s STRIPE';
-  src: url('../fonts/60sSTRIPE.ttf') format('truetype');
-}
-@font-face {
-  font-family: '1984대화나눔_소곤소곤';
-  src: url('../fonts/1984대화나눔_소곤소곤.ttf') format('truetype');
-}
-@font-face {
-  font-family: '1984대화나눔_웅성웅성';
-  src: url('../fonts/1984대화나눔_웅성웅성.ttf') format('truetype');
-}
-@font-face {
   font-family: '나눔손글씨붓';
   src: url('../fonts/나눔손글씨붓.ttf') format('truetype');
 }
@@ -236,5 +224,3 @@
 .align-justify-icon {
   background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h18v2H3V3zm0 4h18v2H3V7zm0 4h18v2H3v-2zm0 4h18v2H3v-2zm0 4h18v2H3v-2z"/></svg>');
 }
-
-  
