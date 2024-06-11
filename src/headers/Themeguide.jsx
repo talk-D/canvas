@@ -55,7 +55,19 @@ export function Themeguide() {
     };
 
     const handlenNotification = () => {
-        window.location.href = "/step2/notification";
+        const themeType = localStorage.getItem("themeType");
+        switch (themeType) {
+            case "1":
+                window.location.href = "/step2/Notification";
+                break;
+            case "2":
+                window.location.href = "/step2/CharacterNotification";
+                break;
+            default:
+                // Handle the case where themeType is missing or invalid
+                console.warn("오류 발생! 처음부터 다시 시작해주세요.");
+                break;
+        }
     };
 
     const handleStep3 = () => {

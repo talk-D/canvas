@@ -68,64 +68,85 @@ function CharacterChatroom() {
     const [characterChatroomInputIconColor, setCharacterChatroomInputIconColor] = useState(localStorage.getItem('characterChatroomInputIconColor') || '#000000');
     const [characterChatroomSetProfileColor, setCharacterChatroomSetProfileColor] = useState(localStorage.getItem("friendlistProfileColor") || '#000000');
 
+    const [characterChatroomReceiveImg, setCharacterChatroomReceiveImg] = useState(localStorage.getItem('characterChatroomReceiveImg') || null);
+    const [characterChatroomSendImg, setCharacterChatroomSendImg] = useState(localStorage.getItem('characterChatroomSendImg') || null);
+
     const handleChangeCharacterChatroomBgColor = (color) => {
         setCharacterChatroomBgColor(color.hex);
+        localStorage.setItem('characterChatroomBgColor', color.hex);
     }
 
     const handleChangeCharacterChatroomTitleColor = (color) => {
         setCharacterChatroomTitleColor(color.hex);
+        localStorage.setItem('characterChatroomTitleColor', color.hex);
     }
 
     const handleChangeCharacterChatroomNameColor = (color) => {
         setCharacterChatroomNameColor(color.hex);
+        localStorage.setItem('characterChatroomNameColor', color.hex);
     }
 
     const handleChangeCharacterChatroomReceiveBg1Color = (color) => {
         setCharacterChatroomReceiveBg1Color(color.hex);
+        localStorage.setItem('characterChatroomReceiveBg1Color', color.hex);
     }
 
     const handleChangeCharacterChatroomReceiveTextColor = (color) => {
         setCharacterChatroomReceiveTextColor(color.hex);
+        localStorage.setItem('characterChatroomReceiveTextColor', color.hex);
     }
 
     const handleChangeCharacterChatroomReceiveBg2Color = (color) => {
         setCharacterChatroomReceiveBg2Color(color.hex);
+        localStorage.setItem('characterChatroomReceiveBg2Color', color.hex);
     }
 
     const handleChangeCharacterChatroomReceiveUnreadTextColor = (color) => {
         setCharacterChatroomReceiveUnreadTextColor(color.hex);
+        localStorage.setItem('characterChatroomReceiveUnreadTextColor', color.hex);
     }
 
     const handleChangeCharacterChatroomSendBg1Color = (color) => {
         setCharacterChatroomSendBg1Color(color.hex);
+        localStorage.setItem('characterChatroomSendBg1Color', color.hex);
     }
 
     const handleChangeCharacterChatroomSendTextColor = (color) => {
         setCharacterChatroomSendTextColor(color.hex);
+        localStorage.setItem('characterChatroomSendTextColor', color.hex);
     }
 
     const handleChangeCharacterChatroomSendBg2Color = (color) => {
         setCharacterChatroomSendBg2Color(color.hex);
+        localStorage.setItem('characterChatroomSendBg2Color', color.hex);
     }
 
     const handleChangeCharacterChatroomSendUnreadTextColor = (color) => {
         setCharacterChatroomSendUnreadTextColor(color.hex);
+        localStorage.setItem('characterChatroomSendUnreadTextColor', color.hex);
     }
 
     const handleChangeCharacterChatroomInputBgColor = (color) => {
         setCharacterChatroomInputBgColor(color.hex);
+        localStorage.setItem('characterChatroomInputBgColor', color.hex);
     }
 
     const handleChangeCharacterChatroomInputIconColor = (color) => {
         setCharacterChatroomInputIconColor(color.hex);
+        localStorage.setItem('characterChatroomInputIconColor', color.hex);
     }
 
-    const handleCharacterChatroomPreviousButton = () => {
-        window.location.href = "/step2/tabbar";
-    }
+    useEffect(() => {
+        if (characterChatroomReceiveImg) {
+            localStorage.setItem('characterChatroomReceiveImg', characterChatroomReceiveImg);
+        }
+    }, [characterChatroomReceiveImg]);
 
-    const [selectedReceiveImage, setSelectedReceiveImage] = useState(null);
-    const [selectedSendImage, setSelectedSendImage] = useState(null);
+    useEffect(() => {
+        if (characterChatroomSendImg) {
+            localStorage.setItem('characterChatroomSendImg', characterChatroomSendImg);
+        }
+    }, [characterChatroomSendImg]);
 
     const handleChangeCharacterChatroomReceiveImg = () => {
         const input = document.createElement('input');
@@ -136,7 +157,7 @@ function CharacterChatroom() {
             if (file) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    setSelectedReceiveImage(e.target.result);
+                    setCharacterChatroomReceiveImg(e.target.result);
                 };
                 reader.readAsDataURL(file);
             }
@@ -153,17 +174,22 @@ function CharacterChatroom() {
             if (file) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    setSelectedSendImage(e.target.result);
+                    setCharacterChatroomSendImg(e.target.result);
                 };
                 reader.readAsDataURL(file);
             }
         };
         input.click();
     };
+
+    const handleCharacterChatroomPreviousButton = () => {
+        window.location.href = "/step2/tabbar";
+    }
+
     const handleCharacterChatroomButton = async () => {
         try {
-            if (selectedSendImage) {
-                const sendBlob = await mergeSvgWithImage(Target_character_chatroom_send_bg1_color_cmp, { characterChatroomSendBg1Color }, selectedSendImage, 97, 12, 89, 115);
+            if (characterChatroomSendImg) {
+                const sendBlob = await mergeSvgWithImage(Target_character_chatroom_send_bg1_color_cmp, { characterChatroomSendBg1Color }, characterChatroomSendImg, 97, 12, 89, 115);
                 console.log('Send Blob:', sendBlob);
 
                 const formData1 = new FormData();
@@ -185,8 +211,8 @@ function CharacterChatroom() {
                 });
             }
 
-            if (selectedReceiveImage) {
-                const receiveBlob = await mergeSvgWithImage(Target_character_chatroom_receive_bg1_color_cmp, { characterChatroomReceiveBg1Color }, selectedReceiveImage, 26, 10, 89, 115);
+            if (characterChatroomReceiveImg) {
+                const receiveBlob = await mergeSvgWithImage(Target_character_chatroom_receive_bg1_color_cmp, { characterChatroomReceiveBg1Color }, characterChatroomReceiveImg, 26, 10, 89, 115);
                 console.log('Receive Blob:', receiveBlob);
 
                 const formData1 = new FormData();
@@ -208,9 +234,7 @@ function CharacterChatroom() {
                 });
             }
 
-
             // 기존 색상 처리 로직 유지
-
             await convertSvgToPng(Target_character_chatroom_receive_bg2_color_cmp, { characterChatroomReceiveBg2Color }, 'chatroomBubbleReceive02@3x.png');
             await convertSvgToPng(Target_character_chatroom_receive_bg2_color_cmp, { characterChatroomReceiveBg2Color }, 'chatroomBubbleReceive02Selected@3x.png');
 
@@ -232,7 +256,11 @@ function CharacterChatroom() {
             localStorage.setItem('characterChatroomReceiveBg2Color', characterChatroomReceiveBg2Color);
             localStorage.setItem('characterChatroomSendBg1Color', characterChatroomSendBg1Color);
             localStorage.setItem('characterChatroomSendBg2Color', characterChatroomSendBg2Color);
-            window.location.href = '/step2/Notification';
+            localStorage.setItem('characterChatroomReceiveImg', characterChatroomReceiveImg);
+            localStorage.setItem('characterChatroomSendImg', characterChatroomSendImg);
+
+
+            window.location.href = '/step2/CharacterNotification';
         } catch (error) {
             console.error('Error uploading image:', error);
         }
@@ -331,11 +359,11 @@ function CharacterChatroom() {
                     </div>
 
                     <div className='character_chatroom_receive_img'>
-                        <Character_chatroom_receive_img_cmp src={selectedReceiveImage} />
+                        <Character_chatroom_receive_img_cmp src={characterChatroomReceiveImg} />
                     </div>
 
                     <div className='character_chatroom_send_img'>
-                        <Character_chatroom_send_img_cmp src={selectedSendImage} />
+                        <Character_chatroom_send_img_cmp src={characterChatroomSendImg} />
                     </div>
                 </div>
 

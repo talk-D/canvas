@@ -1,0 +1,54 @@
+
+.notification_zone{
+    position: absolute;
+    top: 553.2px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 472px;
+    width: 430px;
+}
+
+.notification_bg_color{
+    height: 472px;
+    overflow: hidden;
+}
+
+.notification_setting_zone{
+    position: absolute;
+    top: 553.2px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 472px;
+    width: 430px;
+}
+
+.notification_character_chatroom_receive_img{
+    position: absolute;
+    left: 105.5px;
+    top: 273.9px;
+}
+
+.notification_character_chatroom_send_img{
+    position: absolute;
+    left: 341.5px;
+    top: 101.5px;
+}
+
+
+.notification_bg_color_set{
+    position: absolute;
+    left: 330px;
+    top: 36px;
+}
+
+.notification_name_color_set{
+    position: absolute;
+    left: 140px;
+    top: 10px;
+}
+
+.notification_message_color_set{
+    position: absolute;
+    left: 280px;
+    top: 25px;
+}
