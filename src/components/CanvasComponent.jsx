@@ -82,6 +82,8 @@ const CanvasComponent = () => {
     setDraggingText(null);
     setDraggingImage(null);
     setResizingImage(null);
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', handleMouseUp2);
   };
 
   const handleImageClick = (image) => {
@@ -260,10 +262,13 @@ const CanvasComponent = () => {
     if (selectedShape) {
       setShapes(prevShapes => {
         const otherShapes = prevShapes.filter(shape => shape !== selectedShape);
-        return [...otherShapes, selectedShape];
+        const newShape = { ...selectedShape, id: Date.now() }; // 새로운 ID를 부여
+        return [...otherShapes, newShape];
       });
+      setSelectedShape(null); // 기존 선택된 도형을 해제
     }
   };
+  
 
   const moveSelectedShape = (dx, dy) => {
     if (selectedShape) {
@@ -294,6 +299,8 @@ const CanvasComponent = () => {
     const context = canvas.getContext('2d');
 
     if (type === 'text') {
+
+
       setDraggingText(id);
       setSelectedTextId(prevSelectedTextId => (prevSelectedTextId === id ? null : id));
     } else if (type === 'image') {
@@ -385,11 +392,16 @@ const CanvasComponent = () => {
     } else if (resizingImage !== null) {
       const updatedImages = images.map((image) => {
         if (image.id === resizingImage) {
+          const newWidth = Math.max(10, e.clientX - canvasRef.current.getBoundingClientRect().left - image.left);
+          const newHeight = Math.max(10, e.clientY - canvasRef.current.getBoundingClientRect().top - image.top);
+  
+          const boundedWidth = Math.min(newWidth, canvasRef.current.width - image.left);
+          const boundedHeight = Math.min(newHeight, canvasRef.current.height - image.top);
+          
           return {
             ...image,
-            width: Math.max(50, e.clientX - canvasRef.current.getBoundingClientRect().left - image.left),
-            height: Math.max(50, e.clientY - canvasRef.current.getBoundingClientRect().top - image.top),
-          };
+            width: boundedWidth,
+            height: boundedHeight,          };
         }
         return image;
       });
@@ -528,6 +540,13 @@ const CanvasComponent = () => {
     };
     setSelectedColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
     setShapes(prevShapes => [...prevShapes, newSvg]);
+  };
+
+  const handleDeleteSelectedImage = () => {
+    if (selectedImageId !== null) {
+      setImages(prevImages => prevImages.filter(image => image.id !== selectedImageId));
+      setSelectedImageId(null);
+    }
   };
 
 
@@ -733,6 +752,12 @@ const CanvasComponent = () => {
           <button className='drawer-icon-button' onClick={clearShapes}>캔버스 초기화</button>
         </div>
       )}
+      { selectedImageId != null && (
+  <div className='color-picker-container'>
+    <button className='drawer-icon-button' onClick={handleDeleteSelectedImage}>선택 이미지 삭제</button>
+    <button className='drawer-icon-button' onClick={clearShapes}>캔버스 초기화</button>
+  </div>
+)}
     </div>
   );
 };
