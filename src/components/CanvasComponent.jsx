@@ -8,12 +8,21 @@ import Bubble2 from '../icons/Bubble2'
 import Heart1 from '../icons/Heart1'
 import Heart2 from '../icons/Heart2'
 import Heart3 from '../icons/Heart3'
-import { SketchPicker } from 'react-color';
 import PixelHeart from '../icons/PixelHeart';
 import Bone from '../icons/Bone';
 import Bubble3 from '../icons/Bubble3';
 import Bubble4 from '../icons/Bubble4';
+import Triangle1 from '../icons/Triangle1';
+import Polygon from '../icons/Polygon';
 import ReactDOMServer from 'react-dom/server';
+import Star2 from '../icons/Star2';
+import Rect from '../icons/Rect';
+import Apple from '../icons/Apple';
+import Arrow from '../icons/Arrow';
+import Avocado from '../icons/Avocado';
+import Cloud from '../icons/Cloud';
+import Medal from '../icons/Medal';
+import Arrow2 from '../icons/Arrow2';
 
 const CanvasComponent = () => {
   const canvasRef = useRef(null);
@@ -36,8 +45,9 @@ const CanvasComponent = () => {
   const [resizingImage, setResizingImage] = useState(null);
   const [selectedFigureId, setSelectedFigureId] = useState(-1);
   const [selectedTextId, setSelectedTextId] = useState(null); // 추가된 상태
+  const [selectedImageId, setSelectedImageId] = useState(null);
   const [selectedShapeId, setSelectedShapeId] = useState(null);
-
+  
   const handleTextIconClick = () => {
     setSelectedFigureIcon(false);
     setSelectedBasicIcon(false);
@@ -68,24 +78,37 @@ const CanvasComponent = () => {
     setTexts([...texts, newText]);
     setShowTextEditor(false);
   };
+  
 
   const handleMouseDown2 = (e, id, type) => {
     if (type === 'text') {
       setDraggingText(id);
-      setSelectedTextId(prevSelectedTextId => (prevSelectedTextId === id ? null : id)); // 선택된 텍스트를 다시 누르면 윤곽선 제거
+      setSelectedTextId(prevSelectedTextId => (prevSelectedTextId === id ? null : id)); 
     } else if (type === 'image') {
       setDraggingImage(id);
+      setSelectedImageId(prevSelectedImageId => (prevSelectedImageId === id ? null : id));
     }
   };
-
+  
+  
   const handleMouseMove2 = (e) => {
     if (draggingText !== null) {
       const updatedTexts = texts.map((text) => {
         if (text.id === draggingText) {
+          const newTop = e.clientY - canvasRef.current.getBoundingClientRect().top;
+          const newLeft = e.clientX - canvasRef.current.getBoundingClientRect().left;
+  
+          const textElement = document.getElementById(`text-${text.id}`);
+          const textWidth = textElement.offsetWidth;
+          const textHeight = textElement.offsetHeight;
+  
+          const boundedTop = Math.max(0, Math.min(newTop, canvasRef.current.height - textHeight));
+          const boundedLeft = Math.max(0, Math.min(newLeft, canvasRef.current.width - textWidth));
+  
           return {
             ...text,
-            top: e.clientY - canvasRef.current.getBoundingClientRect().top,
-            left: e.clientX - canvasRef.current.getBoundingClientRect().left,
+            top: boundedTop,
+            left: boundedLeft,
           };
         }
         return text;
@@ -94,10 +117,16 @@ const CanvasComponent = () => {
     } else if (draggingImage !== null) {
       const updatedImages = images.map((image) => {
         if (image.id === draggingImage) {
+          const newTop = e.clientY - canvasRef.current.getBoundingClientRect().top;
+          const newLeft = e.clientX - canvasRef.current.getBoundingClientRect().left;
+  
+          const boundedTop = Math.max(0, Math.min(newTop, canvasRef.current.height - image.height));
+          const boundedLeft = Math.max(0, Math.min(newLeft, canvasRef.current.width - image.width));
+  
           return {
             ...image,
-            top: e.clientY - canvasRef.current.getBoundingClientRect().top,
-            left: e.clientX - canvasRef.current.getBoundingClientRect().left,
+            top: boundedTop,
+            left: boundedLeft,
           };
         }
         return image;
@@ -106,10 +135,16 @@ const CanvasComponent = () => {
     } else if (resizingImage !== null) {
       const updatedImages = images.map((image) => {
         if (image.id === resizingImage) {
+          const newWidth = Math.max(10, e.clientX - canvasRef.current.getBoundingClientRect().left - image.left);
+          const newHeight = Math.max(10, e.clientY - canvasRef.current.getBoundingClientRect().top - image.top);
+  
+          const boundedWidth = Math.min(newWidth, canvasRef.current.width - image.left);
+          const boundedHeight = Math.min(newHeight, canvasRef.current.height - image.top);
+  
           return {
             ...image,
-            width: Math.max(50, e.clientX - canvasRef.current.getBoundingClientRect().left - image.left),
-            height: Math.max(50, e.clientY - canvasRef.current.getBoundingClientRect().top - image.top),
+            width: boundedWidth,
+            height: boundedHeight,
           };
         }
         return image;
@@ -117,11 +152,13 @@ const CanvasComponent = () => {
       setImages(updatedImages);
     }
   };
-
+  
   const handleMouseUp2 = () => {
     setDraggingText(null);
     setDraggingImage(null);
     setResizingImage(null);
+    document.removeEventListener('mousemove', handleMouseMove2);
+    document.removeEventListener('mouseup', handleMouseUp2);
   };
 
   const handleImageClick = (image) => {
@@ -134,8 +171,9 @@ const CanvasComponent = () => {
       height: 100,
     };
     setImages([...images, newImage]);
+    setSelectedImageId(images.length); // 선택된 이미지 ID 설정
   };
-
+  
   const handleResizeMouseDown = (e, id) => {
     e.stopPropagation();
     setResizingImage(id);
@@ -163,7 +201,7 @@ const CanvasComponent = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-
+    
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = frameColor;
     context.fillRect(0, 0, canvas.width, canvas.height);
@@ -175,17 +213,6 @@ const CanvasComponent = () => {
       } else if (shape.type === 'ellipse') {
         context.beginPath();
         context.ellipse(shape.x + shape.width / 2, shape.y + shape.height / 2, shape.width / 2, shape.height / 2, 0, 0, 2 * Math.PI);
-        context.fill();
-      } else if (shape.type === 'polygon' || shape.type === 'star' || shape.type === 'triangle') {
-        context.beginPath();
-        shape.points.forEach((point, index) => {
-          if (index === 0) {
-            context.moveTo(point.x, point.y);
-          } else {
-            context.lineTo(point.x, point.y);
-          }
-        });
-        context.closePath();
         context.fill();
       } else if (shape.type === 'svg') {
         const img = new Image();
@@ -234,6 +261,8 @@ const CanvasComponent = () => {
   const handleBlur = () => {
     if (canvasRef.current) {
       canvasRef.current.style.outline = 'none'; // 윤곽선 제거
+    }else{
+      canvasRef.current.style.outline = '1px solid #FFBB6D';
     }
   };
 
@@ -263,24 +292,6 @@ const CanvasComponent = () => {
     setShapes(prevShapes => [...prevShapes, newEllipse]);
   };
 
-  const addPolygon = () => {
-    const newPolygon = {
-      id: shapes.length,
-      type: 'polygon',
-      x: 100,
-      y: 100,
-      points: [
-        { x: 100, y: 100 },
-        { x: 150, y: 120 },
-        { x: 130, y: 170 },
-        { x: 70, y: 170 },
-        { x: 50, y: 120 },
-      ],
-      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-    };
-    setShapes(prevShapes => [...prevShapes, newPolygon]);
-  };
-
   const createPolygonPath = (points) => {
     const path = new Path2D();
     points.forEach((point, index) => {
@@ -292,60 +303,6 @@ const CanvasComponent = () => {
     });
     path.closePath();
     return path;
-  };
-
-  const addStar = () => {
-    const newStar = {
-      id: shapes.length,
-      type: 'star',
-      x: 100,
-      y: 100,
-      points: calculateStarPoints(100, 100, 5, 30, 15),
-      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-    };
-    setShapes(prevShapes => [...prevShapes, newStar]);
-  };
-
-  const addTriangle = () => {
-    const newTriangle = {
-      id: shapes.length,
-      type: 'triangle',
-      x: 100,
-      y: 100,
-      points: [
-        { x: 100, y: 50 },
-        { x: 50, y: 150 },
-        { x: 150, y: 150 }
-      ],
-      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-    };
-    setShapes(prevShapes => [...prevShapes, newTriangle]);
-  };
-
-  const calculateStarPoints = (centerX, centerY, arms, outerRadius, innerRadius) => {
-    const points = [];
-    const angle = Math.PI / arms;
-    for (let i = 0; i < 2 * arms; i++) {
-      const radius = i % 2 === 0 ? outerRadius : innerRadius;
-      const pointX = centerX + Math.cos(i * angle) * radius;
-      const pointY = centerY + Math.sin(i * angle) * radius;
-      points.push({ x: pointX, y: pointY });
-    }
-    return points;
-  };
-
-  const addSvg = () => {
-    const newSvg = {
-      id: shapes.length,
-      type: 'svg',
-      x: 100,
-      y: 100,
-      width: 50,
-      height: 50,
-      color: 'green',
-      src: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53z"/></svg>' // currentColor를 사용하여 색상 변경 가능
-    };
-    setShapes(prevShapes => [...prevShapes, newSvg]);
   };
 
   const handleClick = (e) => {
@@ -437,13 +394,7 @@ const CanvasComponent = () => {
       if (clickedShape) {
         setSelectedShape(clickedShape);
         setDragging(true);
-        if (clickedShape.type === 'polygon' || clickedShape.type === 'star' || clickedShape.type === 'triangle') {
-          const offsetX = x - clickedShape.points[0].x;
-          const offsetY = y - clickedShape.points[0].y;
-          setDragOffset({ x: offsetX, y: offsetY });
-        } else {
-          setDragOffset({ x: x - clickedShape.x, y: y - clickedShape.y });
-        }
+        setDragOffset({ x: x - clickedShape.x, y: y - clickedShape.y });     
       }
     }
   };
@@ -521,12 +472,12 @@ const CanvasComponent = () => {
   const clearShapes = () => {
     setShapes([]);
     setSelectedShape(null);
-    setFrameColor("#ffffff")
-    setTexts(prevTexts => prevTexts.filter(text => text.id !== selectedTextId));
+    setFrameColor("#ffffff");
+    setTexts([]);
     setSelectedTextId(null);
-    
-
+    setImages([]);  // 이미지 초기화
   };
+  
 
   const deleteSelectedShape = () => {
     if (selectedShape) {
@@ -546,10 +497,12 @@ const CanvasComponent = () => {
   
       // Update the SVG src if the shape is an SVG
       if (selectedShape.type === 'svg') {
-        const svgElement = new DOMParser().parseFromString(selectedShape.src, "image/svg+xml").documentElement;
+        const svgElement = new DOMParser().parseFromString(decodeURIComponent(selectedShape.src.split(',')[1]), "image/svg+xml").documentElement;
         console.log(color);
         svgElement.setAttribute('fill', color);
-        const updatedSvgSrc = new XMLSerializer().serializeToString(svgElement);
+        
+        const updatedSvgSrc = `data:image/svg+xml;utf8,${encodeURIComponent(new XMLSerializer().serializeToString(svgElement))}`;
+
         const updatedSvg = {
           ...selectedShape,
           src: updatedSvgSrc
@@ -558,22 +511,11 @@ const CanvasComponent = () => {
           shape.id === selectedShape.id ? updatedSvg : shape
         ));
         setSelectedShape(updatedSvg);
+        console.log(updatedSvg);
       }
     }
   };
 
-  const handleColorChange2 = (event) => {
-    const color = event.target.value;
-    setSelectedColor(color);
-
-    if (selectedShapeId !== null) {
-      setShapes(prevShapes => 
-        prevShapes.map(shape => 
-          shape.id === selectedShapeId ? { ...shape, color } : shape
-        )
-      );
-    }
-  };
 
   const handleSelectedFigureIcon = () => {
     setSelectedFigureIcon(!selectedFigureIcon);
@@ -596,6 +538,14 @@ const CanvasComponent = () => {
     }
   };
 
+  const handleDeleteSelectedImage = () => {
+    if (selectedImageId !== null) {
+      setImages(prevImages => prevImages.filter(image => image.id !== selectedImageId));
+      setSelectedImageId(null);
+    }
+  };
+  
+
   const handleIconClick = (svgSource) => {
     const svgString = ReactDOMServer.renderToStaticMarkup(svgSource);
     const newSvg = {
@@ -605,15 +555,14 @@ const CanvasComponent = () => {
       y: 50,
       width: 50,
       height: 50,
-      //color: selectedColor,
-      src: `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`,
+      src: `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`
     };
+    setSelectedColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
     setShapes(prevShapes => [...prevShapes, newSvg]);
   };
-  const handleShapeClick = (id) => {
-    setSelectedShapeId(id);
-  };
 
+
+  
   
   return (
     <div className='container' onClick={handleContainerClick} onMouseMove={handleMouseMove2} onMouseUp={handleMouseUp2}>
@@ -633,20 +582,17 @@ const CanvasComponent = () => {
       </div>
       { selectedFigureIcon && (
         <div className='left-drawer'>
-          <div onClick={addRectangle} className='drawer-icon'>
+          <div onClick={() => handleIconClick(<Rect color={selectedColor}/>)} className='drawer-icon'>
               Rectangle
             </div>
             <div onClick={addEllipse} className='drawer-icon'>
               Ellipse
             </div>
-            <div onClick={addTriangle} className='drawer-icon'>
+            <div className='drawer-icon' onClick={() => handleIconClick(<Triangle1 color={selectedColor}/>)}>
               Triangle
             </div>
-            <div onClick={addPolygon} className='drawer-icon'>
+            <div onClick={() => handleIconClick(<Polygon color={selectedColor}/>)} className='drawer-icon'>
               Polygon
-            </div>
-            <div onClick={addStar} className='drawer-icon'>
-              Star
             </div>
         </div>
       )}
@@ -657,42 +603,53 @@ const CanvasComponent = () => {
           <div className='basic-icon-grid-container'>
             <div className='basic-icon-grid'>
             
-            <div className='drawer-basic-icon' onClick={() => handleIconClick(`data:image/svg+xml;utf8,<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M24.9998 6.25C36.4582 6.25 45.8332 13.7083 45.8332 22.9167C45.8332 32.125 36.4582 39.5833 24.9998 39.5833C22.4165 39.5833 19.9373 39.2083 17.6457 38.5417C11.5623 43.75 4.1665 43.75 4.1665 43.75C9.02067 38.8958 9.7915 35.625 9.89567 34.375C6.354 31.3958 4.1665 27.3542 4.1665 22.9167C4.1665 13.7083 13.5415 6.25 24.9998 6.25Z" fill="#f00000"/></svg>`)}>
+            <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble2 color={selectedColor}/>)}>
               <Bubble2 />
             </div>
               <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble color={selectedColor} />)}>
                 <Bubble />
               </div>          
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(Bubble3)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble3 color={selectedColor}/>)}>
                 <Bubble3 />
               </div>
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(Heart1)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Heart1 color={selectedColor}/>)}>
                 <Heart1 />
               </div>
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(Heart2)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Heart2 color={selectedColor}/>)}>
                 <Heart2 />
               </div>
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(Heart3)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Heart3 color={selectedColor}/>)}>
                 <Heart3 />
               </div>
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(PixelHeart)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<PixelHeart color={selectedColor}/>)}>
                 <PixelHeart />
               </div>
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(Bone)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bone color={selectedColor}/>)}>
                 <Bone />
               </div>
-              <div className='drawer-basic-icon' onClick={() => handleIconClick(Bubble4)}>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble4 color={selectedColor}/>)}>
                 <Bubble4 />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Star2 color={selectedColor}/>)}>
+                <Star2 />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Arrow color={selectedColor}/>)}>
+                <Arrow />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Avocado color={selectedColor}/>)}>
+                <Avocado />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Cloud color={selectedColor}/>)}>
+                <Cloud />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Medal color={selectedColor}/>)}>
+                <Medal />
+              </div>
+              <div className='drawer-basic-icon' onClick={() => handleIconClick(<Arrow2 color={selectedColor}/>)}>
+                <Arrow2 />
               </div>
             </div>
           </div>
-          
-      <div style={{ marginTop: 'auto' }}>
-        <SketchPicker
-          color={selectedColor}
-          onChangeComplete={(color) => handleColorChange(color.hex)}
-        />
-      </div>
           
     </div>
     )}
@@ -725,27 +682,28 @@ const CanvasComponent = () => {
     onMouseUp={handleMouseUp}
   />
   {texts.map((text) => (
-  <div
-    key={text.id}
-    onMouseDown={(e) => handleMouseDown2(e, text.id, 'text')}
-    style={{
-      position: 'absolute',
-      top: `${text.top}px`,
-      left: `${text.left}px`,
-      cursor: 'move',
-      outline: selectedTextId === text.id ? '2px solid #FFBB6D' : 'none',
-      fontSize: text.fontSize,
-      fontFamily: text.fontFamily,
-      fontWeight: text.fontWeight,
-      fontStyle: text.fontStyle,
-      textDecoration: text.textDecoration,
-      color: text.color,
-    }}
-  >
-    <div dangerouslySetInnerHTML={{ __html: text.content }} />
-  </div>
-))}
-
+    <div
+      key={text.id}
+      id={`text-${text.id}`}
+      onMouseDown={(e) => handleMouseDown2(e, text.id, 'text')}
+      style={{
+        position: 'absolute',
+        top: `${text.top}px`,
+        left: `${text.left}px`,
+        cursor: 'move',
+        outline: selectedTextId === text.id ? '2px solid #FFBB6D' : 'none', // 선택된 텍스트의 윤곽선 노란색으로 변경
+        whiteSpace: 'nowrap', // 텍스트를 한 줄로 고정
+        fontSize: text.fontSize,
+        fontFamily: text.fontFamily,
+        fontWeight: text.fontWeight,
+        fontStyle: text.fontStyle,
+        textDecoration: text.textDecoration,
+        color: text.color,
+      }}
+    >
+      <div dangerouslySetInnerHTML={{ __html: text.content }} />
+    </div>
+  ))}
   {images.map((image) => (
     <div
       key={image.id}
@@ -796,6 +754,12 @@ const CanvasComponent = () => {
           <button className='drawer-icon-button' onClick={clearShapes}>캔버스 초기화</button>
         </div>
       )}
+      { selectedImageId != null && (
+  <div className='color-picker-container'>
+    <button className='drawer-icon-button' onClick={handleDeleteSelectedImage}>선택 이미지 삭제</button>
+    <button className='drawer-icon-button' onClick={clearShapes}>캔버스 초기화</button>
+  </div>
+)}
     </div>
   );
 };
