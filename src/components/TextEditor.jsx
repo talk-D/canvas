@@ -131,10 +131,10 @@ const TextEditor = ({ onSave }) => {
         <button className={`format-button ${align === 'justify' ? 'active' : ''}`} onClick={() => handleAlignChange('Full')}>
           <span className="align-justify-icon"></span>
         </button>
-        <label htmlFor="color-picker" className="color-picker-label">
-          <span className="color-picker">A</span> {/* 아이콘으로 A 표시 */}
+        <label htmlFor="color-picker2" className="color-picker-label">
+          <span className="color-picker2">A</span> {/* 아이콘으로 A 표시 */}
         </label>
-        <input type="color" id="color-picker" value={color} onChange={handleColorChange} className="color-picker-input" style={{ display: 'none' }} />
+        <input type="color" id="color-picker2" value={color} onChange={handleColorChange} className="color-picker-input" style={{ display: 'none' }} />
       </div>
       <div
         contentEditable

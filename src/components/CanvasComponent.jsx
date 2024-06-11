@@ -22,6 +22,7 @@ import Avocado from '../icons/Avocado';
 import Cloud from '../icons/Cloud';
 import Medal from '../icons/Medal';
 import Arrow2 from '../icons/Arrow2';
+import '../styles/Theme.css';
 
 const CanvasComponent = () => {
   const canvasRef = useRef(null);
@@ -110,6 +111,10 @@ const CanvasComponent = () => {
       }
       setSelectedFigureId(-1);
       setSelectedTextId(null);
+      setSelectedFigureIcon(false);
+      setSelectedBasicIcon(false);
+      setShowTextEditor(false);
+      setShowImageUploader(false);
     }
   };
 
@@ -236,9 +241,12 @@ const CanvasComponent = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const context = canvas.getContext('2d');
+    
+    // Deselect all other items
     setSelectedTextId(null);
     setSelectedImageId(null);
-    
+    setSelectedShape(null);
+
 
     const clickedShape = shapes.slice().reverse().find(
       shape => shape.type === 'rectangle'
@@ -259,15 +267,24 @@ const CanvasComponent = () => {
   };
 
   const bringToFront = () => {
-    if (selectedShape) {
-      setShapes(prevShapes => {
-        const otherShapes = prevShapes.filter(shape => shape !== selectedShape);
-        const newShape = { ...selectedShape, id: Date.now() }; // 새로운 ID를 부여
-        return [...otherShapes, newShape];
-      });
-      setSelectedShape(null); // 기존 선택된 도형을 해제
-    }
-  };
+  if (selectedShape) {
+    setShapes(prevShapes => {
+      const otherShapes = prevShapes.filter(shape => shape !== selectedShape);
+      return [...otherShapes, selectedShape];
+    });
+    setSelectedShape(null); // 선택된 상태를 해제
+  }
+
+  if (selectedImageId !== null) {
+    setImages(prevImages => {
+      const selectedImage = prevImages.find(image => image.id === selectedImageId);
+      const otherImages = prevImages.filter(image => image.id !== selectedImageId);
+      return [selectedImage, ...otherImages]; // 이미지가 도형 아래로 가도록 수정
+    });
+    setSelectedImageId(null); // 선택된 상태를 해제
+  }
+};
+
   
 
   const moveSelectedShape = (dx, dy) => {
@@ -298,9 +315,12 @@ const CanvasComponent = () => {
     const y = e.clientY - rect.top;
     const context = canvas.getContext('2d');
 
+    // Deselect all other items
+    setSelectedTextId(null);
+    setSelectedImageId(null);
+    setSelectedShape(null);
+
     if (type === 'text') {
-
-
       setDraggingText(id);
       setSelectedTextId(prevSelectedTextId => (prevSelectedTextId === id ? null : id));
     } else if (type === 'image') {
@@ -686,7 +706,7 @@ const CanvasComponent = () => {
         top: `${text.top}px`,
         left: `${text.left}px`,
         cursor: 'move',
-        outline: selectedTextId === text.id ? '2px solid #FFBB6D' : 'none', // 선택된 텍스트의 윤곽선 노란색으로 변경
+        outline: selectedTextId === text.id ? '3px solid #FFBB6D' : 'none', // 선택된 텍스트의 윤곽선 노란색으로 변경
         whiteSpace: 'nowrap', // 텍스트를 한 줄로 고정
         fontSize: text.fontSize,
         fontFamily: text.fontFamily,
@@ -753,10 +773,10 @@ const CanvasComponent = () => {
         </div>
       )}
       { selectedImageId != null && (
-  <div className='color-picker-container'>
-    <button className='drawer-icon-button' onClick={handleDeleteSelectedImage}>선택 이미지 삭제</button>
-    <button className='drawer-icon-button' onClick={clearShapes}>캔버스 초기화</button>
-  </div>
+      <div className='color-picker-container'>
+        <button className='drawer-icon-button' onClick={handleDeleteSelectedImage}>선택 이미지 삭제</button>
+        <button className='drawer-icon-button' onClick={clearShapes}>캔버스 초기화</button>
+      </div>
 )}
     </div>
   );
