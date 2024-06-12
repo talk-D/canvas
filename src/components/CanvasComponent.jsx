@@ -97,6 +97,7 @@ const CanvasComponent = () => {
       height: 100,
     };
     setImages([...images, newImage]);
+    setSelectedImageId(images.length); // 선택된 이미지 ID 설정
   };
 
   const handleResizeMouseDown = (e, id) => {
@@ -111,13 +112,17 @@ const CanvasComponent = () => {
       }
       setSelectedFigureId(-1);
       setSelectedTextId(null);
-      setSelectedFigureIcon(false);
-      setSelectedBasicIcon(false);
-      setShowTextEditor(false);
-      setShowImageUploader(false);
     }
   };
 
+  const handleFrameClick = (e) => {
+    if (e.target.classList.contains('frame')) {
+      if (canvasRef.current) {
+        canvasRef.current.style.border = '3px solid #FF9900';
+      }
+      setSelectedFigureId(-1);
+    }
+  };
 
   useEffect(() => {
   const canvas = canvasRef.current;
@@ -241,12 +246,6 @@ const CanvasComponent = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const context = canvas.getContext('2d');
-    
-    // Deselect all other items
-    setSelectedTextId(null);
-    setSelectedImageId(null);
-    setSelectedShape(null);
-
 
     const clickedShape = shapes.slice().reverse().find(
       shape => shape.type === 'rectangle'
@@ -274,7 +273,6 @@ const CanvasComponent = () => {
     });
     setSelectedShape(null); // 선택된 상태를 해제
   }
-
   if (selectedImageId !== null) {
     setImages(prevImages => {
       const selectedImage = prevImages.find(image => image.id === selectedImageId);
@@ -294,12 +292,6 @@ const CanvasComponent = () => {
         x: selectedShape.x + dx,
         y: selectedShape.y + dy
       };
-      if (selectedShape.type === 'polygon' || selectedShape.type === 'star' || selectedShape.type === 'triangle') {
-        updatedShape.points = updatedShape.points.map(point => ({
-          x: point.x + dx,
-          y: point.y + dy
-        }));
-      }
       const updatedShapes = shapes.map(shape =>
         shape === selectedShape ? updatedShape : shape
       );
@@ -314,11 +306,6 @@ const CanvasComponent = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const context = canvas.getContext('2d');
-
-    // Deselect all other items
-    setSelectedTextId(null);
-    setSelectedImageId(null);
-    setSelectedShape(null);
 
     if (type === 'text') {
       setDraggingText(id);
