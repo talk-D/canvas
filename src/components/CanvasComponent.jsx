@@ -115,14 +115,6 @@ const CanvasComponent = () => {
     }
   };
 
-  const handleFrameClick = (e) => {
-    if (e.target.classList.contains('frame')) {
-      if (canvasRef.current) {
-        canvasRef.current.style.border = '3px solid #FF9900';
-      }
-      setSelectedFigureId(-1);
-    }
-  };
 
   useEffect(() => {
   const canvas = canvasRef.current;
