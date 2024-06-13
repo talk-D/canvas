@@ -5,11 +5,11 @@
         
         ManifestStyle
         {
-            -kakaotalk-theme-name: ㅕ;
+            -kakaotalk-theme-name: 샘플테마입니다.;
             -kakaotalk-theme-version: 10.3.5; 
             -kakaotalk-theme-url: 'http://www.kakao.com';
             -kakaotalk-author-name: 'talk:D';
-            -kakaotalk-theme-id: 'com.kakao.talk.theme.fggdfg';
+            -kakaotalk-theme-id: 'com.kakao.talk.theme.finaltest';
         }
         
         
@@ -62,26 +62,26 @@
         
         HeaderStyle-Main
         {
-            -ios-text-color: #4D4D4D;
+            -ios-text-color: #6e7c6a;
         
-            -ios-tab-text-color: #4D4D4D;
-            -ios-tab-highlighted-text-color: #4D4D4D;
+            -ios-tab-text-color: #6e7c6a;
+            -ios-tab-highlighted-text-color: #6e7c6a;
         }
         
         MainViewStyle-Primary
         {
-            background-color: #FFFFFF;
+            background-color: #d1e7aa;
             -ios-background-image: 'mainBgImage.png';
         
             /* 텍스트 스타일 */                                        /* 이름변경 */
-            -ios-text-color: #4D4D4D;                            /* Title : 리스트 목록*/
-            -ios-highlighted-text-color: #4D4D4D;                        /* Title Pressed */
+            -ios-text-color: #6e7c6a;                            /* Title : 리스트 목록*/
+            -ios-highlighted-text-color: #6e7c6a;                        /* Title Pressed */
             
-            -ios-description-text-color: #4D4D4D;                    /* Description : 상태메세지 */
-            -ios-description-highlighted-text-color: #4D4D4D;        /* Description Pressed */
+            -ios-description-text-color: #799671;                    /* Description : 상태메세지 */
+            -ios-description-highlighted-text-color: #799671;        /* Description Pressed */
         
-            -ios-paragraph-text-color: #4D4D4D;                    /* Paragraph : 라스트메세지 */ 
-            -ios-paragraph-highlighted-text-color: #4D4D4D;          /* Paragraph Pressed*/
+            -ios-paragraph-text-color: #799671;                    /* Paragraph : 라스트메세지 */ 
+            -ios-paragraph-highlighted-text-color: #799671;          /* Paragraph Pressed*/
         
             /* 셀 스타일 */
             -ios-normal-background-color: #5b5b5b;                 /* Cell Background */
@@ -93,7 +93,7 @@
         
         MainViewStyle-Secondary
         {
-            background-color: #FFFFFF;
+            background-color: #d1e7aa;
         }
         
         SectionTitleStyle-Main
@@ -112,7 +112,7 @@
         
         FeatureStyle-Primary                                       /* Primary : 버튼 텍스트 */
         {
-            -ios-text-color: #4D4D4D;
+            -ios-text-color: #6e7c6a;
         }
         
         
@@ -146,18 +146,18 @@
         InputBarStyle-Chat
         {
             /* 입력창 배경 */
-            background-color: #FFECB4;
+            background-color: #a5b9a1;
             
             /* 전송 버튼 */
-            -ios-send-normal-background-color: #828282;
+            -ios-send-normal-background-color: #677165;
             -ios-send-normal-foreground-color: #FFFFFF;
             
             -ios-send-highlighted-background-color: #FFFFFF;
-            -ios-send-highlighted-foreground-color: #828282;
+            -ios-send-highlighted-foreground-color: #677165;
         
             /* 그밖의 버튼 */
-            -ios-button-normal-foreground-color: #828282;
-            -ios-button-highlighted-foreground-color: #828282;
+            -ios-button-normal-foreground-color: #677165;
+            -ios-button-highlighted-foreground-color: #677165;
         }
         
         
@@ -174,8 +174,8 @@
             -ios-title-edgeinsets: 10px 13.5px 7px 15px;  /* top, left, bottom, right */
             -ios-group-title-edgeinsets: 10px 13.5px 7px 15px;
         
-            -ios-text-color: #3D3D3D;
-            -ios-selected-text-color: #3D3D3D;
+            -ios-text-color: #5d6a58;
+            -ios-selected-text-color: #5d6a58;
             -ios-unread-text-color: #828282;
         }
         
@@ -188,8 +188,8 @@
             -ios-title-edgeinsets: 10px 15px 7px 12.8px;  /* top, left, bottom, right */
             -ios-group-title-edgeinsets: 10px 15px 7px 12.8px;
         
-            -ios-text-color: #3D3D3D;
-            -ios-selected-text-color: #3D3D3D;
+            -ios-text-color: #61695b;
+            -ios-selected-text-color: #61695b;
             -ios-unread-text-color: #828282;
         }
         
@@ -200,13 +200,13 @@
         
         BackgroundStyle-Passcode
         {
-            background-color: #d1a2a2;
+            background-color: #c9e7a9;
             -ios-background-image: 'passcodeBgImage.png';
         }
         
         LabelStyle-PasscodeTitle
         {
-            -ios-text-color: #f02828;
+            -ios-text-color: #5e7757;
         }
         
         
@@ -222,8 +222,8 @@
             -ios-bullet-selected-third-image: 'passcodeImgCode03Selected.png';
             -ios-bullet-selected-fourth-image: 'passcodeImgCode04Selected.png';
             
-            -ios-keypad-background-color: #FFECB4;
-            -ios-keypad-text-normal-color: #828282;
+            -ios-keypad-background-color: #ffffff;
+            -ios-keypad-text-normal-color: #8ab15f;
                 
             -ios-keypad-number-highlighted-image : 'passcodeKeypadPressed.png';
         }
@@ -235,17 +235,17 @@
         
         BackgroundStyle-MessageNotificationBar
         {
-            background-color: #FFECB4;
+            background-color: #e4e0d5;
         }
         
         LabelStyle-MessageNotificationBarName
         {
-            -ios-text-color: #3D3D3D;
+            -ios-text-color: #6a7c65;
         }
         
         LabelStyle-MessageNotificationBarMessage
         {
-            -ios-text-color: #828282;
+            -ios-text-color: #96a093;
         }
         
         
@@ -255,17 +255,17 @@
         
         BackgroundStyle-DirectShareBar
         {
-            background-color:  #FFECB4;
+            background-color:  #e4e0d5;
         }
         
         LabelStyle-DirectShareBarName
         {
-            -ios-text-color: #3D3D3D;
+            -ios-text-color: #6a7c65;
         }
         
         LabelStyle-DirectShareBarMessage
         {
-            -ios-text-color: #828282;
+            -ios-text-color: #96a093;
         }
         
         
