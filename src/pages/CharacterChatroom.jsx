@@ -138,13 +138,13 @@ function CharacterChatroom() {
 
     useEffect(() => {
         if (characterChatroomReceiveImg) {
-            localStorage.setItem('characterChatroomReceiveImg', characterChatroomReceiveImg);
+
         }
     }, [characterChatroomReceiveImg]);
 
     useEffect(() => {
         if (characterChatroomSendImg) {
-            localStorage.setItem('characterChatroomSendImg', characterChatroomSendImg);
+
         }
     }, [characterChatroomSendImg]);
 
@@ -256,8 +256,6 @@ function CharacterChatroom() {
             localStorage.setItem('characterChatroomReceiveBg2Color', characterChatroomReceiveBg2Color);
             localStorage.setItem('characterChatroomSendBg1Color', characterChatroomSendBg1Color);
             localStorage.setItem('characterChatroomSendBg2Color', characterChatroomSendBg2Color);
-            localStorage.setItem('characterChatroomReceiveImg', characterChatroomReceiveImg);
-            localStorage.setItem('characterChatroomSendImg', characterChatroomSendImg);
 
 
             window.location.href = '/step2/CharacterNotification';

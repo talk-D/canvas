@@ -330,7 +330,7 @@ router.get('/', (req, res) => {
             background-color: ${tabbarBgColor};
         }
             `;
-            }
+    }
 
     if (themeTypeInt === 2){
 
@@ -616,8 +616,8 @@ router.get('/', (req, res) => {
         `;
     }
 
-  
- 
+
+
 
     const kthemeDir = path.join(__dirname, '../ktheme');
     if (!fs.existsSync(kthemeDir)) {

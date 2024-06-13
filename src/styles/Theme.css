@@ -1,4 +1,3 @@
-/* src/components/CanvasComponent.css */
 .fontTest {
     text-align: center;
     font-family: 'NotoSans';
@@ -25,16 +24,13 @@
     position: fixed;
     align-items: start;
     justify-content: end;
-    right: 0px;
-    height: 100%;
+    top: 0px;
+    height: 46px;
+    width: 100%;
     padding-top: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1000;
     background-color: white;
     border-bottom: 1px solid #FFBB6D;
 }
-
 .color-picker-container {
     position: fixed;
     bottom: 0px;
@@ -59,7 +55,6 @@
 .color-picker-header span {
     margin-right: auto;
 }
-
 .color-picker {
     margin: 10px;
 }
@@ -68,7 +63,6 @@
     height: 38px;
     width: 38px;
     margin: 0px 8px 0px 8px;
-
 }
 
 .left-menubar {
@@ -96,7 +90,7 @@
     bottom: 0px;
     left: 86px;
     height: 95.5vh;
-    width: 240px;
+    width: 270px;
     background-color: white;
     border-right: 1px solid #FFBB6D;
     padding-top: 38px;
@@ -109,6 +103,34 @@
     width: 100%;
     height: 50px;
 }
+
+.drawer-basic-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #d5d4d4;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+
+}
+
+.basic-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, min-content);
+    gap: 3px;
+    padding: 0; /* padding을 제거하여 간격을 최소화 */
+}
+
+.basic-icon-grid-container {
+    display: flex;
+    margin-left: 40px;
+    align-items: center;
+    width: 100%;
+}
+
 .drawer-icon-button{
     display: flex;
     justify-content: center;
@@ -122,4 +144,8 @@
     cursor: pointer; /* 마우스 커서를 포인터로 변경 */
     padding: 10px 20px; /* 패딩 추가 */
 }
-  
+
+.subtitle{
+    margin-top: -3px;
+
+}

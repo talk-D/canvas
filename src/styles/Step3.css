@@ -28,3 +28,11 @@
     margin-top: 20px;
     align-content: center;
 }
+
+.qr-container{
+    position: absolute;
+    top: 600px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}

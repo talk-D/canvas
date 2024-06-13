@@ -1,6 +1,7 @@
 // src/components/ColorPickerComponent.js
 import React, { useState } from 'react';
 import { SketchPicker } from 'react-color';
+import '../styles/Theme.css'
 
 const ColorPickerComponent = ({ currentColor, currentColor2, onColorChange,onColorChange2, bringToFront, deleteSelectedShape, clearShapes }) => {
 

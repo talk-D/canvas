@@ -66,11 +66,11 @@ function Password() {
             } else if (fileType === 'image/png') {
                 const imageUrl = URL.createObjectURL(file);
                 if (activeButton === 'lock_icon_set') {
-                    const newImage = { svg: `<img src="${imageUrl}" alt="uploaded png" style="width: 50px; height: 50px;" />`, fill: '' };
+                    const newImage = { svg: `<img src="${imageUrl}" alt="uploaded png" style="width: 50px; height: 50px; object-fit: contain;" />`, fill: '' };
                     setLockImages([...lockImages, newImage]);
                     saveImageToLocalStorage('lockImages', [...lockImages, newImage]);
                 } else {
-                    const newImage = { svg: `<img src="${imageUrl}" alt="uploaded png" style="width: 50px; height: 50px;" />`, fill: '' };
+                    const newImage = { svg: `<img src="${imageUrl}" alt="uploaded png" style="width: 50px; height: 50px; object-fit: contain;" />`, fill: '' };
                     setUnlockImages([...unlockImages, newImage]);
                     saveImageToLocalStorage('unlockImages', [...unlockImages, newImage]);
                 }
@@ -159,26 +159,44 @@ function Password() {
         window.location.href = "/step2/Thumbnail";
     }
 
+    const resizeCanvas = (canvas, maxWidth, maxHeight) => {
+        const width = canvas.width;
+        const height = canvas.height;
+        let newWidth = width;
+        let newHeight = height;
+
+        if (width > height) {
+            if (width > maxWidth) {
+                newHeight = Math.round((maxWidth / width) * height);
+                newWidth = maxWidth;
+            }
+        } else {
+            if (height > maxHeight) {
+                newWidth = Math.round((maxHeight / height) * width);
+                newHeight = maxHeight;
+            }
+        }
+
+        const resizedCanvas = document.createElement('canvas');
+        resizedCanvas.width = newWidth;
+        resizedCanvas.height = newHeight;
+        const ctx = resizedCanvas.getContext('2d');
+        ctx.drawImage(canvas, 0, 0, newWidth, newHeight);
+
+        return resizedCanvas;
+    };
 
     const handlePasswordButton = async () => {
         try {
             // Capture the unlock icon
             const unlockCanvas = await html2canvas(document.querySelector(".unlock_icon div"), { backgroundColor: null });
-            const unlockResizedCanvas = document.createElement('canvas');
-            unlockResizedCanvas.width = 100;
-            unlockResizedCanvas.height = 100;
-            const unlockCtx = unlockResizedCanvas.getContext('2d');
-            unlockCtx.drawImage(unlockCanvas, 0, 0, 100, 100);
-            const unlockDataUrl = unlockResizedCanvas.toDataURL("image/png");
+            const resizedUnlockCanvas = resizeCanvas(unlockCanvas, 132, 132);
+            const unlockDataUrl = resizedUnlockCanvas.toDataURL("image/png");
 
             // Capture the lock icon
             const lockCanvas = await html2canvas(document.querySelector(".lock_icon div"), { backgroundColor: null });
-            const lockResizedCanvas = document.createElement('canvas');
-            lockResizedCanvas.width = 100;
-            lockResizedCanvas.height = 100;
-            const lockCtx = lockResizedCanvas.getContext('2d');
-            lockCtx.drawImage(lockCanvas, 0, 0, 100, 100);
-            const lockDataUrl = lockResizedCanvas.toDataURL("image/png");
+            const resizedLockCanvas = resizeCanvas(lockCanvas, 132, 132);
+            const lockDataUrl = resizedLockCanvas.toDataURL("image/png");
 
             // Send both images to the server
             const response = await fetch('http://localhost:5000/upload', {
@@ -196,8 +214,6 @@ function Password() {
                 console.log('Images uploaded successfully');
 
                 await convertSvgToPng(Target_password_bg_color_cmp, { passwordBgColor }, 'passcodeBgImage@3x.png');
-
-
 
                 // 로컬스토리지에 색상값 저장
                 localStorage.setItem("passwordBgColor", passwordBgColor);
@@ -249,7 +265,7 @@ function Password() {
                                                 className={`image-cell ${selectedLockImage === content || selectedUnlockImage === content ? 'selected' : ''}`}
                                                 onClick={() => handleImageClick(index)}
                                             >
-                                                <div dangerouslySetInnerHTML={{ __html: content.svg }} style={{ fill: content.fill, width: '50px', height: '50px' }} />
+                                                <div dangerouslySetInnerHTML={{ __html: content.svg }} style={{ fill: content.fill, width: '50px', height: '50px', objectFit: 'contain' }} />
                                             </div>
                                         ))}
                                         <div className="image-cell add-image" style={{ width: '50px', height: '50px' }}>

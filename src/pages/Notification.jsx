@@ -111,43 +111,43 @@ function Notification() {
                     )}
 
 
-                            <div className='notification_zone'>
-                                <div className='notification_bg_color'>
-                                    <Notification_bg_color_cmp
-                                        notificationBgColor={notificationBgColor}
-                                        notificationNameColor={notificationNameColor}
-                                        notificationMessageColor={notificationMessageColor}
-                                        chatroomBgColor={chatroomBgColor}
-                                        chatroomTitleColor={chatroomTitleColor}
-                                        chatroomNameColor={chatroomNameColor}
-                                        chatroomReceiveBg1Color={chatroomReceiveBg1Color}
-                                        chatroomReceiveBg2Color={chatroomReceiveBg2Color}
-                                        chatroomReceiveTextColor={chatroomReceiveTextColor}
-                                        chatroomReceiveUnreadTextColor={chatroomReceiveUnreadTextColor}
-                                        chatroomSendBg1Color={chatroomSendBg1Color}
-                                        chatroomSendBg2Color={chatroomSendBg2Color}
-                                        chatroomSendTextColor={chatroomSendTextColor}
-                                        chatroomSendUnreadTextColor={chatroomSendUnreadTextColor}
-                                        chatroomInputBgColor={chatroomInputBgColor}
-                                        chatroomInputIconColor={chatroomInputIconColor}
-                                        friendlistProfileColor={friendlistProfileColor}
-                                    />
-                                </div>
-                            </div>
+                    <div className='notification_zone'>
+                        <div className='notification_bg_color'>
+                            <Notification_bg_color_cmp
+                                notificationBgColor={notificationBgColor}
+                                notificationNameColor={notificationNameColor}
+                                notificationMessageColor={notificationMessageColor}
+                                chatroomBgColor={chatroomBgColor}
+                                chatroomTitleColor={chatroomTitleColor}
+                                chatroomNameColor={chatroomNameColor}
+                                chatroomReceiveBg1Color={chatroomReceiveBg1Color}
+                                chatroomReceiveBg2Color={chatroomReceiveBg2Color}
+                                chatroomReceiveTextColor={chatroomReceiveTextColor}
+                                chatroomReceiveUnreadTextColor={chatroomReceiveUnreadTextColor}
+                                chatroomSendBg1Color={chatroomSendBg1Color}
+                                chatroomSendBg2Color={chatroomSendBg2Color}
+                                chatroomSendTextColor={chatroomSendTextColor}
+                                chatroomSendUnreadTextColor={chatroomSendUnreadTextColor}
+                                chatroomInputBgColor={chatroomInputBgColor}
+                                chatroomInputIconColor={chatroomInputIconColor}
+                                friendlistProfileColor={friendlistProfileColor}
+                            />
+                        </div>
+                    </div>
 
                     <div className='notification_setting_zone'>
-                    <div className='notification_bg_color_set'>
-                        <img onClick={(event) => toggleMenu(event, 'notification_bg_color_set')} alt='알림창 색상 버튼 미선택' src={activeButton === 'notification_bg_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
-                    </div>
+                        <div className='notification_bg_color_set'>
+                            <img onClick={(event) => toggleMenu(event, 'notification_bg_color_set')} alt='알림창 색상 버튼 미선택' src={activeButton === 'notification_bg_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+                        </div>
 
-                    <div className='notification_name_color_set'>
-                        <img onClick={(event) => toggleMenu(event, 'notification_name_color_set')} alt='알림창 색상 버튼 미선택' src={activeButton === 'notification_name_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
-                    </div>
+                        <div className='notification_name_color_set'>
+                            <img onClick={(event) => toggleMenu(event, 'notification_name_color_set')} alt='알림창 색상 버튼 미선택' src={activeButton === 'notification_name_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+                        </div>
 
-                    <div className='notification_message_color_set'>
-                        <img onClick={(event) => toggleMenu(event, 'notification_message_color_set')} alt='알림창 색상 버튼 미선택' src={activeButton === 'notification_message_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+                        <div className='notification_message_color_set'>
+                            <img onClick={(event) => toggleMenu(event, 'notification_message_color_set')} alt='알림창 색상 버튼 미선택' src={activeButton === 'notification_message_color_set' ? "/setIcon.png" : "/notSetIcon.png"} />
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
 
