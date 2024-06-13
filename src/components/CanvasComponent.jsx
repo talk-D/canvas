@@ -25,11 +25,13 @@ import Arrow2 from '../icons/Arrow2';
 import '../styles/Theme.css';
 
 const CanvasComponent = forwardRef((props, ref) => {
+    const canvasRef = useRef(null);
+    const outlineCanvasRef = useRef(null);
 
     useImperativeHandle(ref, () => ({
         getCanvas: () => canvasRef.current
     }));
-    const canvasRef = useRef(null);
+
     const [frameColor, setFrameColor] = useState('#ffffff');
     const [shapes, setShapes] = useState([]);
     const [selectedShape, setSelectedShape] = useState();
@@ -49,7 +51,6 @@ const CanvasComponent = forwardRef((props, ref) => {
     const [resizingImage, setResizingImage] = useState(null);
     const [selectedFigureId, setSelectedFigureId] = useState(-1);
     const [selectedTextId, setSelectedTextId] = useState(null);
-    const outlineCanvasRef = useRef(null);
     const [selectedImageId, setSelectedImageId] = useState(null);
 
     const handleTextIconClick = () => {
@@ -101,7 +102,7 @@ const CanvasComponent = forwardRef((props, ref) => {
             height: 100,
         };
         setImages([...images, newImage]);
-        setSelectedImageId(images.length); // 선택된 이미지 ID 설정
+        setSelectedImageId(images.length);
     };
 
     const handleResizeMouseDown = (e, id) => {
@@ -118,7 +119,6 @@ const CanvasComponent = forwardRef((props, ref) => {
             setSelectedTextId(null);
         }
     };
-
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -152,6 +152,13 @@ const CanvasComponent = forwardRef((props, ref) => {
             }
         });
 
+        // Draw texts
+        texts.forEach((text) => {
+            context.font = `${text.fontWeight} ${text.fontStyle} ${text.fontSize}px ${text.fontFamily}`;
+            context.fillStyle = text.color;
+            context.fillText(text.content, text.left, text.top + text.fontSize);
+        });
+
         // Draw selected shape outline
         if (selectedShape) {
             outlineContext.strokeStyle = '#FF9900';
@@ -180,8 +187,7 @@ const CanvasComponent = forwardRef((props, ref) => {
             outlineContext.fillStyle = '#FF9900';
             outlineContext.fillRect(selectedShape.x + selectedShape.width - 5, selectedShape.y + selectedShape.height - 5, 10, 10);
         }
-    }, [shapes, selectedShape, frameColor]);
-
+    }, [shapes, texts, selectedShape, frameColor]);
 
     const handleFocus = () => {
         if (canvasRef.current) {
@@ -192,8 +198,6 @@ const CanvasComponent = forwardRef((props, ref) => {
     const handleBlur = () => {
         if (canvasRef.current) {
             canvasRef.current.style.outline = 'none'; // 윤곽선 제거
-        }else{
-            canvasRef.current.style.outline = '1px solid #FFBB6D';
         }
     };
 
@@ -267,19 +271,17 @@ const CanvasComponent = forwardRef((props, ref) => {
                 const otherShapes = prevShapes.filter(shape => shape !== selectedShape);
                 return [...otherShapes, selectedShape];
             });
-            setSelectedShape(null); // 선택된 상태를 해제
+            setSelectedShape(null);
         }
         if (selectedImageId !== null) {
             setImages(prevImages => {
                 const selectedImage = prevImages.find(image => image.id === selectedImageId);
                 const otherImages = prevImages.filter(image => image.id !== selectedImageId);
-                return [selectedImage, ...otherImages]; // 이미지가 도형 아래로 가도록 수정
+                return [selectedImage, ...otherImages];
             });
-            setSelectedImageId(null); // 선택된 상태를 해제
+            setSelectedImageId(null);
         }
     };
-
-
 
     const moveSelectedShape = (dx, dy) => {
         if (selectedShape) {
@@ -352,18 +354,16 @@ const CanvasComponent = forwardRef((props, ref) => {
 
             resizeSelectedShape(x - (selectedShape.x + selectedShape.width), y - (selectedShape.y + selectedShape.height));
 
-        }else if(draggingText !== null) {
+        } else if (draggingText !== null) {
             const updatedTexts = texts.map((text) => {
                 if (text.id === draggingText) {
                     const newTop = e.clientY - canvasRef.current.getBoundingClientRect().top;
                     const newLeft = e.clientX - canvasRef.current.getBoundingClientRect().left;
-                    // 텍스트의 폭과 높이를 계산
                     const textElement = document.getElementById(`text-${text.id}`);
                     const textWidth = textElement.offsetWidth;
                     const textHeight = textElement.offsetHeight;
-                    // 캔버스 영역 밖으로 나가지 않도록 제한
-                    const boundedTop = Math.max(0, Math.min(newTop, canvasRef.current.height - textHeight)); // 20은 텍스트 높이의 대략적인 값
-                    const boundedLeft = Math.max(0, Math.min(newLeft, canvasRef.current.width  - textWidth)); // 20은 텍스트 폭의 대략적인 값
+                    const boundedTop = Math.max(0, Math.min(newTop, canvasRef.current.height - textHeight));
+                    const boundedLeft = Math.max(0, Math.min(newLeft, canvasRef.current.width - textWidth));
                     return {
                         ...text,
                         top: boundedTop,
@@ -373,13 +373,11 @@ const CanvasComponent = forwardRef((props, ref) => {
                 return text;
             });
             setTexts(updatedTexts);
-        }
-        else if (draggingImage !== null) {
+        } else if (draggingImage !== null) {
             const updatedImages = images.map((image) => {
                 if (image.id === draggingImage) {
                     const newTop = e.clientY - canvasRef.current.getBoundingClientRect().top;
                     const newLeft = e.clientX - canvasRef.current.getBoundingClientRect().left;
-                    // 캔버스 영역 밖으로 나가지 않도록 제한
                     const boundedTop = Math.max(0, Math.min(newTop, canvasRef.current.height - image.height));
                     const boundedLeft = Math.max(0, Math.min(newLeft, canvasRef.current.width - image.width));
                     return {
@@ -391,7 +389,6 @@ const CanvasComponent = forwardRef((props, ref) => {
                 return image;
             });
             setImages(updatedImages);
-
         } else if (resizingImage !== null) {
             const updatedImages = images.map((image) => {
                 if (image.id === resizingImage) {
@@ -404,14 +401,14 @@ const CanvasComponent = forwardRef((props, ref) => {
                     return {
                         ...image,
                         width: boundedWidth,
-                        height: boundedHeight,          };
+                        height: boundedHeight,
+                    };
                 }
                 return image;
             });
             setImages(updatedImages);
         }
     };
-
 
     const handleMouseUp = () => {
         setDragging(false);
@@ -464,11 +461,10 @@ const CanvasComponent = forwardRef((props, ref) => {
     const clearShapes = () => {
         setShapes([]);
         setSelectedShape(null);
-        setFrameColor("#ffffff")
+        setFrameColor("#ffffff");
         setTexts([]);
         setSelectedTextId(null);
-        setImages([]); // 이미지 초기화
-
+        setImages([]);
     };
 
     const deleteSelectedShape = () => {
@@ -487,10 +483,8 @@ const CanvasComponent = forwardRef((props, ref) => {
             setShapes(updatedShapes);
             setSelectedShape(prev => ({ ...prev, color: color }));
 
-            // Update the SVG src if the shape is an SVG
             if (selectedShape.type === 'svg') {
                 const svgElement = new DOMParser().parseFromString(decodeURIComponent(selectedShape.src.split(',')[1]), "image/svg+xml").documentElement;
-                console.log(color);
                 svgElement.setAttribute('fill', color);
 
                 const updatedSvgSrc = `data:image/svg+xml;utf8,${encodeURIComponent(new XMLSerializer().serializeToString(svgElement))}`;
@@ -503,11 +497,9 @@ const CanvasComponent = forwardRef((props, ref) => {
                     shape.id === selectedShape.id ? updatedSvg : shape
                 ));
                 setSelectedShape(updatedSvg);
-                console.log(updatedSvg);
             }
         }
     };
-
 
     const handleSelectedFigureIcon = () => {
         setSelectedFigureIcon(!selectedFigureIcon);
@@ -541,7 +533,7 @@ const CanvasComponent = forwardRef((props, ref) => {
             height: 50,
             src: `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`
         };
-        setSelectedColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
+        setSelectedColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`);
         setShapes(prevShapes => [...prevShapes, newSvg]);
     };
 

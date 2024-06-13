@@ -134,7 +134,7 @@ router.get('/', (req, res) => {
             -ios-description-highlighted-text-color: ${friendlistMessageColor};        /* Description Pressed */
         
             -ios-paragraph-text-color: ${friendlistMessageColor};                    /* Paragraph : 라스트메세지 */ 
-            -ios-paragraph-highlighted-text-color: #${friendlistMessageColor};          /* Paragraph Pressed*/
+            -ios-paragraph-highlighted-text-color: ${friendlistMessageColor};          /* Paragraph Pressed*/
         
             /* 셀 스타일 */
             -ios-normal-background-color: #5b5b5b;                 /* Cell Background */
@@ -418,7 +418,7 @@ router.get('/', (req, res) => {
             -ios-description-highlighted-text-color: ${friendlistMessageColor};        /* Description Pressed */
 
             -ios-paragraph-text-color: ${friendlistMessageColor};                    /* Paragraph : 라스트메세지 */
-            -ios-paragraph-highlighted-text-color: #${friendlistMessageColor};          /* Paragraph Pressed*/
+            -ios-paragraph-highlighted-text-color: ${friendlistMessageColor};          /* Paragraph Pressed*/
 
             /* 셀 스타일 */
             -ios-normal-background-color: #5b5b5b;                 /* Cell Background */
