@@ -5,11 +5,11 @@
         
         ManifestStyle
         {
-            -kakaotalk-theme-name: ㅌㅋ;
+            -kakaotalk-theme-name: ㅕ;
             -kakaotalk-theme-version: 10.3.5; 
             -kakaotalk-theme-url: 'http://www.kakao.com';
             -kakaotalk-author-name: 'talk:D';
-            -kakaotalk-theme-id: 'com.kakao.talk.theme.fdfgf';
+            -kakaotalk-theme-id: 'com.kakao.talk.theme.fggdfg';
         }
         
         
@@ -200,13 +200,13 @@
         
         BackgroundStyle-Passcode
         {
-            background-color: #FFFFFF;
+            background-color: #d1a2a2;
             -ios-background-image: 'passcodeBgImage.png';
         }
         
         LabelStyle-PasscodeTitle
         {
-            -ios-text-color: #4A4A4A;
+            -ios-text-color: #f02828;
         }
         
         
