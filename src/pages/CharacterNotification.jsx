@@ -38,8 +38,14 @@ function CharacterNotification() {
     const [characterChatroomInputIconColor, setCharacterChatroomInputIconColor] = useState(localStorage.getItem("characterChatroomInputIconColor"));
     const [friendlistProfileColor, setFriendlistProfileColor] = useState(localStorage.getItem("friendlistProfileColor"));
 
-    const [characterChatroomReceiveImg, setCharacterChatroomReceiveImg] = useState(localStorage.getItem("characterChatroomReceiveImg"));
-    const [characterChatroomSendImg, setCharacterChatroomSendImg] = useState(localStorage.getItem("characterChatroomSendImg"));
+    const getLocalStorageItem = (key) => {
+        const item = localStorage.getItem(key);
+        return item === 'null' ? null : item;
+    };
+
+    const [characterChatroomReceiveImg, setCharacterChatroomReceiveImg] = useState(getLocalStorageItem('characterChatroomReceiveImg'));
+    const [characterChatroomSendImg, setCharacterChatroomSendImg] = useState(getLocalStorageItem('characterChatroomSendImg'));
+
 
     const toggleMenu = (event, buttonId) => {
         setIsOpen(!isOpen);
@@ -105,13 +111,22 @@ function CharacterNotification() {
                     {isOpen && (
                         <div className="drawer">
                             {activeButton === 'notification_bg_color_set' && (
+                                <>
+                                <div className='colorpick-info-title'>알림창 배경 색상</div>
                                 <SketchPicker color={notificationBgColor} onChangeComplete={handleChangeNotificationBgColor} />
-                            )}
+                                </>
+                                )}
                             {activeButton === 'notification_name_color_set' && (
+                                <>
+                                <div className='colorpick-info-title'>알림창 이름 색상</div>
                                 <SketchPicker color={notificationNameColor} onChangeComplete={handleChangeNotificationNameColor} />
+                                </>
                             )}
                             {activeButton === 'notification_message_color_set' && (
+                                <>
+                                <div className='colorpick-info-title'>알림창 메세지 색상</div>
                                 <SketchPicker color={notificationMessageColor} onChangeComplete={handleChangeNotificationMessageColor} />
+                                </>
                             )}
                         </div>
                     )}

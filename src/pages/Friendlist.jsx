@@ -108,23 +108,42 @@ function Friendlist() {
                     {isOpen && (
                         <div className="drawer">
                             {activeButton === 'friendlist_bg_color_set' && (
-                                <SketchPicker color={friendlistBgColor} onChangeComplete={handleChangeFriendlistBgColor} />
+                                <>
+                                    <div className='colorpick-info-title'>배경 색상</div>
+                                    <SketchPicker color={friendlistBgColor} onChangeComplete={handleChangeFriendlistBgColor} />
+                                </>
+
                             )}
                             {activeButton === 'friendlist_second_title_color_set' && (
-                                <SketchPicker color={friendlistSecondTitleColor} onChangeComplete={handleChangeFriendlistSecondTitleColor} />
-                            )}
+                                <>
+                                    <div className='colorpick-info-title'>소제목 색상</div>
+                                     <SketchPicker color={friendlistSecondTitleColor} onChangeComplete={handleChangeFriendlistSecondTitleColor} />
+                                </>
+                                    )}
                             {activeButton === 'friendlist_dividing_line_color_set' && (
+                                <>
+                                <div className='colorpick-info-title'>구분선 색상</div>
                                 <SketchPicker color={friendlistDividingLineColor} onChangeComplete={handleChangeFriendlistDividingLineColor} />
+                                </>
                             )}
                             {activeButton === 'friendlist_name_color_set' && (
-                                <SketchPicker color={friendlistDividingLineColor} onChangeComplete={handleChangeFriendlistNameColor} />
+                                <>
+                                <div className='colorpick-info-title'>타이틀/이름 색상</div>
+                                <SketchPicker color={friendlistNameColor} onChangeComplete={handleChangeFriendlistNameColor} />
+                                </>
                             )}
                             {activeButton === 'friendlist_message_color_set' && (
+                                <>
+                                <div className='colorpick-info-title'>상태 메세지 색상</div>
                                 <SketchPicker color={friendlistMessageColor} onChangeComplete={handleChangeFriendlistMessageColor} />
+                                </>
                             )}
                             {activeButton === 'friendlist_profile_color_set' && (
+                                <>
+                                <div className='colorpick-info-title'>기본 프로필 색상</div>
                                 <SketchPicker color={friendlistProfileColor} onChangeComplete={handleChangeFriendlistProfileColor} />
-                            )}
+                                </>
+                                )}
                         </div>
                     )}
                 </div>

@@ -26,25 +26,20 @@ function Password() {
 
     const [isOpen, setIsOpen] = useState(false);
     const [activeButton, setActiveButton] = useState(null);
-    const [passwordBgColor, setPasswordBgColor] = useState(localStorage.getItem("passwordBgColor"));
-    const [passwordKeypadColor, setPasswordKeypadColor] = useState(localStorage.getItem("passwordKeypadColor"));
-    const [passwordKeypadFontColor, setPasswordKeypadFontColor] = useState(localStorage.getItem("passwordKeypadFontColor"));
-    const [passwordTitleColor, setPasswordTitleColor] = useState(localStorage.getItem("passwordTitleColor"));
-    const [passwordSecondTitleColor, setPasswordSecondTitleColor] = useState(localStorage.getItem("passwordSecondTitleColor"));
+    const [passwordBgColor, setPasswordBgColor] = useState(localStorage.getItem("passwordBgColor") || "#FFFFFF");
+    const [passwordKeypadColor, setPasswordKeypadColor] = useState(localStorage.getItem("passwordKeypadColor") || "#FFFFFF");
+    const [passwordKeypadFontColor, setPasswordKeypadFontColor] = useState(localStorage.getItem("passwordKeypadFontColor") || "#000000");
+    const [passwordTitleColor, setPasswordTitleColor] = useState(localStorage.getItem("passwordTitleColor") || "#000000");
+    const [passwordSecondTitleColor, setPasswordSecondTitleColor] = useState(localStorage.getItem("passwordSecondTitleColor") || "#191301");
 
-    const [unlockImages, setUnlockImages] = useState(initialUnlockImages);
-    const [lockImages, setLockImages] = useState(initialLockImages);
-    const [selectedUnlockImage, setSelectedUnlockImage] = useState(JSON.parse(localStorage.getItem("selectedUnlockImage")) || initialUnlockImages[0]);
-    const [selectedLockImage, setSelectedLockImage] = useState(JSON.parse(localStorage.getItem("selectedLockImage")) || initialLockImages[0]);
-    const [selectedUnlockImageFill, setSelectedUnlockImageFill] = useState(localStorage.getItem("selectedUnlockImageFill") || initialUnlockImages[0].fill);
-    const [selectedLockImageFill, setSelectedLockImageFill] = useState(localStorage.getItem("selectedLockImageFill") || initialLockImages[0].fill);
+    const [unlockImages, setUnlockImages] = useState(JSON.parse(localStorage.getItem('unlockImages')) || initialUnlockImages);
+    const [lockImages, setLockImages] = useState(JSON.parse(localStorage.getItem('lockImages')) || initialLockImages);
+    const [selectedUnlockImage, setSelectedUnlockImage] = useState(JSON.parse(localStorage.getItem('selectedUnlockImage')) || initialUnlockImages[0]);
+    const [selectedLockImage, setSelectedLockImage] = useState(JSON.parse(localStorage.getItem('selectedLockImage')) || initialLockImages[0]);
+    const [selectedUnlockImageFill, setSelectedUnlockImageFill] = useState(localStorage.getItem('selectedUnlockImageFill') || initialUnlockImages[0].fill);
+    const [selectedLockImageFill, setSelectedLockImageFill] = useState(localStorage.getItem('selectedLockImageFill') || initialLockImages[0].fill);
     const [isSvg, setIsSvg] = useState(true);
     const [color, setColor] = useState("#FFE27A");
-
-    useEffect(() => {
-        setSelectedUnlockImage(JSON.parse(localStorage.getItem("selectedUnlockImage")) || initialUnlockImages[0]);
-        setSelectedLockImage(JSON.parse(localStorage.getItem("selectedLockImage")) || initialLockImages[0]);
-    }, []);
 
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
@@ -241,23 +236,39 @@ function Password() {
                     {isOpen && (
                         <div className="drawer">
                             {activeButton === 'password_bg_color_set' && (
-                                <SketchPicker color={passwordBgColor} onChangeComplete={handleChangePasswordBgColor} />
+                                <>
+                                    <div className='colorpick-info-title'>비밀번호창 배경색상</div>
+                                    <SketchPicker color={passwordBgColor} onChangeComplete={handleChangePasswordBgColor} />
+                                </>
                             )}
 
                             {activeButton === 'password_title_color_set' && (
-                                <SketchPicker color={passwordTitleColor} onChangeComplete={handleChangePasswordTitleColor} />
+                                <>
+                                    <div className='colorpick-info-title'>타이틀 색상</div>
+                                    <SketchPicker color={passwordTitleColor} onChangeComplete={handleChangePasswordTitleColor} />
+                                </>
                             )}
 
                             {activeButton === 'password_keypad_bg_color_set' && (
-                                <SketchPicker color={passwordKeypadColor} onChangeComplete={handleChangePasswordKeypadColor} />
+                                <>
+                                    <div className='colorpick-info-title'>키패드 색상</div>
+                                    <SketchPicker color={passwordKeypadColor} onChangeComplete={handleChangePasswordKeypadColor} />
+                                </>
                             )}
 
                             {activeButton === 'password_font_color_set' && (
+                                <>
+                                    <div className='colorpick-info-title'>키패드 숫자 색상</div>
                                 <SketchPicker color={passwordKeypadFontColor} onChangeComplete={handleChangePasswordKeypadFontColor} />
+                                </>
                             )}
 
                             {(activeButton === 'lock_icon_set' || activeButton === 'unlock_icon_set') && (
                                 <div className="image-box">
+
+                                    {(activeButton === 'lock_icon_set' ? <div className='colorpick-info-title'>잠금 아이콘</div>:<div className='colorpick-info-title'>잠금 해제 아이콘</div>)}
+
+
                                     <div className="image-grid">
                                         {(activeButton === 'lock_icon_set' ? lockImages : unlockImages).map((content, index) => (
                                             <div
@@ -269,7 +280,7 @@ function Password() {
                                             </div>
                                         ))}
                                         <div className="image-cell add-image" style={{ width: '50px', height: '50px' }}>
-                                            <label htmlFor="imageUpload" style={{ color: '#3d3d3d' }}>이미지 추가</label>
+                                            <label htmlFor="imageUpload" style={{ color: '#FFBB6D' }}>이미지 추가</label>
                                             <input
                                                 id="imageUpload"
                                                 type="file"

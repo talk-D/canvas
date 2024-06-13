@@ -99,13 +99,22 @@ function Notification() {
                     {isOpen && (
                         <div className="drawer">
                             {activeButton === 'notification_bg_color_set' && (
+                                <>
+                                <div className='colorpick-info-title'>알림창 배경 색상</div>
                                 <SketchPicker color={notificationBgColor} onChangeComplete={handleChangeNotificationBgColor} />
+                                </>
                             )}
                             {activeButton === 'notification_name_color_set' && (
+                                <>
+                                <div className='colorpick-info-title'>알림창 이름 색상</div>
                                 <SketchPicker color={notificationNameColor} onChangeComplete={handleChangeNotificationNameColor} />
-                            )}
+                                </>
+                                )}
                             {activeButton === 'notification_message_color_set' && (
+                                <>
+                                <div className='colorpick-info-title'>알림창 메세지 색상</div>
                                 <SketchPicker color={notificationMessageColor} onChangeComplete={handleChangeNotificationMessageColor} />
+                                </>
                             )}
                         </div>
                     )}

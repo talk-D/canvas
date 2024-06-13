@@ -5,7 +5,7 @@
 
 .container {
     display: flex;
-    height: 100vh;
+    height: 75vh;
     justify-content: center;
     align-items: center;
     background-color: #FFF5DC;
@@ -13,8 +13,8 @@
 
 .frame {
     position: relative;
-    width: 336px;
-    height: 336px;
+    width: 500px;
+    height: 500px;
     background-color: white;
 }
 
@@ -126,6 +126,7 @@
 
 .basic-icon-grid-container {
     display: flex;
+    margin-top: 10px;
     margin-left: 40px;
     align-items: center;
     width: 100%;
@@ -146,6 +147,13 @@
 }
 
 .subtitle{
-    margin-top: -3px;
 
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 5px 10px 5px;
+    color: #828282;
+    background-color: #FFECB4;
+    width: 160px;
+    font-size: 15.5px;
 }

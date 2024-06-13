@@ -168,9 +168,44 @@ function Tabbar() {
         setTabbarSettingFillColorSelected(color.hex);
     }
 
-    const  handleChangeTabbarSettingStrokeColorSelected = (color) => {
+    const handleChangeTabbarSettingStrokeColorSelected = (color) => {
         setTabbarSettingStrokeColorSelected(color.hex);
     }
+
+    const applyTabbarFill = () => {
+        setTabbarChatFillColor(tabbarFriendFillColor);
+        setTabbarOpenchatFillColor(tabbarFriendFillColor);
+        setTabbarShopFillColor(tabbarFriendFillColor);
+        setTabbarSettingFillColor(tabbarFriendFillColor);
+    }
+
+
+    const applyTabbarStroke = () => {
+        setTabbarChatStrokeColor(tabbarFriendStrokeColor);
+        setTabbarOpenchatStrokeColor(tabbarFriendStrokeColor);
+        setTabbarShopStrokeColor(tabbarFriendStrokeColor);
+        setTabbarSettingStrokeColor(tabbarFriendStrokeColor);
+    }
+
+    const applyTabbarFillSelected = () => {
+        setTabbarChatFillColorSelected(tabbarFriendFillColorSelected);
+        setTabbarOpenchatFillColorSelected(tabbarFriendFillColorSelected);
+        setTabbarShopFillColorSelected(tabbarFriendFillColorSelected);
+        setTabbarSettingFillColorSelected(tabbarFriendFillColorSelected);
+    }
+
+
+    const applyTabbarStrokeSelected = () => {
+        setTabbarChatStrokeColorSelected(tabbarFriendStrokeColorSelected);
+        setTabbarOpenchatStrokeColorSelected(tabbarFriendStrokeColorSelected);
+        setTabbarShopStrokeColorSelected(tabbarFriendStrokeColorSelected);
+        setTabbarSettingStrokeColorSelected(tabbarFriendStrokeColorSelected);
+    }
+
+
+
+
+
 
     const handleTabbarPreviousButton = () => {
         window.location.href = "/step2/Friendlist";
@@ -222,66 +257,113 @@ function Tabbar() {
                     {isOpen && (
                         <div className="drawer">
                             {activeButton === 'tabbar_bg_color_set' && (
-                                <SketchPicker color={tabbarBgColor} onChangeComplete={handleChangeTabbarBgColor} />
+                                <>
+                                    <div className='colorpick-info-title'>탭바 배경 색상</div>
+                                    <SketchPicker color={tabbarBgColor} onChangeComplete={handleChangeTabbarBgColor} />
+                                </>
                             )}
 
                             {activeButton === 'tabbar_friend_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>친구 아이콘 (선택 전)</div>
+                                    <div className='colorpick-info'>선 색상</div>
                                     <SketchPicker color={tabbarFriendStrokeColor} onChangeComplete={handleChangeTabbarFriendStrokeColor} />
+                                    <div className='apply-all-colors' onClick={applyTabbarStroke}>색상 모두 적용</div>
+                                    <br />
+                                    <div className='colorpick-info'>채우기 색상</div>
                                     <SketchPicker color={tabbarFriendFillColor} onChangeComplete={handleChangeTabbarFriendFillColor} />
+                                    <div className='apply-all-colors' onClick={applyTabbarFill}>색상 모두 적용</div>
                                 </>
                             )}
                             {activeButton === 'tabbar_chat_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>대화 아이콘 (선택 전)</div>
+                                    <div className='colorpick-info'>선 색상</div>
                                     <SketchPicker color={tabbarChatStrokeColor} onChangeComplete={handleChangeTabbarChatStrokeColor} />
+                                    <br />
+                                    <div className='colorpick-info'>채우기 색상</div>
                                     <SketchPicker color={tabbarChatFillColor} onChangeComplete={handleChangeTabbarChatFillColor} />
                                 </>
                             )}
                             {activeButton === 'tabbar_openchat_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>오픈채팅 아이콘 (선택 전)</div>
+                                    <div className='colorpick-info'>선 색상</div>
                                     <SketchPicker color={tabbarOpenchatStrokeColor} onChangeComplete={handleChangeTabbarOpenchatStrokeColor} />
+                                    <br />
+                                    <div className='colorpick-info'>채우기 색상</div>
                                     <SketchPicker color={tabbarOpenchatFillColor} onChangeComplete={handleChangeTabbarOpenchatFillColor} />
                                 </>
                             )}
                             {activeButton === 'tabbar_shop_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>쇼핑 아이콘 (선택 전)</div>
+                                    <div className='colorpick-info'>선 색상</div>
                                     <SketchPicker color={tabbarShopStrokeColor} onChangeComplete={handleChangeTabbarShopStrokeColor} />
+                                    <br />
+                                    <div className='colorpick-info'>채우기 색상</div>
                                     <SketchPicker color={tabbarShopFillColor} onChangeComplete={handleChangeTabbarShopFillColor} />
                                 </>
                             )}
                             {activeButton === 'tabbar_setting_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>더보기 아이콘 (선택 전)</div>
+                                    <div className='colorpick-info'>선 색상</div>
                                     <SketchPicker color={tabbarSettingStrokeColor} onChangeComplete={handleChangeTabbarSettingStrokeColor} />
+                                    <br />
+                                    <div className='colorpick-info'>채우기 색상</div>
                                     <SketchPicker color={tabbarSettingFillColor} onChangeComplete={handleChangeTabbarSettingFillColor} />
                                 </>
                             )}
                             {activeButton === 'tabbar_friend_color_selected_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>친구 아이콘 (선택 후)</div>
+                                    <div className='colorpick-info'>선 색상</div>
                                     <SketchPicker color={tabbarFriendStrokeColorSelected} onChangeComplete={handleChangeTabbarFriendStrokeColorSelected} />
+                                    <div className='apply-all-colors' onClick={applyTabbarStrokeSelected}>색상 모두 적용</div>
+                                    <br />
+                                    <div className='colorpick-info'>채우기 색상</div>
                                     <SketchPicker color={tabbarFriendFillColorSelected} onChangeComplete={handleChangeTabbarFriendFillColorSelected} />
-                                </>
+                                    <div className='apply-all-colors' onClick={applyTabbarFillSelected}>색상 모두 적용</div>
+                               </>
                             )}
                             {activeButton === 'tabbar_chat_color_selected_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>채팅 아이콘 (선택 후)</div>
+                                    <div className='colorpick-info'>선 색상</div>
                                     <SketchPicker color={tabbarChatStrokeColorSelected} onChangeComplete={handleChangeTabbarChatStrokeColorSelected} />
+                                    <br />
+                                    <div className='colorpick-info'>채우기 색상</div>
                                     <SketchPicker color={tabbarChatFillColorSelected} onChangeComplete={handleChangeTabbarChatFillColorSelected} />
                                 </>
                             )}
                             {activeButton === 'tabbar_openchat_color_selected_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>오픈채팅 아이콘 (선택 후)</div>
+                                    <div className='colorpick-info'>선 색상</div>
                                     <SketchPicker color={tabbarOpenchatStrokeColorSelected} onChangeComplete={handleChangeTabbarOpenchatStrokeColorSelected} />
+                                    <br />
+                                    <div className='colorpick-info'>채우기 색상</div>
                                     <SketchPicker color={tabbarOpenchatFillColorSelected} onChangeComplete={handleChangeTabbarOpenchatFillColorSelected} />
                                 </>
                             )}
                             {activeButton === 'tabbar_shop_color_selected_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>쇼핑 아이콘 (선택 후)</div>
+                                    <div className='colorpick-info'>선 색상</div>
                                     <SketchPicker color={tabbarShopStrokeColorSelected} onChangeComplete={handleChangeTabbarShopStrokeColorSelected} />
+                                    <br />
+                                    <div className='colorpick-info'>채우기 색상</div>
                                     <SketchPicker color={tabbarShopFillColorSelected} onChangeComplete={handleChangeTabbarShopFillColorSelected} />
                                 </>
                             )}
                             {activeButton === 'tabbar_setting_color_selected_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>더보기 아이콘 (선택 후)</div>
+                                    <div className='colorpick-info'>선 색상</div>
                                     <SketchPicker color={tabbarSettingStrokeColorSelected} onChangeComplete={handleChangeTabbarSettingStrokeColorSelected} />
+                                    <br />
+                                    <div className='colorpick-info'>채우기 색상</div>
                                     <SketchPicker color={tabbarSettingFillColorSelected} onChangeComplete={handleChangeTabbarSettingFillColorSelected} />
 
                                 </>

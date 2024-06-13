@@ -68,8 +68,14 @@ function CharacterChatroom() {
     const [characterChatroomInputIconColor, setCharacterChatroomInputIconColor] = useState(localStorage.getItem('characterChatroomInputIconColor') || '#000000');
     const [characterChatroomSetProfileColor, setCharacterChatroomSetProfileColor] = useState(localStorage.getItem("friendlistProfileColor") || '#000000');
 
-    const [characterChatroomReceiveImg, setCharacterChatroomReceiveImg] = useState(localStorage.getItem('characterChatroomReceiveImg') || null);
-    const [characterChatroomSendImg, setCharacterChatroomSendImg] = useState(localStorage.getItem('characterChatroomSendImg') || null);
+
+    const getLocalStorageItem = (key) => {
+        const item = localStorage.getItem(key);
+        return item === 'null' ? null : item;
+    };
+
+    const [characterChatroomReceiveImg, setCharacterChatroomReceiveImg] = useState(getLocalStorageItem('characterChatroomReceiveImg'));
+    const [characterChatroomSendImg, setCharacterChatroomSendImg] = useState(getLocalStorageItem('characterChatroomSendImg'));
 
     const handleChangeCharacterChatroomBgColor = (color) => {
         setCharacterChatroomBgColor(color.hex);
@@ -138,13 +144,13 @@ function CharacterChatroom() {
 
     useEffect(() => {
         if (characterChatroomReceiveImg) {
-
+            localStorage.setItem('characterChatroomReceiveImg', characterChatroomReceiveImg);
         }
     }, [characterChatroomReceiveImg]);
 
     useEffect(() => {
         if (characterChatroomSendImg) {
-
+            localStorage.setItem('characterChatroomSendImg', characterChatroomSendImg);
         }
     }, [characterChatroomSendImg]);
 
@@ -154,6 +160,10 @@ function CharacterChatroom() {
         input.accept = 'image/*';
         input.onchange = (event) => {
             const file = event.target.files[0];
+            if (file.size > 5 * 1024 * 1024) {
+                alert("파일 용량을 초과합니다. 4MB 이하의 이미지를 첨부해주세요.");
+                return;
+            }
             if (file) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
@@ -171,6 +181,10 @@ function CharacterChatroom() {
         input.accept = 'image/*';
         input.onchange = (event) => {
             const file = event.target.files[0];
+            if (file.size > 5 * 1024 * 1024) {
+                alert("파일 용량을 초과합니다. 4MB 이하의 이미지를 첨부해주세요.");
+                return;
+            }
             if (file) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
@@ -257,7 +271,6 @@ function CharacterChatroom() {
             localStorage.setItem('characterChatroomSendBg1Color', characterChatroomSendBg1Color);
             localStorage.setItem('characterChatroomSendBg2Color', characterChatroomSendBg2Color);
 
-
             window.location.href = '/step2/CharacterNotification';
         } catch (error) {
             console.error('Error uploading image:', error);
@@ -272,41 +285,65 @@ function CharacterChatroom() {
                     {isOpen && (
                         <div className='drawer'>
                             {activeButton === 'character_chatroom_bg_color_set' && (
-                                <SketchPicker color={characterChatroomBgColor} onChangeComplete={handleChangeCharacterChatroomBgColor} />
+                                <>
+                                    <div className='colorpick-info-title'>채팅방 배경 색상</div>
+                                    <SketchPicker color={characterChatroomBgColor} onChangeComplete={handleChangeCharacterChatroomBgColor} />
+                                </>
                             )}
                             {activeButton === 'character_chatroom_title_color_set' && (
-                                <SketchPicker color={characterChatroomTitleColor} onChangeComplete={handleChangeCharacterChatroomTitleColor} />
+                                <>
+                                    <div className='colorpick-info-title'>채팅방 타이틀 색상</div>
+                                    <SketchPicker color={characterChatroomTitleColor} onChangeComplete={handleChangeCharacterChatroomTitleColor} />
+                                </>
                             )}
                             {activeButton === 'character_chatroom_name_color_set' && (
-                                <SketchPicker color={characterChatroomNameColor} onChangeComplete={handleChangeCharacterChatroomNameColor} />
+                                <>
+                                    <div className='colorpick-info-title'>친구 이름 색상</div>
+                                    <SketchPicker color={characterChatroomNameColor} onChangeComplete={handleChangeCharacterChatroomNameColor} />
+                                </>
                             )}
                             {activeButton === 'character_chatroom_receive_bg1_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>받은 말풍선 배경 색상(1)</div>
                                     <SketchPicker color={characterChatroomReceiveBg1Color} onChangeComplete={handleChangeCharacterChatroomReceiveBg1Color} />
+                                    <br/>
+                                    <div className='colorpick-info-title'>받은 말풍선 글씨 색상</div>
                                     <SketchPicker color={characterChatroomReceiveTextColor} onChangeComplete={handleChangeCharacterChatroomReceiveTextColor} />
                                 </>
                             )}
                             {activeButton === 'character_chatroom_receive_bg2_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>받은 말풍선 배경 색상(2)</div>
                                     <SketchPicker color={characterChatroomReceiveBg2Color} onChangeComplete={handleChangeCharacterChatroomReceiveBg2Color} />
+                                    <br/>
+                                    <div className='colorpick-info-title'>받은 메세지 안읽음 표시 색상</div>
                                     <SketchPicker color={characterChatroomReceiveUnreadTextColor} onChangeComplete={handleChangeCharacterChatroomReceiveUnreadTextColor} />
                                 </>
                             )}
                             {activeButton === 'character_chatroom_send_bg1_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>보낸 말풍선 배경 색상(1)</div>
                                     <SketchPicker color={characterChatroomSendBg1Color} onChangeComplete={handleChangeCharacterChatroomSendBg1Color} />
+                                    <br/>
+                                    <div className='colorpick-info-title'>보낸 말풍선 글씨 색상</div>
                                     <SketchPicker color={characterChatroomSendTextColor} onChangeComplete={handleChangeCharacterChatroomSendTextColor} />
                                 </>
                             )}
                             {activeButton === 'character_chatroom_send_bg2_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>보낸 말풍선 배경 색상(1)</div>
                                     <SketchPicker color={characterChatroomSendBg2Color} onChangeComplete={handleChangeCharacterChatroomSendBg2Color} />
+                                    <br/>
+                                    <div className='colorpick-info-title'>보낸 메세지 안읽음 표시 색상</div>
                                     <SketchPicker color={characterChatroomSendUnreadTextColor} onChangeComplete={handleChangeCharacterChatroomSendUnreadTextColor} />
                                 </>
                             )}
                             {activeButton === 'character_chatroom_input_bg_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>입력창 배경 색상</div>
                                     <SketchPicker color={characterChatroomInputBgColor} onChangeComplete={handleChangeCharacterChatroomInputBgColor} />
+                                    <br/>
+                                    <div className='colorpick-info-title'>입력창 아이콘 색상</div>
                                     <SketchPicker color={characterChatroomInputIconColor} onChangeComplete={handleChangeCharacterChatroomInputIconColor} />
                                 </>
                             )}

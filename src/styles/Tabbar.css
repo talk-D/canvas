@@ -8,6 +8,7 @@
 
 }
 
+
 .tabbar_bg_color {
     padding-top: 50px;
     height: 300px;
@@ -17,6 +18,46 @@
     justify-content: center;
     position: relative;
 
+}
+
+
+
+
+.colorpick-info-title{
+    padding: 10px 5px 10px 5px;
+    margin: 10px 5px 10px 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #FFBB6D;
+
+    width: 200px;
+    font-size: 16px;
+}
+.colorpick-info{
+    padding: 10px 5px 10px 5px;
+    margin: auto;
+
+    margin-bottom: 10px;
+    text-align: center;
+    color: #828282;
+    background-color: #FFECB4;
+
+    width: 150px;
+    font-size: 14px;
+
+}
+
+.apply-all-colors{
+    padding: 10px 5px 10px 5px;
+    margin: auto;
+    margin-top:10px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #CACACA;
+    box-shadow: 5px 5px;
+    width: 90px;
+    font-size: 12px;
 }
 
 

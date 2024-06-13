@@ -577,9 +577,9 @@ const CanvasComponent = forwardRef((props, ref) => {
                 </div>
             )}
             {selectedBasicIcon && (
+
                 <div className='left-drawer'>
-                    <span className='subtitle'>기본 아이콘</span>
-                    <br/>
+                    <span className='subtitle'>기본 아이콘</span><br/>
                     <div className='basic-icon-grid-container'>
                         <div className='basic-icon-grid'>
                             <div className='drawer-basic-icon' onClick={() => handleIconClick(<Bubble2 color={selectedColor}/>)}>

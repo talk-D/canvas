@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+    initialUnlockImages,
+    initialLockImages
+} from "../icons/PasswordIcon";
 
 export function InitializeLocalStorage() {
 
@@ -9,6 +13,14 @@ export function InitializeLocalStorage() {
     localStorage.setItem("passwordSecondTitleColor", "#B9B9B9");
     localStorage.setItem("passwordKeypadColor", "#FFECB4");
     localStorage.setItem("passwordKeypadFontColor", "#828282");
+
+    // Initialize password icons
+    localStorage.setItem('unlockImages', JSON.stringify(initialUnlockImages));
+    localStorage.setItem('lockImages', JSON.stringify(initialLockImages));
+    localStorage.setItem('selectedUnlockImage', JSON.stringify(initialUnlockImages[0]));
+    localStorage.setItem('selectedLockImage', JSON.stringify(initialLockImages[0]));
+    localStorage.setItem('selectedUnlockImageFill', initialUnlockImages[0].fill);
+    localStorage.setItem('selectedLockImageFill', initialLockImages[0].fill);
 
     // friendlist창
     localStorage.setItem("friendlistBgColor", "#FFFFFF");
@@ -80,11 +92,12 @@ export function InitializeLocalStorage() {
     localStorage.setItem("characterChatroomInputBgColor", "#FFECB4");
     localStorage.setItem("characterChatroomInputIconColor", "#828282");
 
+    // Set null for default images for character chatroom
+    localStorage.setItem('characterChatroomReceiveImg', JSON.stringify(null));
+    localStorage.setItem('characterChatroomSendImg', JSON.stringify(null));
 
     // notification창
     localStorage.setItem("notificationBgColor", "#FFECB4");
     localStorage.setItem("notificationNameColor", "#3D3D3D");
     localStorage.setItem("notificationMessageColor", "#828282");
-
-
 }

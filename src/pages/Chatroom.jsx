@@ -168,24 +168,39 @@ function Chatroom() {
                     {isOpen && (
                         <div className="drawer">
                             {activeButton === 'chatroom_bg_color_set' && (
+                                <>
+                                <div className='colorpick-info-title'>채팅방 배경 색상</div>
                                 <SketchPicker color={chatroomBgColor} onChangeComplete={handleChangeChatroomBgColor} />
+                                </>
                             )}
                             {activeButton === 'chatroom_title_color_set' && (
+                                <>
+                                <div className='colorpick-info-title'>채팅방 타이틀 색상</div>
                                 <SketchPicker color={chatroomTitleColor} onChangeComplete={handleChangeChatroomTitleColor} />
+                                </>
                             )}
                             {activeButton === 'chatroom_name_color_set' && (
+                                <>
+                                <div className='colorpick-info-title'>친구 이름 색상</div>
                                 <SketchPicker color={chatroomNameColor} onChangeComplete={handleChangeChatroomNameColor} />
+                                </>
                             )}
                             {activeButton === 'chatroom_receive_bg1_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>받은 말풍선 배경 색상(1)</div>
                                 <SketchPicker color={chatroomReceiveBg1Color} onChangeComplete={handleChangeChatroomReceiveBg1Color} />
+                             <br/>
+                                    <div className='colorpick-info-title'>받은 말풍선 글씨 색상</div>
                                 <SketchPicker color={chatroomReceiveTextColor} onChangeComplete={handleChangeChatroomReceiveTextColor} />
 
                                 </>
                             )}
                             {activeButton === 'chatroom_receive_bg2_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>받은 말풍선 배경 색상(2)</div>
                                 <SketchPicker color={chatroomReceiveBg2Color} onChangeComplete={handleChangeChatroomReceiveBg2Color} />
+                                     <br/>
+                                    <div className='colorpick-info-title'>받은 메세지 안읽음 표시 색상</div>
                 <SketchPicker color={chatroomReceiveUnreadTextColor} onChangeComplete={handleChangeChatroomReceiveUnreadTextColor} />
 
             </>
@@ -194,20 +209,29 @@ function Chatroom() {
 
                             {activeButton === 'chatroom_send_bg1_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>보낸 말풍선 배경 색상(1)</div>
                                 <SketchPicker color={chatroomSendBg1Color} onChangeComplete={handleChangeChatroomSendBg1Color} />
+                               <br/>
+                                    <div className='colorpick-info-title'>보낸 말풍선 글씨 색상</div>
                                 <SketchPicker color={chatroomSendTextColor} onChangeComplete={handleChangeChatroomSendTextColor} />
                                 </>
                             )}
                             {activeButton === 'chatroom_send_bg2_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>보낸 말풍선 배경 색상(1)</div>
                                 <SketchPicker color={chatroomSendBg2Color} onChangeComplete={handleChangeChatroomSendBg2Color} />
+                               <br/>
+                                    <div className='colorpick-info-title'>보낸 메세지 안읽음 표시 색상</div>
                                 <SketchPicker color={chatroomSendUnreadTextColor} onChangeComplete={handleChangeChatroomSendUnreadTextColor} />
                                 </>
                             )}
 
                             {activeButton === 'chatroom_input_bg_color_set' && (
                                 <>
+                                    <div className='colorpick-info-title'>입력창 배경 색상</div>
                                 <SketchPicker color={chatroomInputBgColor} onChangeComplete={handleChangeChatroomInputBgColor} />
+                               <br/>
+                                    <div className='colorpick-info-title'>입력창 아이콘 색상</div>
                                 <SketchPicker color={chatroomInputIconColor} onChangeComplete={handleChangeChatroomInputIconColor} />
                                     )
                                 </>

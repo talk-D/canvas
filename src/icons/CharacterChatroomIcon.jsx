@@ -204,6 +204,12 @@ export const Character_chatroom_receive_img_cmp = ({ src }) => {
 };
 
 export const Character_chatroom_send_img_cmp = ({ src }) => {
+    if (src) {
+        console.log("나는 img이야!!!!!");
+    } else {
+        console.log("나는 svg이야!!!!!");
+    }
+
     return (
         <div style={{ width: '39px', height: '50px', overflow: 'hidden', position: 'relative' }}>
             {src ? (
