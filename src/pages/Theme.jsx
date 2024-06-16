@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import '../styles/Theme.css';
 import { ChromePicker } from 'react-color';
 import { FigureIcon, BasicIcon, ImageIcon, TextIcon } from '../icons/MenuIcon';
