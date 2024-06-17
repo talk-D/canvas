@@ -2,9 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+require('dotenv').config(); // .env 파일에서 환경 변수를 로드합니다.
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
+const host = process.env.HOST || '0.0.0.0'; // 기본 호스트를 0.0.0.0으로 설정하여 모든 IP에서 접근 가능하게 합니다.
 
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(cors());
@@ -36,6 +38,6 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+app.listen(port, host, () => {
+    console.log(`Server is running on http://${host}:${port}`);
 });
