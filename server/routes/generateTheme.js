@@ -59,7 +59,7 @@ router.get('/', (req, res) => {
         ManifestStyle
         {
             -kakaotalk-theme-name: ${themeNameKorean};
-            -kakaotalk-theme-version: ${themeVersion}; 
+            -kakaotalk-theme-version: talkD; 
             -kakaotalk-theme-url: 'http://www.kakao.com';
             -kakaotalk-author-name: 'talk:D';
             -kakaotalk-theme-id: 'com.kakao.talk.theme.${themeNameEnglish}';
