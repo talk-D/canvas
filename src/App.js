@@ -12,6 +12,7 @@ import CharacterChatroom from './pages/CharacterChatroom';
 import Notification from './pages/Notification';
 import CharacterNotification from './pages/CharacterNotification';
 import Step3 from './pages/Step3';
+import HowToApply from './pages/HowToApply';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
            <Route path='/step2/notification' element={<Notification />} />
             <Route path='/step2/characternotification' element={<CharacterNotification />} />
            <Route path='/step3' element={<Step3 />} />
+            <Route path='/HowToApply' element={<HowToApply />} />
           <Route path='/theme' element={<Theme />} />
         </Routes>
       </BrowserRouter>

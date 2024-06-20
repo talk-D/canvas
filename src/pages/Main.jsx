@@ -18,7 +18,7 @@ function Main() {
             <Logo />
             <div className='info'>
                 <Megaphone />
-                <div className='info-text'>&nbsp;&nbsp;제작할 테마 종류를 클릭해주세요!</div>
+                <div className='info-text'>&nbsp;&nbsp;제작할 테마의 말풍선 종류를 클릭해주세요!</div>
             </div>
             <div className='theme-type'>
                 <div className='basic-theme'>

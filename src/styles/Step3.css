@@ -12,14 +12,34 @@
     padding-bottom: 15px;
 }
 
-.remake-button{
-    font-size: 22px;
-    font-weight: bolder;
+.step3-button-wrap{
+    display: flex;
     position: absolute;
     top: 470px;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 280px;
+    gap: 20px;
+}
+
+.remake-button{
+    font-size: 22px;
+    font-weight: bolder;
+    top: 470px;
+    width: 240px;
+    height: 60px;
+    color: #4d4d4d;
+    background-color: #ffffff;
+    border-radius: 45vh;
+    padding: 5px 2px 5px 2px;
+    margin-top: 20px;
+    align-content: center;
+}
+
+.theme-apply{
+    font-size: 22px;
+    font-weight: bolder;
+    top: 470px;
+    width: 240px;
     height: 60px;
     color: #4d4d4d;
     background-color: #ffffff;
