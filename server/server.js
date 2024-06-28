@@ -16,7 +16,8 @@ const passwordRoute = require('./routes/password');
 const friendlistRoute = require('./routes/friendlist');
 const chatroomRoute = require('./routes/chatroom');
 const imageProcessingRoute = require('./routes/imageProcessing');
-const saveThumbnailRoute = require('./routes/saveThumbnail'); // 새로운 라우트 추가
+const saveThumbnailRoute = require('./routes/saveThumbnail');
+const deleteKthemeRoute = require('./routes/deleteKtheme');
 
 app.use('/upload', uploadRoute);
 app.use('/tabbar', tabbarRoute);
@@ -25,7 +26,8 @@ app.use('/Password', passwordRoute);
 app.use('/friendlist', friendlistRoute);
 app.use('/chatroom', chatroomRoute);
 app.use('/imageProcessing', imageProcessingRoute);
-app.use('/saveThumbnail', saveThumbnailRoute); // 새로운 라우트 추가
+app.use('/saveThumbnail', saveThumbnailRoute);
+app.use('/deleteKtheme', deleteKthemeRoute);
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

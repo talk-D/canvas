@@ -16,6 +16,7 @@ function Main() {
     return (
         <div className='div-wrapper'>
             <Logo />
+            <div className='info-text-0'>나만의 iOS 카카오톡 테마 제작하기</div>
             <div className='info'>
                 <Megaphone />
                 <div className='info-text'>&nbsp;&nbsp;제작할 테마의 말풍선 종류를 클릭해주세요!</div>

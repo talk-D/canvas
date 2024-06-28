@@ -29,9 +29,6 @@ function Step3() {
                 </div>
             </div>
         </div>
-
-
-
     );
 }
 export default Step3;

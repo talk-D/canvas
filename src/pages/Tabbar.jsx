@@ -216,6 +216,29 @@ function Tabbar() {
         localStorage.setItem("tabbarBgColor", tabbarBgColor);
         // 이미지 저장
         try {
+            localStorage.setItem("tabbarFriendFillColor", tabbarFriendFillColor);
+            localStorage.setItem("tabbarFriendStrokeColor", tabbarFriendStrokeColor);
+            localStorage.setItem("tabbarChatFillColor", tabbarChatFillColor);
+            localStorage.setItem("tabbarChatStrokeColor", tabbarChatStrokeColor);
+            localStorage.setItem("tabbarOpenchatFillColor", tabbarOpenchatFillColor);
+            localStorage.setItem("tabbarOpenchatStrokeColor", tabbarOpenchatStrokeColor);
+            localStorage.setItem("tabbarShopFillColor", tabbarShopFillColor);
+            localStorage.setItem("tabbarShopStrokeColor", tabbarShopStrokeColor);
+            localStorage.setItem("tabbarSettingFillColor", tabbarSettingFillColor);
+            localStorage.setItem("tabbarSettingStrokeColor", tabbarSettingStrokeColor);
+
+            localStorage.setItem("tabbarFriendFillColorSelected", tabbarFriendFillColorSelected);
+            localStorage.setItem("tabbarChatFillColorSelected", tabbarChatFillColorSelected);
+            localStorage.setItem("tabbarOpenchatFillColorSelected", tabbarOpenchatFillColorSelected);
+            localStorage.setItem("tabbarShopFillColorSelected", tabbarShopFillColorSelected);
+            localStorage.setItem("tabbarSettingFillColorSelected", tabbarSettingFillColorSelected);
+
+            localStorage.setItem("tabbarFriendStrokeColorSelected", tabbarFriendStrokeColorSelected);
+            localStorage.setItem("tabbarChatStrokeColorSelected", tabbarChatStrokeColorSelected);
+            localStorage.setItem("tabbarOpenchatStrokeColorSelected", tabbarOpenchatStrokeColorSelected);
+            localStorage.setItem("tabbarShopStrokeColorSelected", tabbarShopStrokeColorSelected);
+            localStorage.setItem("tabbarSettingStrokeColorSelected", tabbarSettingStrokeColorSelected);
+
             await convertSvgToPng(Target_tabbar_bg_color_cmp, { tabbarBgColor }, 'maintabBgImage@3x.png');
             await convertSvgToPng(Target_tabbar_friend_color_cmp, { tabbarFriendFillColor, tabbarFriendStrokeColor }, 'maintabIcoFriends@3x.png');
             await convertSvgToPng(Target_tabbar_chat_color_cmp, { tabbarChatFillColor, tabbarChatStrokeColor }, 'maintabIcoChats@3x.png');
@@ -227,6 +250,7 @@ function Tabbar() {
             await convertSvgToPng(Target_tabbar_openchat_color_selected_cmp, { tabbarOpenchatFillColorSelected, tabbarOpenchatStrokeColorSelected }, 'maintabIcoViewSelected@3x.png');
             await convertSvgToPng(Target_tabbar_shop_color_selected_cmp, { tabbarShopFillColorSelected, tabbarShopStrokeColorSelected }, 'maintabIcoShoppingSelected@3x.png');
             await convertSvgToPng(Target_tabbar_setting_color_selected_cmp, { tabbarSettingFillColorSelected, tabbarSettingStrokeColorSelected }, 'maintabIcoMoreSelected@3x.png');
+
 
             // 페이지 넘어가기
             const themeType = localStorage.getItem("themeType");

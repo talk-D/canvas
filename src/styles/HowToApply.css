@@ -1,0 +1,32 @@
+.step4-button-wrap{
+
+    position: absolute;
+    top: 450px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+
+.theme-apply2{
+    font-size: 20px;
+    font-weight: bolder;
+    margin-bottom: 40px;
+
+}
+
+.remake-button2{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    font-weight: bolder;
+    width: 240px;
+    height: 60px;
+    color: #4d4d4d;
+    background-color: #ffffff;
+    border-radius: 45vh;
+    padding: 5px 2px 5px 2px;
+    margin-top: 20px;
+    align-content: center;
+}

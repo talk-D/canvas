@@ -4,6 +4,7 @@ import {Notification_bg_color_cmp} from "../icons/NotificationIcon";
 import '../styles/Notification.css';
 import {SketchPicker} from "react-color";
 import MakeTheme from "../function/MakeTheme.jsx";
+import DeleteKtheme from "../function/DeleteKtheme.jsx"
 
 
 
@@ -86,6 +87,7 @@ function Notification() {
 
 
         await MakeTheme();
+        await DeleteKtheme();
         window.location.href = "/Step3";
     };
 

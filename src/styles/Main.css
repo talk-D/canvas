@@ -1,8 +1,14 @@
-
+.info-text-0{
+    margin-bottom: 12px;
+    color: #FDBD74;
+    display: flex;
+    justify-content: center;
+    font-size: 43px;
+}
 
 .info{
-    margin-top: 50px;
-    margin-bottom: 70px;
+    margin-top: 10px;
+    margin-bottom: 50px;
     color: #FDBD74;
     display: flex;
     justify-content: center;
