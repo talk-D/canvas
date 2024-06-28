@@ -194,7 +194,7 @@ function Password() {
             const lockDataUrl = resizedLockCanvas.toDataURL("image/png");
 
             // Send both images to the server
-            const response = await fetch('http://localhost:5000/upload', {
+            const response = await fetch('http://'+process.env.HOST+':'+process.env.PORT+'/upload', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

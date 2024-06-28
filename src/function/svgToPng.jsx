@@ -5,7 +5,7 @@ export const svgToPng = async (blob, filename) => {
     formData.append('file', blob, filename);
 
     try {
-        await axios.post('http://localhost:5000/tabbar', formData, {
+        await axios.post(process.env.HOST+'/tabbar', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

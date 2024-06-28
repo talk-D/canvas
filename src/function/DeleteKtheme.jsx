@@ -3,7 +3,7 @@ import React from 'react';
 
 const DeleteKtheme = async () => {
     try {
-        const response = await fetch('http://localhost:5000/deleteKtheme', {
+        const response = await fetch('http://'+process.env.HOST+':'+process.env.PORT+'/deleteKtheme', {
             method: 'DELETE',
         });
 

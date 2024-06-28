@@ -209,7 +209,7 @@ function CharacterChatroom() {
                 const formData1 = new FormData();
                 formData1.append('image', sendBlob, 'chatroomBubbleSend01@3x.png');
                 formData1.append('filename', 'chatroomBubbleSend01@3x.png');
-                await axios.post('http://localhost:5000/imageProcessing/uploadImage', formData1, {
+                await axios.post('http://'+process.env.HOST+':'+process.env.PORT+'/imageProcessing/uploadImage', formData1, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
@@ -218,7 +218,7 @@ function CharacterChatroom() {
                 const formData2 = new FormData();
                 formData2.append('image', sendBlob, 'chatroomBubbleSend01Selected@3x.png');
                 formData2.append('filename', 'chatroomBubbleSend01Selected@3x.png');
-                await axios.post('http://localhost:5000/imageProcessing/uploadImage', formData2, {
+                await axios.post('http://'+process.env.HOST+':'+process.env.PORT+'/imageProcessing/uploadImage', formData2, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
@@ -232,7 +232,7 @@ function CharacterChatroom() {
                 const formData1 = new FormData();
                 formData1.append('image', receiveBlob, 'chatroomBubbleReceive01@3x.png');
                 formData1.append('filename', 'chatroomBubbleReceive01@3x.png');
-                await axios.post('http://localhost:5000/imageProcessing/uploadImage', formData1, {
+                await axios.post('http://'+process.env.HOST+':'+process.env.PORT+'/imageProcessing/uploadImage', formData1, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
@@ -241,7 +241,7 @@ function CharacterChatroom() {
                 const formData2 = new FormData();
                 formData2.append('image', receiveBlob, 'chatroomBubbleReceive01Selected@3x.png');
                 formData2.append('filename', 'chatroomBubbleReceive01Selected@3x.png');
-                await axios.post('http://localhost:5000/imageProcessing/uploadImage', formData2, {
+                await axios.post('http://'+process.env.HOST+':'+process.env.PORT+'/imageProcessing/uploadImage', formData2, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
